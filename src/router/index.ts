@@ -1,0 +1,31 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: ()=>import("../views/HomeView.vue"),
+      meta:{
+        title:"home"
+      }
+    },
+  //   {
+  //     path: "/:pathMatch(.*)*",
+  //     name: "Not found",
+  //     component:()=>import(),
+  //  meta:{
+  //   title:"not Found"
+  //  }
+  //   },
+  ]
+})
+
+router.beforeEach((to,_from,next)=>{
+  document.title=to.meta.title as string
+  next();
+})
+
+
+export default router
