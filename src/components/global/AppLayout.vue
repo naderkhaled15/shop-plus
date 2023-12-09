@@ -5,14 +5,14 @@ const AppSidebar=defineAsyncComponent(()=>import("../global/AppSidebar.vue"))
 const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
 </script>
 <template>
-       <div class="container ss">
+       <div class="container-fluid">
             <!-- navbar -->
             <app-navbar></app-navbar>
             <!-- aside -->
             <app-sidebar></app-sidebar>
             <!-- body -->
             <main>
-                <span></span>
+                <slot></slot>
             </main>
             <!-- footer -->
             <app-footer></app-footer>
