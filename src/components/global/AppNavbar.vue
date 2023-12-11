@@ -64,7 +64,7 @@ let language=ref([{
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg px-3 border-body d-flex flex-column container-fluid" data-bs-theme="dark">  
+<nav class="navbar navbar-expand-lg px-5 py-4 border-body d-flex flex-column container-fluid" data-bs-theme="dark">  
 <!-- first nav row -->
   <div class="row col-12 ">
     <!-- brand icon --> 
@@ -83,7 +83,7 @@ let language=ref([{
       <!-- search  -->
       <form class="d-flex ms-auto col-sm-12 col-lg-7 col-xxl-7 " role="search">
         <div class="input-group position-relative">
-          <input class="form-control rounded-pill bg-white text-dark z-1 py-3 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
+          <input class="form-control rounded-pill bg-white text-dark z-1 py-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
           <div class="input-group-append p-0">
             <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2" type="submit" >
               <svg data-icon="search" viewBox="0 0 512 512" width="100%" height="100%" style="fill: #161880; width: 30px;">
@@ -96,7 +96,7 @@ let language=ref([{
 
     <!-- icons -->
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-sm-6 col-lg-5 col-xxl-5 d-flex gap-md-2 gap-lg-2 gap-xl-3 first-nav">
-        <li class="nav-item ms-auto me-xxl-5 me-xl-3 text-white">
+        <li class="nav-item availability ms-auto me-xxl-5 me-xl-3 text-white ">
             <span>available 24/7 at</span>
             <strong>(090) 123-4546</strong>
           </li>
@@ -143,10 +143,11 @@ let language=ref([{
       </ul>
     </div>
   </div>
+  
   <!-- second nav row -->
   <div class="row col-12 pt-sm-0 pt-lg-4">
-    <div class="collapse navbar-collapse row col-auto" id="navbarSupportedContent"> 
-    <ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-3 align-items-center second-nav">
+    <div class="collapse navbar-collapse row col-auto m-0" id="navbarSupportedContent"> 
+    <ul class="navbar-nav py-4 mb-2 mb-lg-0 d-flex gap-5 align-items-center second-nav">
         <li class="nav-item">
           theme Demo  
         </li>
@@ -180,13 +181,13 @@ let language=ref([{
         </li>
 
         <li class="nav-item ms-xs-0 ms-lg-auto"> 
-          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-headset fa-w-14 fa-3x me-1" width="20px" height="20px"><path fill="#0a6cdc" d="M320 352h-23.1a174.08 174.08 0 0 1-145.8 0H128A128 128 0 0 0 0 480a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32 128 128 0 0 0-128-128zM48 224a16 16 0 0 0 16-16v-16c0-88.22 71.78-160 160-160s160 71.78 160 160v16a80.09 80.09 0 0 1-80 80h-32a32 32 0 0 0-32-32h-32a32 32 0 0 0 0 64h96a112.14 112.14 0 0 0 112-112v-16C416 86.13 329.87 0 224 0S32 86.13 32 192v16a16 16 0 0 0 16 16zm160 0h32a64 64 0 0 1 55.41 32H304a48.05 48.05 0 0 0 48-48v-16a128 128 0 0 0-256 0c0 40.42 19.1 76 48.35 99.47-.06-1.17-.35-2.28-.35-3.47a64.07 64.07 0 0 1 64-64z" class=""></path></svg>
-          <span>help</span>       
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-headset fa-w-14 fa-3x me-1" width="25px" height="25px"><path fill="#0a6cdc" d="M320 352h-23.1a174.08 174.08 0 0 1-145.8 0H128A128 128 0 0 0 0 480a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32 128 128 0 0 0-128-128zM48 224a16 16 0 0 0 16-16v-16c0-88.22 71.78-160 160-160s160 71.78 160 160v16a80.09 80.09 0 0 1-80 80h-32a32 32 0 0 0-32-32h-32a32 32 0 0 0 0 64h96a112.14 112.14 0 0 0 112-112v-16C416 86.13 329.87 0 224 0S32 86.13 32 192v16a16 16 0 0 0 16 16zm160 0h32a64 64 0 0 1 55.41 32H304a48.05 48.05 0 0 0 48-48v-16a128 128 0 0 0-256 0c0 40.42 19.1 76 48.35 99.47-.06-1.17-.35-2.28-.35-3.47a64.07 64.07 0 0 1 64-64z" class=""></path></svg>
+          <span class="ms-2">help</span>       
         </li>
-        <li class="nav-item me-3 dropdown"> 
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item me-2 dropdown"> 
+            <button class="btn dropdown-toggle d-flex justify-content-center align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span v-html="language[0].icon" class="me-2"></span>
-                <span class="fw-bold"> {{ language[0].lang }} / {{ language[0].currency }}</span>
+                <span class="fw-bold lang-name"> {{ language[0].lang }} / {{ language[0].currency }}</span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
               <li v-for="lang in languagesSet" :key="lang.lang" @click="language=[lang]">               
@@ -205,8 +206,22 @@ let language=ref([{
 </template>
 <style lang="scss">
 nav {
-
-  .first-nav {
+  form {
+    .search::placeholder {
+      color: #8b8b8b;
+      font-weight: 500;
+      opacity: 0.7;
+      font-size: 1.4rem;
+    } 
+    .search {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+  }
+  .first-nav {    
+    .availability {
+            font-size: 1.6rem;
+      }
     li {
       cursor: pointer;
       color: #fdc525;
@@ -214,29 +229,23 @@ nav {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+  
       svg {
         fill: #fdc525;
       }
+      
     }
-   
   }
   .second-nav {
-    padding: 5px 12px;
+    .lang-name {
+      font-size: 1.6rem;
+    }
     li {
       color: white;
-      font-size:1rem;
+      font-size:1.8rem;
       font-weight: bold;
       cursor: pointer;
     }
   }
-form {
- .search::placeholder {
-  color: #8b8b8b;
-  font-weight: 500;
-  opacity: 0.7;
 }
-
-  }
-}
-
 </style>

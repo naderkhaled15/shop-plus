@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+html {
+  font-size: 62.5%;
+}
+
 body {
   text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
 }
 
 .layout-container{
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 500vh;
+}
+.container {
+  max-width: 150rem !important;
 }
 // navbar 
 nav {

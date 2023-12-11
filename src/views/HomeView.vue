@@ -1,9 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+const UpperBanner=defineAsyncComponent(()=>import("../components/home-components/UpperBanner.vue"))
+</script>
 <template>
     <div>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-        At dolorem animi in eum, debitis impedit facilis consectetur 
-        voluptatum voluptas nostrum aperiam maiores
-        eius, dolore quis pariatur ad aliquid molestiae labore.
+    <upper-banner></upper-banner>
     </div>
 </template>
