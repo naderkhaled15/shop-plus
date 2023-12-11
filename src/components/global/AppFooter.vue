@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+<footer class="text-center text-lg-start bg-body-tertiary text-muted mt-auto">
   <!-- Grid container -->
   <div class="container p-4">
     <!-- Section: Social media -->

@@ -1,11 +1,13 @@
-.container-fluid{
-display: flex;
-flex-direction: column;
-  min-height: 100vh;
+body {
+  text-transform: capitalize;
 }
 
-
-
-footer {
-margin-top: auto;
+.layout-container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+// navbar 
+nav {
+  background-color: #161880;
 }
