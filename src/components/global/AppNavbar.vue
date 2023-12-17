@@ -61,20 +61,21 @@ let language=ref([{
           </g>
           </svg>`
   }])
+
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg px-5 py-4 border-body d-flex flex-column container-fluid" data-bs-theme="dark">  
-<!-- first nav row -->
-  <div class="row col-12 ">
-    <!-- brand icon --> 
-    <a class="navbar-brand  col-sm-5 col-md-2 col-xxl-3 align-self-center" href="#">
-      <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width: auto">
+<nav class="navbar navbar-expand-lg px-4 py-4 border-body d-flex flex-column container-fluid nav-bar" data-bs-theme="dark">  
+  <!-- first nav row -->
+  <div class="row col-12">
+    <!-- brand icon -->
+    <a class="navbar-brand  col-sm-4 col-md-4 col-xxl-3 align-self-center" href="#">
+      <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width: 50%">
     </a>
 
     <!-- button of collapsed navbar -->
-    <button class="navbar-toggler col-sm-auto ms-auto me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon "></span>
+    <button class="navbar-toggler col-sm-1 ms-auto me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon w-75 h-100"></span>
     </button>
 
     <!-- collapsed elements -->
@@ -83,7 +84,7 @@ let language=ref([{
       <!-- search  -->
       <form class="d-flex ms-auto col-sm-12 col-lg-7 col-xxl-7 " role="search">
         <div class="input-group position-relative">
-          <input class="form-control rounded-pill bg-white text-dark z-1 py-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
+          <input class="form-control rounded-pill bg-white text-dark z-1 py-4 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
           <div class="input-group-append p-0">
             <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2" type="submit" >
               <svg data-icon="search" viewBox="0 0 512 512" width="100%" height="100%" style="fill: #161880; width: 30px;">
@@ -143,51 +144,67 @@ let language=ref([{
       </ul>
     </div>
   </div>
-  
   <!-- second nav row -->
-  <div class="row col-12 pt-sm-0 pt-lg-4">
+  <div class="row col-12 pt-sm-0 pt-lg-1">
     <div class="collapse navbar-collapse row col-auto m-0" id="navbarSupportedContent"> 
-    <ul class="navbar-nav py-4 mb-2 mb-lg-0 d-flex gap-5 align-items-center second-nav">
+    <ul class="navbar-nav pt-5 mb-2 mb-lg-0 d-flex gap-4 align-items-center second-nav">
         <li class="nav-item">
-          theme Demo  
+          <a class="nav-link" href="#">
+            theme Demo  
+          </a>
         </li>
 
-        <li class="nav-item">     
-          shop      
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            shop      
+          </a>     
         </li>
         
-        <li class="nav-item">     
-          product    
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            product    
+          </a>     
         </li>
 
-        <li class="nav-item">  
-          new in       
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            new in       
+          </a>  
         </li>
 
-        <li class="nav-item">  
-          must have       
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            must have       
+          </a>  
         </li>
 
-        <li class="nav-item">   
-          collections      
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            collections      
+          </a>   
         </li>
 
-        <li class="nav-item">     
-          pages    
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            pages    
+          </a>     
         </li>
 
-        <li class="nav-item">     
-          buy ella    
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            buy ella    
+          </a>     
         </li>
-
-        <li class="nav-item ms-xs-0 ms-lg-auto"> 
-          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-headset fa-w-14 fa-3x me-1" width="25px" height="25px"><path fill="#0a6cdc" d="M320 352h-23.1a174.08 174.08 0 0 1-145.8 0H128A128 128 0 0 0 0 480a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32 128 128 0 0 0-128-128zM48 224a16 16 0 0 0 16-16v-16c0-88.22 71.78-160 160-160s160 71.78 160 160v16a80.09 80.09 0 0 1-80 80h-32a32 32 0 0 0-32-32h-32a32 32 0 0 0 0 64h96a112.14 112.14 0 0 0 112-112v-16C416 86.13 329.87 0 224 0S32 86.13 32 192v16a16 16 0 0 0 16 16zm160 0h32a64 64 0 0 1 55.41 32H304a48.05 48.05 0 0 0 48-48v-16a128 128 0 0 0-256 0c0 40.42 19.1 76 48.35 99.47-.06-1.17-.35-2.28-.35-3.47a64.07 64.07 0 0 1 64-64z" class=""></path></svg>
-          <span class="ms-2">help</span>       
+        <li class="nav-item ms-0 ms-lg-auto">
+          <a class="nav-link" href="#">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-headset fa-w-14 fa-3x me-1" width="25px" height="25px"><path fill="#0a6cdc" d="M320 352h-23.1a174.08 174.08 0 0 1-145.8 0H128A128 128 0 0 0 0 480a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32 128 128 0 0 0-128-128zM48 224a16 16 0 0 0 16-16v-16c0-88.22 71.78-160 160-160s160 71.78 160 160v16a80.09 80.09 0 0 1-80 80h-32a32 32 0 0 0-32-32h-32a32 32 0 0 0 0 64h96a112.14 112.14 0 0 0 112-112v-16C416 86.13 329.87 0 224 0S32 86.13 32 192v16a16 16 0 0 0 16 16zm160 0h32a64 64 0 0 1 55.41 32H304a48.05 48.05 0 0 0 48-48v-16a128 128 0 0 0-256 0c0 40.42 19.1 76 48.35 99.47-.06-1.17-.35-2.28-.35-3.47a64.07 64.07 0 0 1 64-64z" class=""></path></svg>
+            <span class="ms-2">help</span>       
+          </a> 
         </li>
         <li class="nav-item me-2 dropdown"> 
             <button class="btn dropdown-toggle d-flex justify-content-center align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span v-html="language[0].icon" class="me-2"></span>
-                <span class="fw-bold lang-name"> {{ language[0].lang }} / {{ language[0].currency }}</span>
+              <span v-html="language[0].icon" class="me-3"></span>
+              <span class="fw-bold lang-name me-2"> {{ language[0].lang }} / {{ language[0].currency }}</span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
               <li v-for="lang in languagesSet" :key="lang.lang" @click="language=[lang]">               
@@ -198,14 +215,14 @@ let language=ref([{
               </li>
             </ul>
         </li>
-
-      </ul>  
+        </ul>  
+      </div>
     </div>
-    </div>
-</nav>
+  </nav>
 </template>
 <style lang="scss">
 nav {
+  z-index: 999;
   form {
     .search::placeholder {
       color: #8b8b8b;
@@ -237,14 +254,18 @@ nav {
     }
   }
   .second-nav {
+    z-index:999;
     .lang-name {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
     li {
-      color: white;
-      font-size:1.8rem;
+      font-size:2.2rem;
       font-weight: bold;
       cursor: pointer;
+      font-weight: 500;
+          a{
+            color: white;
+          }
     }
   }
 }
