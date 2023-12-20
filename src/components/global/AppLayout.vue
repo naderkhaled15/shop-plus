@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, onUpdated } from 'vue';
+import { defineAsyncComponent } from 'vue';
+
+
 const AppNavbar=defineAsyncComponent(()=>import("../global/AppNavbar.vue"))
 const FixedNav=defineAsyncComponent(()=>import("../global/FixedNav.vue"))
 const AppSidebar=defineAsyncComponent(()=>import("../global/AppSidebar.vue"))
 const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
+
 </script>
 <template>
         <div class="layout-container">

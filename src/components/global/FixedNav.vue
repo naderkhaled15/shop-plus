@@ -9,7 +9,7 @@
   </div>
 
     <!-- collapsed button -->
-    <button class="navbar-toggler col-sm-1 ms-auto me-4 bg-light" type="button" data-toggle="collapse" data-target="#fixedNavBar" aria-controls="fixedNavBar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler col-sm-1 ms-auto me-4" type="button" data-toggle="collapse" data-target="#fixedNavBar" aria-controls="fixedNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     
