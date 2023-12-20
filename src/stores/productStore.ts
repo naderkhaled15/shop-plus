@@ -4,13 +4,15 @@ import axios from '@/axios'
 
 export const productModule = defineStore('productModule',{
   state:()=>({
-    allProducts:[]
+    flashDeals:[]
   }),
   actions:{
     async getProducts(){
-      let result= await axios.get("/products")
-      let products:never[]=result.data.products
-      this.allProducts.push(...products)
+      try{  
+        let result= await axios.get("/products?limit=10")
+        let products:[]=result.data.products
+        this.flashDeals.push(...products)
+      }catch(e:any){ console.warn(e.message)}
     }
   },
   getters:{}

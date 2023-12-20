@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { onMounted ,onBeforeMount} from "vue";
+import { onMounted ,onBeforeMount, ref} from "vue";
 
 const productStore=productModule()
 const getProducts=productStore.getProducts;
-const {allProducts}=storeToRefs(productStore)
+const {flashDeals}=storeToRefs(productStore)
+let productImg=ref<{[key:string]:any}>({})
 
 onBeforeMount(()=>{
     getProducts()
-    console.log(allProducts)
+    console.log(flashDeals)
 })
 
 </script>
@@ -21,18 +22,22 @@ onBeforeMount(()=>{
             <div class="products">
                 <!-- vfor -->
                 <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5" >
-                <div class="col" v-for="product in allProducts" :key="product['id']">
+                <div class="col" v-for="product in flashDeals" :key="product['id']">
                     <div class="card h-100 border-0">
-                    <img :src="product['thumbnail']" class="card-img-top" alt="product image"  style="height: 250px; width: 100%;">
+                    <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image"  style="height: 250px; border-top-left-radius: 15px; border-top-right-radius: 15px;" loading="lazy">
                     <div class="card-body">
                         <h5 class="card-title">{{ product['title'] }}</h5>
                         <p class="card-text">{{ product['description'] }}</p>
                         <!-- rating -->
                         <i :data-star="product['rating']" class="rating"></i>
                         <!-- price -->
-                        <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><span>&#x24;{{ product['price'] }}</span> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
+                        <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                         <!-- images -->
-                     <p>img apear here</p>
+                        <div >
+                            <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
+                                <img :src="String(image)" alt="product image" height="30px" width="30px"  style="border-radius: 50%; border: 1px solid black;">
+                            </button>
+                        </div>
                         <!-- button -->
                         <button type="button" class="btn btn-outline-dark rounded-pill card-btn">choose options</button>
                     </div>
@@ -45,12 +50,12 @@ onBeforeMount(()=>{
 </template>
 <style lang="scss">
 .flash-container {
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
     .flash-head {
         color: #e10600;
         font-weight: 900;
         font-size: 3.4rem;   
-        padding-bottom: 5rem;    
+        padding-bottom: 3rem;   
     }
     .card-body {
         display: flex;
@@ -72,8 +77,8 @@ onBeforeMount(()=>{
         margin: 0;
     }
     .rating {
-        font-size: 3rem;
-        width: 12.5rem;
+        font-size: 2rem;
+        width: 8.4rem;
         margin-bottom: auto;
     }
     .price {
@@ -82,9 +87,6 @@ onBeforeMount(()=>{
         color: #e10600;
         .discount {
             font-weight: 400;
-            span {
-                text-decoration: line-through;
-            }
             color: black;
         }
     }
@@ -98,7 +100,13 @@ onBeforeMount(()=>{
         padding: 1rem 0 ;
         font-size: 2rem;
         font-weight: bold;
-        margin:2rem 0 0;
+        margin:2rem auto 0;
+        width: 80%;
+    }
+    .img-toggle {
+        border: 0;
+        padding-right: 0.3rem;
+        background-color: transparent;
     }
     }
     
@@ -111,11 +119,13 @@ onBeforeMount(()=>{
   unicode-bidi: bidi-override;
 }
 [data-star]::before { 
+    width: auto;
   display:block;
   content: '★★★★★';
   color: #eee;
 }
 [data-star]::after {
+    width: auto;
   white-space:nowrap;
   position:absolute;
   top:0;
