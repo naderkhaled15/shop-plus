@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { onMounted ,onBeforeMount, ref} from "vue";
-
+import { onBeforeMount, ref} from "vue";
+import { Swiper,SwiperSlide } from "vue-awesome-swiper";
+import {Pagination , Navigation , Autoplay } from "swiper"
+// auto play 
 const productStore=productModule()
 const getProducts=productStore.getProducts;
-const {flashDeals}=storeToRefs(productStore)
-let productImg=ref<{[key:string]:any}>({})
+const {flashDeals}=storeToRefs(productStore);
+let productImg=ref<{[key:string]:any}>({});
+const modules=ref([Pagination,Navigation])
 
 onBeforeMount(()=>{
     getProducts()
@@ -15,35 +18,50 @@ onBeforeMount(()=>{
 
 </script>
 <template>
-
     <div class="container-fluid">
         <div class="flash-container">
-            <h1 class="flash-head">flash deals</h1>
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="flash-head">flash deals</h1>
+                <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
+            </div>
             <div class="products">
-                <!-- vfor -->
-                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-5" >
-                <div class="col" v-for="product in flashDeals" :key="product['id']">
-                    <div class="card h-100 border-0">
-                    <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image"  style="height: 250px; border-top-left-radius: 15px; border-top-right-radius: 15px;" loading="lazy">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product['title'] }}</h5>
-                        <p class="card-text">{{ product['description'] }}</p>
-                        <!-- rating -->
-                        <i :data-star="product['rating']" class="rating"></i>
-                        <!-- price -->
-                        <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
-                        <!-- images -->
-                        <div >
-                            <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
-                                <img :src="String(image)" alt="product image" height="30px" width="30px"  style="border-radius: 50%; border: 1px solid black;">
-                            </button>
+                <swiper
+                    :pagination="{el:'.swiper-pagination',clickable:true}"
+                    :modules="modules"
+                    :slides-per-view="4"
+                    :space-between="50"
+                    :navigation="{nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev'}"                    
+                    :preload-images="false"
+                    :Lazy="true"
+                    :Autoplay ="{ delay: 1000 }"
+                    >
+                    <swiper-slide v-for="product in flashDeals" :key="product['id']">
+                        <div class="card h-100 border-0">
+                            <div class="overflow-hidden w-100 bg-info" style="height:250px ;">
+                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product['title'] }}</h5>
+                                <p class="card-text">{{ product['description'] }}</p>
+                                <!-- rating -->
+                                <i :data-star="product['rating']" class="rating"></i>
+                                <!-- price -->
+                                <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
+                                <!-- images -->
+                                <div >
+                                    <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
+                                        <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img">
+                                    </button>
+                                </div>
+                                <!-- button -->
+                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn">choose options</button>
+                            </div>
                         </div>
-                        <!-- button -->
-                        <button type="button" class="btn btn-outline-dark rounded-pill card-btn">choose options</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
+                    </swiper-slide>
+                    <div class="swiper-button-next" style="width: 30px; height: 30px;"></div>
+                    <div class="swiper-button-prev" style="width: 30px; height: 30px;"></div>
+                    <div class="swiper-pagination"></div>
+                </swiper>
             </div>
         </div>
     </div>
@@ -54,13 +72,33 @@ onBeforeMount(()=>{
     .flash-head {
         color: #e10600;
         font-weight: 900;
-        font-size: 3.4rem;   
+        font-size: 4rem;   
         padding-bottom: 3rem;   
     }
+    .link-secondary {
+        font-size: 2rem;
+        font-weight: 500;
+        &:hover {
+            text-decoration: none;
+        }
+    } 
+    .card{
+    .card-img-top {
+        height: 250px; border-top-left-radius: 15px; border-top-right-radius: 15px;
+        &:hover{
+            -webkit-transform: scale(1.05);
+            -ms-transform: scale(1.05);
+            transform: scale(1.05);
+            transition: 1.5s ease;
+        }
+    }
+
     .card-body {
         display: flex;
         flex-direction: column;
         padding:1rem 2rem;
+        flex: 0 0 auto;
+   
     .card-title {
         font-size: 1.8rem;
         font-weight: bold;
@@ -101,13 +139,35 @@ onBeforeMount(()=>{
         font-size: 2rem;
         font-weight: bold;
         margin:2rem auto 0;
-        width: 80%;
+        width: 90%;
     }
     .img-toggle {
         border: 0;
         padding-right: 0.3rem;
         background-color: transparent;
+        margin-top: 0.8rem;
     }
+    }}
+
+    .swiper-wrapper {
+        height: 58rem;
+    }
+    .swiper-button-prev,.swiper-button-next { 
+        font-weight: 600;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 2px solid #505050;
+        background-color: white;
+        top: 45%;
+        padding: 20px;
+        &::after {
+            color:#505050;
+            font-size: 20px;
+            }
     }
     
 }

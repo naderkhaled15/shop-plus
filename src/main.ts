@@ -6,6 +6,11 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
+// swiper config
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
 const app = createApp(App)
 
 app.use(createPinia())
