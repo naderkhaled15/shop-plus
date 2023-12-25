@@ -84,7 +84,7 @@ let language=ref([{
       <!-- search  -->
       <form class="d-flex ms-auto col-sm-12 col-lg-7 col-xxl-7 " role="search">
         <div class="input-group position-relative">
-          <input class="form-control rounded-pill bg-white text-dark z-1 py-4 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
+          <input class="form-control rounded-pill bg-white text-dark z-1 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search">
           <div class="input-group-append p-0">
             <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2" type="submit" >
               <svg data-icon="search" viewBox="0 0 512 512" width="100%" height="100%" style="fill: #161880; width: 30px;">
@@ -226,13 +226,14 @@ nav {
   form {
     .search::placeholder {
       color: #8b8b8b;
-      font-weight: 500;
+      font-weight: 400;
       opacity: 0.7;
-      font-size: 1.4rem;
+      font-size: 2rem;
     } 
     .search {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
+      padding: 2rem 2rem !important;
     }
   }
   .first-nav {    

@@ -3,13 +3,13 @@ import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref} from "vue";
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
-import {Pagination , Navigation , Autoplay } from "swiper"
-// auto play 
+import { Pagination,Navigation, Autoplay } from "swiper/modules";
+
 const productStore=productModule()
 const getProducts=productStore.getProducts;
 const {flashDeals}=storeToRefs(productStore);
 let productImg=ref<{[key:string]:any}>({});
-const modules=ref([Pagination,Navigation])
+const modules=ref([Pagination,Navigation,Autoplay])
 
 onBeforeMount(()=>{
     getProducts()
@@ -26,8 +26,12 @@ onBeforeMount(()=>{
             </div>
             <div class="products">
                 <swiper
-                    :pagination="{el:'.swiper-pagination',clickable:true}"
                     :modules="modules"
+                    :autoplay="{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                    }"
+                    :pagination="{el:'.swiper-pagination',clickable:true}"
                     :slides-per-view="4"
                     :space-between="50"
                     :navigation="{nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev'}"                    
@@ -37,24 +41,21 @@ onBeforeMount(()=>{
                     >
                     <swiper-slide v-for="product in flashDeals" :key="product['id']">
                         <div class="card h-100 border-0">
-                            <div class="overflow-hidden w-100 bg-info" style="height:250px ;">
+                            <div class="overflow-hidden w-100" style="height:250px ;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ product['title'] }}</h5>
                                 <p class="card-text">{{ product['description'] }}</p>
-                                <!-- rating -->
                                 <i :data-star="product['rating']" class="rating"></i>
-                                <!-- price -->
                                 <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
-                                <!-- images -->
                                 <div >
                                     <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
                                         <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img">
                                     </button>
                                 </div>
                                 <!-- button -->
-                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn">choose options</button>
+                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn" @click="console.log(product['title'])">choose options</button>
                             </div>
                         </div>
                     </swiper-slide>
@@ -84,7 +85,9 @@ onBeforeMount(()=>{
     } 
     .card{
     .card-img-top {
-        height: 250px; border-top-left-radius: 15px; border-top-right-radius: 15px;
+        height: 250px; 
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
         &:hover{
             -webkit-transform: scale(1.05);
             -ms-transform: scale(1.05);
