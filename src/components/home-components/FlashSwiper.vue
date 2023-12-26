@@ -1,18 +1,48 @@
 <script setup lang="ts">
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { onBeforeMount, ref} from "vue";
+import { onBeforeMount, onMounted, ref} from "vue";
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
 import { Pagination,Navigation, Autoplay } from "swiper/modules";
 
-const productStore=productModule()
-const getProducts=productStore.getProducts;
-const {flashDeals}=storeToRefs(productStore);
+// const productStore=productModule()
+// const getProducts=productStore.getProducts;
+// const {flashDeals}=storeToRefs(productStore);
 let productImg=ref<{[key:string]:any}>({});
 const modules=ref([Pagination,Navigation,Autoplay])
 
-onBeforeMount(()=>{
-    getProducts()
+// onBeforeMount(()=>{
+//     getProducts()
+// })
+
+interface Product {
+    id:number;
+    title:string;
+    thumbnail:string;
+    description:string;
+    rating:number;
+    discountPercentage:number;
+    price:number;
+    images:Array<string>;
+    category:string;
+} 
+
+const props=defineProps({
+    products:{
+        type:Array as ()=>Product[],
+        required: true
+    },
+    title:{
+        type:String,
+        required: true
+    },
+    color:{
+        type:String,
+        required: true
+    },
+    appear:{
+        type:Boolean,
+    }
 })
 
 </script>
@@ -20,7 +50,7 @@ onBeforeMount(()=>{
     <div class="container-fluid">
         <div class="flash-container">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="flash-head">flash deals</h1>
+                <h1 class="flash-head" :style="{color: props.color}">{{ props.title }}</h1>
                 <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
             <div class="products">
@@ -38,7 +68,7 @@ onBeforeMount(()=>{
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000 }"
                     >
-                    <swiper-slide v-for="product in flashDeals" :key="product['id']">
+                    <swiper-slide v-for="product in props.products" :key="product['id']">
 
                         <div class="card h-100 border-0">
                             <div class="overflow-hidden w-100" style="height:250px ;">
@@ -47,7 +77,7 @@ onBeforeMount(()=>{
                             <div class="card-body">
                                 <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                                <i :data-star="product['rating']" class="rating pt-4+"></i>
+                                <i v-if="props.appear" :data-star="product['rating']" class="rating pt-4+"></i>
                                 <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                                 <div >
                                     <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
@@ -72,9 +102,8 @@ onBeforeMount(()=>{
 .flash-container {
     padding: 6rem 2rem;
     .flash-head {
-        color: #e10600;
-        font-weight: 900;
-        font-size: 4rem;   
+        font-weight: 800;
+        font-size: 3.4rem;   
         padding-bottom: 3rem;   
     }
     .link-secondary {

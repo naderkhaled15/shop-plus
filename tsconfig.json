@@ -6,11 +6,11 @@
   "noImplicitAny": false,
   "noEmit": false,
   // this aligns with Vue's browser support
-  "target": "ES6",
+  "target": "ESNext",
   // this enables stricter inference for data properties on `this`
   "strict": true,
   // if using webpack 2+ or rollup, to leverage tree shaking:
-  "module": "ES2020",
+  "module": "ESNext",
   "moduleResolution": "node",
   "useDefineForClassFields": true,
   "lib": ["DOM", "ES6", "DOM.Iterable", "ESNext"],
@@ -29,7 +29,9 @@
   "types": ["vite/client"],
   "noEmitOnError": true,
   "outDir": "./dist",
-  "paths": {"@/*":["./src/*"]}
+  "paths": {
+    "@/*":["./src/*"]
+  }
 },
   "files": [],
   "references": [

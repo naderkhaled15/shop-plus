@@ -3,20 +3,31 @@
     import { Swiper,SwiperSlide } from "vue-awesome-swiper";
     import { Pagination,Navigation, Autoplay } from "swiper/modules";
     import { storeToRefs } from "pinia";
-    import {productModule} from "@/stores/productStore"
+    import {productModule} from "@/stores/productStore";
 
-    const productStore=productModule()
-    const getCatogary=productStore.getCatogary;
-    const {categoryItems}=storeToRefs(productStore);
-    const modules=ref([Pagination,Navigation])
+    const modules=ref([Pagination,Navigation,Autoplay])
     let productImg=ref<{[key:string]:any}>({});
+ 
+    interface Product {
+    id:number;
+    title:string;
+    thumbnail:string;
+    description:string;
+    rating:number;
+    discountPercentage:number;
+    price:number;
+    images:Array<string>;
+    category:string;
+} 
 
 
-    onBeforeMount(() => {
-        getCatogary('laptops')
+    const props=defineProps({ 
+        products:{
+            type:Array as ()=>Product[],
+            required:true
+        } 
     })
 
- 
 </script>
 
 <template>
@@ -28,9 +39,8 @@
             </div>
 
         </div>
-        <div class="row row-cols-2">
+        <div class="row row-cols-2" style="padding-bottom: 7rem;">
                 <div class="products col-8 pt-5 ">
-                    <!-- :navigation="{nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev'}"                     -->
                 <swiper
                     :modules="modules"
                     :autoplay="{
@@ -44,7 +54,7 @@
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000 }"
                     >
-                    <swiper-slide v-for="product in categoryItems.slice(0,5)" :key="product['id']">
+                    <swiper-slide v-for="product in props.products.slice(0,5)" :key="product['id']">
                         <div class="card h-100 border-0">
                             <div class="overflow-hidden w-100" style="height:250px ;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
@@ -63,13 +73,13 @@
                             </div>
                         </div>
                     </swiper-slide>
-                    <!-- <div class="swiper-button-next" style="width: 30px; height: 30px;"></div>
-                    <div class="swiper-button-prev" style="width: 30px; height: 30px;"></div> -->
                     <div class="swiper-pagination"></div>
                 </swiper>
             </div>
             <div class="col-4">
-                <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%">
+                <div class="overflow-hidden">
+                    <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%" class="vr-img">
+                </div>
             </div>
         </div>
     </div>
@@ -151,9 +161,18 @@
             margin-left: 0 !important;
         }
     }
-    }}
+    }
+}
     .swiper-pagination-bullet {
         width: 10px;
         height: 10px;
     }
+.vr-img {
+    &:hover{
+            -webkit-transform: scale(1.02);
+            -ms-transform: scale(1.02);
+            transform: scale(1.02);
+            transition: 1.5s ease;
+        }
+}
 </style>
