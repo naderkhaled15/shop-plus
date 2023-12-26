@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from '@/axios'
 
@@ -30,9 +30,9 @@ export const productModule = defineStore('productModule',{
       try{  
         const cacheKey="/products";
         if (!cache[cacheKey]) {
-          const result = await axios.get('/products?limit=50');
-          cache[cacheKey] = result.data.products;
-        }
+        await axios.get('/products?limit=30').then((res)=>{cache[cacheKey] = res.data.products}) 
+      }
+      
         const products = cache[cacheKey]
         this.flashDeals=products.slice(0,7)
         this.mobilePhones=products.filter(el=>(el as any).category==="smartphones")
@@ -41,7 +41,7 @@ export const productModule = defineStore('productModule',{
         this.categoryItems=products.filter(el=> (el as any).category==="laptops" )
         this.groceriesProducts=products.filter(el=> (el as any).category==="groceries" )
 
-      }catch(e:any){ console.warn(e.message)}
+      }catch(e:any){ console.error("this is error",e.message)}
     }
   },
   getters:{}
