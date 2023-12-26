@@ -14,10 +14,10 @@ const QualityFeature=defineAsyncComponent(()=>import("../components/home-compone
 
 const productStore=productModule()
 const getProducts=productStore.getProducts;
-const {flashDeals,mobilePhones,skinCare,homeDecoration,categoryItems}=storeToRefs(productStore);
+const {flashDeals,mobilePhones,skinCare,homeDecoration,categoryItems,groceriesProducts}=storeToRefs(productStore);
 
-onBeforeMount(()=>{
-    getProducts()
+onBeforeMount(async()=>{
+ await getProducts()
 })
 </script>
 <template>
@@ -31,6 +31,7 @@ onBeforeMount(()=>{
     <quality-feature/>
     <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020"/>
     <flash-swiper :products="skinCare" title="skincare" color="#202020"/>
-    <!-- <flash-swiper :products="homeDecoration" title="home decoration" color="#202020"/> -->
+    <flash-swiper :products="homeDecoration" title="home decoration" color="#202020"/> 
+    <flash-swiper :products="groceriesProducts" title="home groceries" color="#202020"/> 
     </div>
 </template>

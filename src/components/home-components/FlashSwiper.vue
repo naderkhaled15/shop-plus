@@ -5,15 +5,9 @@ import { onBeforeMount, onMounted, ref} from "vue";
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
 import { Pagination,Navigation, Autoplay } from "swiper/modules";
 
-// const productStore=productModule()
-// const getProducts=productStore.getProducts;
-// const {flashDeals}=storeToRefs(productStore);
 let productImg=ref<{[key:string]:any}>({});
 const modules=ref([Pagination,Navigation,Autoplay])
 
-// onBeforeMount(()=>{
-//     getProducts()
-// })
 
 interface Product {
     id:number;
