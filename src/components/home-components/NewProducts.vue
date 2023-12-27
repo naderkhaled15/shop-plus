@@ -34,7 +34,7 @@
         <div>
         <div class="top-categories">
             <div class="category">
-                <h2 class="cat-head me-auto display-3 fw-bold">new products</h2>
+                <h2 class="cart-head me-auto display-3 fw-bold">new products</h2>
                 <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
 
@@ -55,23 +55,43 @@
                     :Autoplay ="{ delay: 1000 }"
                     >
                     <swiper-slide v-for="product in props.products.slice(0,5)" :key="product['id']">
-                        <div class="card h-100 border-0">
+                            <!-- loading placeholder -->
+                            <div class="card border-0" aria-hidden="true" v-if="props.products.length<0">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                                <div class="card-body">
+                                    <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                    </h5>
+                                    <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                    <span class="placeholder col-8"></span>
+                                    </p>
+                                    <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+                                </div>
+                            </div>
+                            <!-- card -->
+                        <div class="card h-100 border-0" v-else>
                             <div class="overflow-hidden w-100" style="height:250px ;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title pt-3 pb-2">{{ product['title'] }}</h5>
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                                <div class="price"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
-                                <div >
-                                    <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle mt-4">
+                                <div class="price mt-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
+                                <div class="d-flex align-items-center cursor-pointer mt-4">
+                                    <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
                                         <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img">
                                     </button>
+                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
                                 <!-- button -->
                                 <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="console.log(product['title'])">choose options</button>
                             </div>
                         </div>
+              
                     </swiper-slide>
                     <div class="swiper-pagination"></div>
                 </swiper>
@@ -95,6 +115,7 @@
         height: 250px; 
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
+        margin-top: 25px;
         &:hover{
             -webkit-transform: scale(1.05);
             -ms-transform: scale(1.05);
@@ -155,7 +176,6 @@
         border: 0;
         padding-right: 0.3rem;
         background-color: transparent;
-        margin-top: 0.8rem;
         &:first-child{
             padding-left: 0 !important;
             margin-left: 0 !important;

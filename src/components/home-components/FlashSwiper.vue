@@ -18,10 +18,10 @@ interface Product {
     discountPercentage:number;
     price:number;
     images:Array<string>;
-    category:string;
-} 
-
-const props=defineProps({
+        category:string;
+    } 
+    
+    const props=defineProps({
     products:{
         type:Array as ()=>Product[],
         required: true
@@ -36,6 +36,9 @@ const props=defineProps({
     },
     appear:{
         type:Boolean,
+    },
+    margin:{
+        type: String||Number
     }
 })
 
@@ -44,8 +47,8 @@ const props=defineProps({
     <div class="container-fluid">
         <div class="flash-container">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="flash-head" :style="{color: props.color}">{{ props.title }}</h1>
-                <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
+                <h1 class="flash-head" :style="{color: props.color, marginLeft:props.margin}">{{ props.title }}</h1>
+                <p class=" mt-0 ms-auto"><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
             <div class="products">
                 <swiper
@@ -63,7 +66,24 @@ const props=defineProps({
                     :Autoplay ="{ delay: 1000 }"
                     >
                     <swiper-slide v-for="product in props.products" :key="product['id']">
-
+                            <!-- loading placeholder -->
+                            <div class="card border-0" aria-hidden="true" v-if="props.products.length<0">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
+                                <div class="card-body">
+                                    <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                    </h5>
+                                    <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                    <span class="placeholder col-8"></span>
+                                    </p>
+                                    <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+                                </div>
+                            </div>
+                            <!-- card -->
                         <div class="card h-100 border-0">
                             <div class="overflow-hidden w-100" style="height:250px ;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
@@ -73,10 +93,11 @@ const props=defineProps({
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
                                 <i v-if="props.appear" :data-star="product['rating']" class="rating pt-4+"></i>
                                 <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
-                                <div >
-                                    <button v-for="(image, index) in product['images']" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
+                                <div class="d-flex align-items-center cursor-pointer">
+                                    <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
                                         <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img" loading="lazy">
                                     </button>
+                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
                                 <!-- button -->
                                 <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="console.log(product['title'])">choose options</button>
@@ -94,11 +115,12 @@ const props=defineProps({
 </template>
 <style lang="scss">
 .flash-container {
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 0;
     .flash-head {
         font-weight: 800;
-        font-size: 3.4rem;   
+        font-size: 3.2rem;   
         padding-bottom: 3rem;   
+        margin-bottom: 0;
     }
     .link-secondary {
         font-size: 2rem;
@@ -172,7 +194,6 @@ const props=defineProps({
         border: 0;
         padding-right: 0.3rem;
         background-color: transparent;
-        margin-top: 0.8rem;
         &:first-child{
             padding-left: 0 !important;
             margin-left: 0 !important;
@@ -181,7 +202,8 @@ const props=defineProps({
     }}
     
     .swiper-wrapper {
-        height: 65rem;
+        height: 60rem;
+        margin-bottom: 20px;
     }
     .swiper-pagination-bullet {
         width: 12px;
