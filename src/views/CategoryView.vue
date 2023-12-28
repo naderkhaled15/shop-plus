@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 const route =useRoute()
 
@@ -11,8 +11,7 @@ const {categoryProducts}=storeToRefs(productStore)
 let productImg=ref<{[key:string]:any}>({});
 let loading=ref(false)
 
-
-onMounted(async()=>{
+onBeforeMount(async()=>{
     document.documentElement.scrollTo(0,0)
     loading.value=true
     await getCategoriesProducts(route.params.categ as string)
@@ -26,10 +25,6 @@ watch(route,async()=>{
     loading.value=false
 
 })
-
-
-
-
 </script>
 <template>
 <div class="container-fluid">

@@ -8,7 +8,7 @@ const router = createRouter({
       name: 'home',
       component: ()=>import("../views/HomeView.vue"),
       meta:{
-        title:"home"
+        title:"Ella-Mart"
       }
     },
     {
@@ -16,7 +16,15 @@ const router = createRouter({
       name: 'category',
       component: ()=>import("../views/CategoryView.vue"),
       meta:{
-        title:'catogary'
+        title:'product-category'
+      }
+    },
+    {
+      path: '/product_details/:categ/:id',
+      name: 'product_details',
+      component: ()=>import("../views/ProductDetails.vue"),
+      meta:{
+        title:'product-details'
       }
     },
     {
@@ -24,10 +32,14 @@ const router = createRouter({
       name: "Not found",
       component:()=>import("../components/home-components/NotFoundpage.vue"),
    meta:{
-    title:"not Found"
+    title:"not-Found"
    }
     },
-  ]
+  ],
+  scrollBehavior(){
+    
+    return {top:0,behavior:'smooth'}
+  }
 })
 
 router.beforeEach((to,_from,next)=>{

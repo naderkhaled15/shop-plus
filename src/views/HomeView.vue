@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { defineAsyncComponent, onBeforeMount } from 'vue';
+import { defineAsyncComponent, onBeforeMount, onMounted } from 'vue';
+
 const UpperBanner=defineAsyncComponent(()=>import("../components/home-components/UpperBanner.vue"))
 const FeatureSection=defineAsyncComponent(()=>import("../components/home-components/FeatureSection.vue"))
 const TopDiscount=defineAsyncComponent(()=>import("../components/home-components/TopDiscount.vue"))
@@ -11,18 +12,14 @@ const NewProducts=defineAsyncComponent(()=>import("../components/home-components
 const QualityFeature=defineAsyncComponent(()=>import("../components/home-components/QualityFeature.vue"))
 const WhyShopwithus=defineAsyncComponent(()=>import("../components/home-components/WhyShopwithus.vue"))
 
-
-
 const productStore=productModule()
 const getProducts=productStore.getProducts;
-const {flashDeals,mobilePhones,skinCare,categoryItems,groceriesProducts,fragrancesProducts}=storeToRefs(productStore);
+const {flashDeals,mobilePhones,skinCare,categoryItems,fragrancesProducts}=storeToRefs(productStore);
 
 onBeforeMount(async()=>{
  await getProducts()
  document.documentElement.scrollTo(0,0)
 })
-
-
 </script>
 <template>
     <div>

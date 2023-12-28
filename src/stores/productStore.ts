@@ -25,6 +25,7 @@ export const productModule = defineStore('productModule',{
     groceriesProducts:[] as Product[],
     fragrancesProducts:[] as Product[],
     categoryProducts:[]as Product[],
+    productDetails:[]as Product[],
     allCategories:[
       {
         title:'smart phones',
@@ -83,7 +84,15 @@ export const productModule = defineStore('productModule',{
       }catch(e:any){
         console.error('message from category',e.message)
       }
-    }
+    }, 
+    async getProductDetails(product:number){
+      try{
+        const result = await axios.get(`https://dummyjson.com/products/${product}`)
+        this.productDetails=result.data
+      }catch(e:any){
+        console.error('message from product details',e.message)
+      }
+    }, 
   },
   getters:{}
 })
