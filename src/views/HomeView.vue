@@ -19,6 +19,7 @@ const {flashDeals,mobilePhones,skinCare,categoryItems,groceriesProducts,fragranc
 
 onBeforeMount(async()=>{
  await getProducts()
+ document.documentElement.scrollTo(0,0)
 })
 
 
@@ -34,15 +35,15 @@ onBeforeMount(async()=>{
     <quality-feature/>
     <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020" margin="0"/>
 
-    <div class="row row-cols-2 mx-2 mb-4 mt-5 g-5">
-        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100" loading="lazy">
-        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100" loading="lazy">
+    <div class="row row-cols-2 mx-2 mb-4 mt-5 g-5 overflow-hidden">
+        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
+        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
     </div>
 
     <flash-swiper :products="fragrancesProducts" title="home fragrances" color="#202020" margin="0"/> 
 
-    <div class="row row-cols-1 mx-2 mt-5">
-        <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy">
+    <div class="row row-cols-1 mx-2 mt-5 overflow-hidden">
+        <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy" class=" img-hover">
     </div>
 
     <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto"/>
@@ -50,3 +51,15 @@ onBeforeMount(async()=>{
     <why-shopwithus/>
     </div>
 </template>
+<style lang="scss">
+.img-hover {
+    &:hover {
+        &:hover{
+            -webkit-transform: scale(1.03);
+            -ms-transform: scale(1.03);
+            transform: scale(1.03);
+            transition: 1.5s ease;
+        }
+    }
+}
+</style>

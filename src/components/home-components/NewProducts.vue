@@ -1,9 +1,7 @@
 <script setup lang="ts">
-    import { onBeforeMount, onMounted, ref } from "vue";
+    import { ref } from "vue";
     import { Swiper,SwiperSlide } from "vue-awesome-swiper";
     import { Pagination,Navigation, Autoplay } from "swiper/modules";
-    import { storeToRefs } from "pinia";
-    import {productModule} from "@/stores/productStore";
 
     const modules=ref([Pagination,Navigation,Autoplay])
     let productImg=ref<{[key:string]:any}>({});

@@ -11,14 +11,22 @@ const router = createRouter({
         title:"home"
       }
     },
-  //   {
-  //     path: "/:pathMatch(.*)*",
-  //     name: "Not found",
-  //     component:()=>import(),
-  //  meta:{
-  //   title:"not Found"
-  //  }
-  //   },
+    {
+      path: '/category/:categ/:title',
+      name: 'category',
+      component: ()=>import("../views/CategoryView.vue"),
+      meta:{
+        title:'catogary'
+      }
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "Not found",
+      component:()=>import("../components/home-components/NotFoundpage.vue"),
+   meta:{
+    title:"not Found"
+   }
+    },
   ]
 })
 

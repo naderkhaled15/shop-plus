@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { productModule } from '@/stores/productStore';
+import { storeToRefs } from 'pinia';
+import { RouterLink } from 'vue-router';
 
+const productStore=productModule()
+const {allCategories}=storeToRefs(productStore)
+
+// allCategories
 let languagesSet=ref([
   {
     lang:'EN',
@@ -61,7 +68,6 @@ let language=ref([{
           </g>
           </svg>`
   }])
-
 </script>
 
 <template>
@@ -70,7 +76,9 @@ let language=ref([{
   <div class="row col-12">
     <!-- brand icon -->
     <a class="navbar-brand  col-sm-4 col-md-4 col-xxl-3 align-self-center" href="#">
-      <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width: 50%">
+      <router-link to="/">
+        <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width: 50%">
+      </router-link>
     </a>
 
     <!-- button of collapsed navbar -->
@@ -144,64 +152,23 @@ let language=ref([{
       </ul>
     </div>
   </div>
+
+
   <!-- second nav row -->
   <div class="row col-12 pt-sm-0 pt-lg-1">
     <div class="collapse navbar-collapse row col-auto m-0" id="navbarSupportedContent"> 
     <ul class="navbar-nav pt-5 mb-2 mb-lg-0 d-flex gap-4 align-items-center second-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            theme Demo  
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            shop      
-          </a>     
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            product    
-          </a>     
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            new in       
-          </a>  
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            must have       
-          </a>  
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            collections      
-          </a>   
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            pages    
-          </a>     
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            buy ella    
-          </a>     
-        </li>
-        <li class="nav-item ms-0 ms-lg-auto">
-          <a class="nav-link" href="#">
+      <li v-for="category in allCategories" :key="category.title">
+        <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'categ':category.route,'title':category.title}}">{{ category.title }}</RouterLink>      
+      </li>
+        <!-- help and lang -->
+      <li class="nav-item ms-0 ms-lg-auto">
+        <a class="nav-link" href="#">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-headset" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-user-headset fa-w-14 fa-3x me-1" width="25px" height="25px"><path fill="#0a6cdc" d="M320 352h-23.1a174.08 174.08 0 0 1-145.8 0H128A128 128 0 0 0 0 480a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32 128 128 0 0 0-128-128zM48 224a16 16 0 0 0 16-16v-16c0-88.22 71.78-160 160-160s160 71.78 160 160v16a80.09 80.09 0 0 1-80 80h-32a32 32 0 0 0-32-32h-32a32 32 0 0 0 0 64h96a112.14 112.14 0 0 0 112-112v-16C416 86.13 329.87 0 224 0S32 86.13 32 192v16a16 16 0 0 0 16 16zm160 0h32a64 64 0 0 1 55.41 32H304a48.05 48.05 0 0 0 48-48v-16a128 128 0 0 0-256 0c0 40.42 19.1 76 48.35 99.47-.06-1.17-.35-2.28-.35-3.47a64.07 64.07 0 0 1 64-64z" class=""></path></svg>
             <span class="ms-2">help</span>       
-          </a> 
-        </li>
-        <li class="nav-item me-2 dropdown"> 
+        </a> 
+      </li>
+      <li class="nav-item me-2 dropdown"> 
             <button class="btn dropdown-toggle d-flex justify-content-center align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span v-html="language[0].icon" class="me-3"></span>
               <span class="fw-bold lang-name me-2"> {{ language[0].lang }} / {{ language[0].currency }}</span>
@@ -214,8 +181,8 @@ let language=ref([{
                 </a>
               </li>
             </ul>
-        </li>
-        </ul>  
+      </li>
+    </ul>  
       </div>
     </div>
   </nav>
@@ -258,16 +225,18 @@ nav {
     z-index:999;
     .lang-name {
       font-size: 1.8rem;
+      color: #ffffffa8;
     }
     li {
       font-size:2.2rem;
       font-weight: bold;
       cursor: pointer;
       font-weight: 500;
-          a{
-            color: white;
-          }
+      a{
+        color: #9697c6;
+      }
     }
   }
+
 }
 </style>

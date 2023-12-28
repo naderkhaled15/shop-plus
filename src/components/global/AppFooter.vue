@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import {ref} from "vue"
+import { productModule } from '@/stores/productStore';
+import { storeToRefs } from 'pinia';
+import { useRouter } from "vue-router";
+
+const router=useRouter()
+const productStore=productModule()
+const {allCategories}=storeToRefs(productStore)
 
   let socialLogo=ref([
     {
@@ -82,7 +89,7 @@ import {ref} from "vue"
             <div class="col-9 ps-0 pe-5">
               <input class="form-control rounded-pill bg-white text-dark z-1 search" type="search" placeholder="enter your email address" aria-label="Search">
             </div>
-            <button class="btn footer-form-btn rounded-pill col-3 ms-auto" type="button">submit</button>
+            <button class="btn footer-form-btn rounded-pill col-3 ms-auto" type="submit">submit</button>
           </div>
         </form>
 
@@ -93,14 +100,10 @@ import {ref} from "vue"
     <div class="row row-cols-4 second-row">
       <div class="col mb-3">
         <h5 class="foot-col-header">shop</h5>
-        <ul class="nav flex-column footer-list">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">electronics</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">computer & laptops</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">smartphones & Tablets</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">cameras</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">video game & systems</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">home furniture</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">weekly special</a></li>
+        <ul class="nav flex-column footer-list">     
+          <li v-for="category in allCategories" :key="category.title" class="m-0">
+            <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'categ':category.route,'title':category.title}}">{{ category.title }}</RouterLink>      
+          </li>
         </ul>
       </div>
 
@@ -131,7 +134,7 @@ import {ref} from "vue"
       </div>
 
       <div class="col mb-3">
-        <img src="../../media/images/footer-logo.webp" alt="logo" width="60%" class="mb-5">
+        <img src="../../media/images/footer-logo.webp" alt="logo" width="60%" class="mb-5" @click="router.push({name:'home'})">
         <ul class="nav flex-column footer-list">
 
           <li class="nav-item d-flex gap-4 mb-4">
@@ -242,6 +245,7 @@ footer {
     font-size: 2.5rem;
     font-weight: 700;
     padding-bottom: 2rem;
+    color: #262626;
   }
   .footer-list {
     li {
@@ -270,6 +274,7 @@ footer {
         width: 55px;
         height: 55px;
         border-radius: 50%;
+        cursor: pointer;
         &:hover {
           background-color: #818181;
         }
@@ -296,6 +301,7 @@ footer {
       margin-left: auto;
       gap: 10px;
       .social-logo {
+        cursor: pointer;
         &:hover {
           background-color: #818181;
           border-radius: 5px;

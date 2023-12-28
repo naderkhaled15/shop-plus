@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {productModule} from "@/stores/productStore"
-import { storeToRefs } from "pinia";
-import { onBeforeMount, onMounted, ref} from "vue";
+import { ref} from "vue";
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
 import { Pagination,Navigation, Autoplay } from "swiper/modules";
 
@@ -91,7 +89,7 @@ interface Product {
                             <div class="card-body">
                                 <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                                <i v-if="props.appear" :data-star="product['rating']" class="rating pt-4+"></i>
+                                <i v-if="props.appear" :data-star="product['rating']" class="rating"></i>
                                 <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                                 <div class="d-flex align-items-center cursor-pointer">
                                     <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
@@ -129,77 +127,77 @@ interface Product {
             text-decoration: none;
         }
     } 
-    .card{
-    .card-img-top {
-        height: 250px; 
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        &:hover{
-            -webkit-transform: scale(1.05);
-            -ms-transform: scale(1.05);
-            transform: scale(1.05);
-            transition: 1.5s ease;
-        }
-    }
+    // .card{
+    // .card-img-top {
+    //     height: 250px; 
+    //     border-top-left-radius: 15px;
+    //     border-top-right-radius: 15px;
+    //     &:hover{
+    //         -webkit-transform: scale(1.05);
+    //         -ms-transform: scale(1.05);
+    //         transform: scale(1.05);
+    //         transition: 1.5s ease;
+    //     }
+    // }
 
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        padding:1rem 2rem;
-        flex: 0 0 auto;
+    // .card-body {
+    //     display: flex;
+    //     flex-direction: column;
+    //     padding:1rem 2rem;
+    //     flex: 0 0 auto;
    
-    .card-title {
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-    .card-text {
-        font-size: 2rem;
-        font-weight: 400;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        margin: 0;
-    }
-    .rating {
-        font-size: 2rem;
-        width: 8.4rem;
-        margin-bottom: auto;
-    }
-    .price {
-        font-size: 2rem;
-        font-weight: 900;
-        color: #e10600;
-        .discount {
-            font-weight: 400;
-            color: black;
-        }
-    }
-    .product {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
-    }
-    .card-btn {
-        padding: 1rem 0 ;
-        font-size: 2rem;
-        font-weight: bold;
-        margin:2rem auto 0;
-        width: 90%;
-    }
-    .img-toggle {
-        border: 0;
-        padding-right: 0.3rem;
-        background-color: transparent;
-        &:first-child{
-            padding-left: 0 !important;
-            margin-left: 0 !important;
-        }
-    }
-    }}
+    // .card-title {
+    //     font-size: 1.8rem;
+    //     font-weight: bold;
+    // }
+    // .card-text {
+    //     font-size: 2rem;
+    //     font-weight: 400;
+    //     overflow: hidden;
+    //     text-overflow: ellipsis;
+    //     display: -webkit-box;
+    //     -webkit-line-clamp: 2;
+    //     line-clamp: 2;
+    //     -webkit-box-orient: vertical;
+    //     margin: 0;
+    // }
+    // .rating {
+    //     font-size: 2rem;
+    //     width: 8.4rem;
+    //     margin-bottom: auto;
+    // }
+    // .price {
+    //     font-size: 2rem;
+    //     font-weight: 900;
+    //     color: #e10600;
+    //     .discount {
+    //         font-weight: 400;
+    //         color: black;
+    //     }
+    // }
+    // .product {
+    // width: 100%;
+    // display: flex;
+    // flex-direction: row;
+    // background-color: blue;
+    // }
+    // .card-btn {
+    //     padding: 1rem 0 ;
+    //     font-size: 2rem;
+    //     font-weight: bold;
+    //     margin:2rem auto 0;
+    //     width: 90%;
+    // }
+    // .img-toggle {
+    //     border: 0;
+    //     padding-right: 0.3rem;
+    //     background-color: transparent;
+    //     &:first-child{
+    //         padding-left: 0 !important;
+    //         margin-left: 0 !important;
+    //     }
+    // }
+    // }}
     
     .swiper-wrapper {
         height: 60rem;
@@ -229,80 +227,5 @@ interface Product {
     }
     
 }
-[data-star] {
-  text-align:left;
-  font-style:normal;
-  display:inline-block;
-  position: relative;
-  unicode-bidi: bidi-override;
-}
-[data-star]::before { 
-    width: auto;
-  display:block;
-  content: '★★★★★';
-  color: #eee;
-}
-[data-star]::after {
-    width: auto;
-  white-space:nowrap;
-  position:absolute;
-  top:0;
-  left:0;
-  content: '★★★★★';
-  width: 0;
-  color: #ff8c00;
-  overflow:hidden;
-  height:100%;
-}
 
-[data-star^="0.1"]::after{width:2%}
-[data-star^="0.2"]::after{width:4%}
-[data-star^="0.3"]::after{width:6%}
-[data-star^="0.4"]::after{width:8%}
-[data-star^="0.5"]::after{width:10%}
-[data-star^="0.6"]::after{width:12%}
-[data-star^="0.7"]::after{width:14%}
-[data-star^="0.8"]::after{width:16%}
-[data-star^="0.9"]::after{width:18%}
-[data-star^="1"]::after{width:20%}
-[data-star^="1.1"]::after{width:22%}
-[data-star^="1.2"]::after{width:24%}
-[data-star^="1.3"]::after{width:26%}
-[data-star^="1.4"]::after{width:28%}
-[data-star^="1.5"]::after{width:30%}
-[data-star^="1.6"]::after{width:32%}
-[data-star^="1.7"]::after{width:34%}
-[data-star^="1.8"]::after{width:36%}
-[data-star^="1.9"]::after{width:38%}
-[data-star^="2"]::after{width:40%}
-[data-star^="2.1"]::after{width:42%}
-[data-star^="2.2"]::after{width:44%}
-[data-star^="2.3"]::after{width:46%}
-[data-star^="2.4"]::after{width:48%}
-[data-star^="2.5"]::after{width:50%}
-[data-star^="2.6"]::after{width:52%}
-[data-star^="2.7"]::after{width:54%}
-[data-star^="2.8"]::after{width:56%}
-[data-star^="2.9"]::after{width:58%}
-[data-star^="3"]::after{width:60%}
-[data-star^="3.1"]::after{width:62%}
-[data-star^="3.2"]::after{width:64%}
-[data-star^="3.3"]::after{width:66%}
-[data-star^="3.4"]::after{width:68%}
-[data-star^="3.5"]::after{width:70%}
-[data-star^="3.6"]::after{width:72%}
-[data-star^="3.7"]::after{width:74%}
-[data-star^="3.8"]::after{width:76%}
-[data-star^="3.9"]::after{width:78%}
-[data-star^="4"]::after{width:80%}
-[data-star^="4.1"]::after{width:82%}
-[data-star^="4.2"]::after{width:84%}
-[data-star^="4.3"]::after{width:86%}
-[data-star^="4.4"]::after{width:88%}
-[data-star^="4.5"]::after{width:90%}
-[data-star^="4.6"]::after{width:92%}
-[data-star^="4.7"]::after{width:94%}
-[data-star^="4.8"]::after{width:96%}
-[data-star^="4.9"]::after{width:98%}
-[data-star^="5"]::after{width:100%}
 </style>

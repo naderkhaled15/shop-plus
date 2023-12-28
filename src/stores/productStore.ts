@@ -23,7 +23,39 @@ export const productModule = defineStore('productModule',{
     mobilePhones:[] as Product[],
     skinCare:[] as Product[],
     groceriesProducts:[] as Product[],
-    fragrancesProducts:[] as Product[]
+    fragrancesProducts:[] as Product[],
+    categoryProducts:[]as Product[],
+    allCategories:[
+      {
+        title:'smart phones',
+        route:'smartphones'
+      },
+      {
+        title:'Laptops',
+        route:'laptops'
+      },
+      {
+        title:'Fragrances',
+        route:'fragrances'
+      },
+      {
+        title:'mens watches',
+        route:'mens-watches'
+      },
+      {
+        title:'lighting',
+        route:'lighting'
+      },
+      {
+        title:'furniture',
+        route:'furniture'
+      },
+      {
+        title:'womens jewellery',
+        route:'womens-jewellery'
+      },
+    ]
+
   }),
   actions:{
     async getProducts(){
@@ -32,18 +64,25 @@ export const productModule = defineStore('productModule',{
         let products;
         if (!cache[cacheKey]) {
         await axios.get('/products?limit=30').then((res)=>{cache[cacheKey] = res.data.products
+          products = cache[cacheKey]
+          this.flashDeals=products.slice(0,7)
+          this.mobilePhones=products.filter(el=>(el as any).category==="smartphones")
+          this.skinCare=products.filter(el=>(el as any).category==="skincare")
+          this.categoryItems=products.filter(el=> (el as any).category==="laptops" )
+          this.groceriesProducts=products.filter(el=> (el as any).category==="groceries" )
+          this.fragrancesProducts=products.filter(el=> (el as any).category==="fragrances" )
         }) 
       }
-      
-        products = cache[cacheKey]
-        this.flashDeals=products.slice(0,7)
-        this.mobilePhones=products.filter(el=>(el as any).category==="smartphones")
-        this.skinCare=products.filter(el=>(el as any).category==="skincare")
-        this.categoryItems=products.filter(el=> (el as any).category==="laptops" )
-        this.groceriesProducts=products.filter(el=> (el as any).category==="groceries" )
-        this.fragrancesProducts=products.filter(el=> (el as any).category==="fragrances" )
 
       }catch(e:any){ console.error("this is error",e.message)}
+    },
+    async getCategoriesProducts(product:string){
+      try{
+        const result = await axios.get(`/products/category/${product}`)
+        this.categoryProducts=result.data.products
+      }catch(e:any){
+        console.error('message from category',e.message)
+      }
     }
   },
   getters:{}
