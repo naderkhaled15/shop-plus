@@ -12,7 +12,6 @@ const TopCategories=defineAsyncComponent(()=>import("../components/home-componen
 const NewProducts=defineAsyncComponent(()=>import("../components/home-components/NewProducts.vue"))
 const QualityFeature=defineAsyncComponent(()=>import("../components/home-components/QualityFeature.vue"))
 const WhyShopwithus=defineAsyncComponent(()=>import("../components/home-components/WhyShopwithus.vue"))
-const QuickViewmodal=defineAsyncComponent(()=>import("../components/home-components/QuickViewmodal.vue"))
 
 const productStore=productModule()
 const getProducts=productStore.getProducts;
@@ -51,7 +50,6 @@ loading.value=true
     <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto" :loading="loading"/>
 
     <why-shopwithus/>
-    <quick-viewmodal/>
     </div>
 </template>
 <style lang="scss">
