@@ -77,7 +77,7 @@ const {allCategories}=storeToRefs(productStore)
 
 <div class="container-fluid p-0" >
   <footer>
-<div class="footer-bg px-3 py-5">
+<div class="footer-bg px-5 py-5">
     <!-- first row -->
     <div class="row row-cols-1 first-row my-5">
       <div class="col-md-6 offset-md-1 mb-3 mx-auto">

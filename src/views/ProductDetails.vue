@@ -35,12 +35,38 @@ watch(route,async()=>{
 <template>
     <div class="product-details">
         <div class="card my-5 mx-auto container border-0">
-            <div class="row g-0">
 
+             <!-- product place holders ........................................................................ -->
+             <div class=" row opacity-25" aria-hidden="true" v-if="loading">
+            <div class="col-md-7 m-0 p-5" style="height: 600px;">
+                <div class="w-100 h-100" style="background-color: #868e96;"></div>
+                </div>
+            <div class="card-body col-md-5 p-5">
+                <h5 class="card-title placeholder-glow">
+                <span class="placeholder col-6"></span>
+                </h5>
+
+                <span class="placeholder col-7"></span>
+                <span class="placeholder col-4 mt-4"></span>
+                <span class="placeholder col-4 mt-4"></span>
+                <span class="placeholder col-6 mt-4"></span>
+                <span class="placeholder col-8 mt-4"></span>
+                <span class="placeholder col-4 mt-4"></span>
+                <span class="placeholder col-6 mt-4"></span>
+                <span class="placeholder col-8 mt-4"></span>
+                <a class="btn btn-secondary disabled placeholder col-6" style="margin-top: 10rem;" aria-disabled="true"></a>
+                <a class="btn btn-primary disabled placeholder col-6" style="margin-top: 2rem;" aria-disabled="true"></a>
+            </div>
+
+            </div>
+            <!-- product place holders ........................................................................ -->
+
+
+            <div class="row g-0" v-if="!loading">
                 <!-- first column -->
-                <div class="col-md-6 p-5">
-                    <div class="overflow-hidden w-100 p-5" style="height: 700px;">
-                        <img :src="productImg[productDetails['title']]?productImg[productDetails['title']]:productDetails['thumbnail']" class="card-img-top m-0 h-100" alt="product image" loading="lazy">
+                <div class="col-md-7 p-5">
+                    <div class="overflow-hidden w-100" style="height: 600px;">
+                        <img :src="productImg[productDetails['title']]?productImg[productDetails['title']]:productDetails['thumbnail']" class="card-img-top m-0 mx-auto mw-100 h-100" alt="product image" loading="lazy">
                     </div>
                     <swiper
                     :modules="modules"
@@ -63,8 +89,8 @@ watch(route,async()=>{
                 </swiper>
                 </div>
                 <!-- second column -->
-                <div class="col-md-6 h-100 p-5">
-                    <div class="card-body p-5">
+                <div class="col-md-5 h-100 p-5">
+                    <div class="card-body pt-0">
 
                             <h5 class="product-card-title p-0 m-0 mb-4 fs-1 fw-bold text-black">({{ productDetails['title'] }}) - {{ productDetails['category'] }} for sale</h5>
 
@@ -75,7 +101,7 @@ watch(route,async()=>{
 
                             <p class="product-card-text p-0 m-0 mb-3 fs-4 mb-4">{{ productDetails['description'] }}</p>
                             <p class="mb-4">brand : {{ productDetails['brand'] }}</p>
-                            <p class="mb-4">availability : {{ productDetails['stock']>0?'in stock':'not available' }}</p>
+                            <p class="mb-4">availability : {{ productDetails['stock']>0?'in stock':'out of stock' }}</p>
 
                             <div class="mb-5"> <span class="discount" v-if="productDetails['discountPercentage'] > 0"><del>&#x24;{{ productDetails['price'] }}</del> from </span> <span class="text-black fw-bold">&#x24;{{Math.ceil((productDetails['price'] - ( productDetails['price'] * (productDetails['discountPercentage'] / 100) )))}}</span>  </div>
                             
@@ -90,7 +116,7 @@ watch(route,async()=>{
                             </div>
                                 
                             <!-- button -->
-                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" >add to cart</button>
+                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn" >add to cart</button>
                     </div>
                 </div>
             </div>
@@ -141,8 +167,14 @@ watch(route,async()=>{
                 padding: 1rem 0;
                 font-size: 2rem;
                 font-weight: bold;
-                margin:2rem auto 0;
+                margin:2rem auto 0 0 !important;
                 width: 100%;
+                background-color: black;
+                color: #fff;
+                &:hover {
+                    color: black;
+                    background-color: #fff;
+                }
             }
             // .product-card-title {
             //     font-weight: 700;

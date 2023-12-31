@@ -2,8 +2,9 @@
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
 import { onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute,useRouter } from 'vue-router';
 const route =useRoute()
+const router=useRouter()
 
 const productStore=productModule()
 const getCategoriesProducts=productStore.getCategoriesProducts
@@ -67,7 +68,7 @@ watch(route,async()=>{
                     <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
                 </div>
                 <!-- button -->
-                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="console.log(product['title'])">choose options</button>
+                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
             </div>
             </div>
         </div>

@@ -38,6 +38,9 @@ interface Product {
     },
     margin:{
         type: String||Number
+    },
+    loading:{
+        type:Boolean
     }
 })
 
@@ -66,7 +69,7 @@ interface Product {
                     >
                     <swiper-slide v-for="product in props.products" :key="product['id']">
                             <!-- loading placeholder -->
-                            <div class="card border-0" aria-hidden="true" v-if="props.products.length<0">
+                            <div class="card border-0" aria-hidden="true" v-if="loading">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
                                 <div class="card-body">
                                     <h5 class="card-title placeholder-glow">
@@ -83,7 +86,7 @@ interface Product {
                                 </div>
                             </div>
                             <!-- card -->
-                        <div class="card h-100 border-0">
+                        <div class="card h-100 border-0" v-if="!loading">
                             <div class="overflow-hidden w-100" style="height:250px ;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
                             </div>

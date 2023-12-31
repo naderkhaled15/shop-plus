@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { defineAsyncComponent, onBeforeMount, onMounted } from 'vue';
+import { defineAsyncComponent, onBeforeMount, onMounted, ref } from 'vue';
 
 const UpperBanner=defineAsyncComponent(()=>import("../components/home-components/UpperBanner.vue"))
 const FeatureSection=defineAsyncComponent(()=>import("../components/home-components/FeatureSection.vue"))
@@ -15,10 +15,13 @@ const WhyShopwithus=defineAsyncComponent(()=>import("../components/home-componen
 const productStore=productModule()
 const getProducts=productStore.getProducts;
 const {flashDeals,mobilePhones,skinCare,categoryItems,fragrancesProducts}=storeToRefs(productStore);
+let loading=ref(false)
 
 onBeforeMount(async()=>{
+loading.value=true
  await getProducts()
  document.documentElement.scrollTo(0,0)
+ loading.value=false
 })
 </script>
 <template>
@@ -26,24 +29,24 @@ onBeforeMount(async()=>{
     <upper-banner/>
     <feature-section/>
     <top-discount/>
-    <flash-swiper :products="flashDeals" title="flash deals" color="red" appear margin="0"/>
+    <flash-swiper :products="flashDeals" title="flash deals" color="red" appear margin="0" :loading="loading"/>
     <top-categories/>
     <new-products :products="categoryItems"/>
     <quality-feature/>
-    <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020" margin="0"/>
+    <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020" margin="0" :loading="loading"/>
 
     <div class="row row-cols-2 mx-2 mb-4 mt-5 g-5 overflow-hidden">
         <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
         <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
     </div>
 
-    <flash-swiper :products="fragrancesProducts" title="home fragrances" color="#202020" margin="0"/> 
+    <flash-swiper :products="fragrancesProducts" title="home fragrances" color="#202020" margin="0" :loading="loading"/> 
 
     <div class="row row-cols-1 mx-2 mt-5 overflow-hidden">
         <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy" class=" img-hover">
     </div>
 
-    <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto"/>
+    <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto" :loading="loading"/>
 
     <why-shopwithus/>
     </div>
