@@ -73,8 +73,9 @@
                             </div>
                             <!-- card -->
                         <div class="card h-100 border-0" v-else>
-                            <div class="overflow-hidden w-100" style="height:250px ;">
+                             <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
+                                <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal">quick view</button> </div>                                
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title pt-3 pb-2">{{ product['title'] }}</h5>
@@ -90,7 +91,6 @@
                                 <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
                             </div>                                                                           
                         </div>
-              
                     </swiper-slide>
                     <div class="swiper-pagination"></div>
                 </swiper>

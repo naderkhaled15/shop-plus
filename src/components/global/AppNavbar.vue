@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';

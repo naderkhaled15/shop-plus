@@ -97,6 +97,35 @@ body {
       }
   }
   }}
+
+  // quick view 
+  .quick-view-container .quick-view{
+    &:hover{
+        opacity: 1;
+        z-index: 999;
+    }
+}
+.quick-view {
+  position: absolute;
+  left:50%;
+  top:50%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  transform: translate(-50% );
+  
+  button {
+      background-color: #fff;
+      text-decoration: none;
+      font-size: 2rem;
+      width: 150px;
+      padding: 5px 10px;
+      text-align: center;
+      color: black;
+      font-weight:500;
+      border: solid 1px black;
+  }
+}
 // 5 star 
 [data-star] {
   text-align:left;

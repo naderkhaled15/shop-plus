@@ -20,7 +20,6 @@ let counter=ref(1)
 onBeforeMount(async()=>{
     loading.value=true
     await getProductDetails((+route.params.id))
-    console.log(productDetails.value)
     loading.value=false
 })
 

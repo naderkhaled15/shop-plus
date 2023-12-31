@@ -43,7 +43,6 @@ interface Product {
         type:Boolean
     }
 })
-
 </script>
 <template>
     <div class="container-fluid">
@@ -87,8 +86,9 @@ interface Product {
                             </div>
                             <!-- card -->
                         <div class="card h-100 border-0" v-if="!loading">
-                            <div class="overflow-hidden w-100" style="height:250px ;">
+                            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px;">
                                 <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
+                                <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="$emit('hello')">quick view</button> </div>
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title pt-3">{{ product['title'] }}</h5>
@@ -131,77 +131,7 @@ interface Product {
             text-decoration: none;
         }
     } 
-    // .card{
-    // .card-img-top {
-    //     height: 250px; 
-    //     border-top-left-radius: 15px;
-    //     border-top-right-radius: 15px;
-    //     &:hover{
-    //         -webkit-transform: scale(1.05);
-    //         -ms-transform: scale(1.05);
-    //         transform: scale(1.05);
-    //         transition: 1.5s ease;
-    //     }
-    // }
 
-    // .card-body {
-    //     display: flex;
-    //     flex-direction: column;
-    //     padding:1rem 2rem;
-    //     flex: 0 0 auto;
-   
-    // .card-title {
-    //     font-size: 1.8rem;
-    //     font-weight: bold;
-    // }
-    // .card-text {
-    //     font-size: 2rem;
-    //     font-weight: 400;
-    //     overflow: hidden;
-    //     text-overflow: ellipsis;
-    //     display: -webkit-box;
-    //     -webkit-line-clamp: 2;
-    //     line-clamp: 2;
-    //     -webkit-box-orient: vertical;
-    //     margin: 0;
-    // }
-    // .rating {
-    //     font-size: 2rem;
-    //     width: 8.4rem;
-    //     margin-bottom: auto;
-    // }
-    // .price {
-    //     font-size: 2rem;
-    //     font-weight: 900;
-    //     color: #e10600;
-    //     .discount {
-    //         font-weight: 400;
-    //         color: black;
-    //     }
-    // }
-    // .product {
-    // width: 100%;
-    // display: flex;
-    // flex-direction: row;
-    // background-color: blue;
-    // }
-    // .card-btn {
-    //     padding: 1rem 0 ;
-    //     font-size: 2rem;
-    //     font-weight: bold;
-    //     margin:2rem auto 0;
-    //     width: 90%;
-    // }
-    // .img-toggle {
-    //     border: 0;
-    //     padding-right: 0.3rem;
-    //     background-color: transparent;
-    //     &:first-child{
-    //         padding-left: 0 !important;
-    //         margin-left: 0 !important;
-    //     }
-    // }
-    // }}
     .products {
         .swiper-wrapper {
             height: 60rem;

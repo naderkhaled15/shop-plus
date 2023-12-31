@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import router from "@/router";
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { defineAsyncComponent, onBeforeMount, onMounted, ref } from 'vue';
+import { defineAsyncComponent, onBeforeMount, ref } from 'vue';
 
 const UpperBanner=defineAsyncComponent(()=>import("../components/home-components/UpperBanner.vue"))
 const FeatureSection=defineAsyncComponent(()=>import("../components/home-components/FeatureSection.vue"))
@@ -11,6 +12,7 @@ const TopCategories=defineAsyncComponent(()=>import("../components/home-componen
 const NewProducts=defineAsyncComponent(()=>import("../components/home-components/NewProducts.vue"))
 const QualityFeature=defineAsyncComponent(()=>import("../components/home-components/QualityFeature.vue"))
 const WhyShopwithus=defineAsyncComponent(()=>import("../components/home-components/WhyShopwithus.vue"))
+const QuickViewmodal=defineAsyncComponent(()=>import("../components/home-components/QuickViewmodal.vue"))
 
 const productStore=productModule()
 const getProducts=productStore.getProducts;
@@ -49,6 +51,7 @@ loading.value=true
     <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto" :loading="loading"/>
 
     <why-shopwithus/>
+    <quick-viewmodal/>
     </div>
 </template>
 <style lang="scss">
