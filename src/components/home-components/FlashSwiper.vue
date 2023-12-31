@@ -2,7 +2,7 @@
 import { ref} from "vue";
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
 import { Pagination,Navigation, Autoplay } from "swiper/modules";
-import { useRoute, useRouter } from "vue-router";
+import {  useRouter } from "vue-router";
 
 let productImg=ref<{[key:string]:any}>({});
 const modules=ref([Pagination,Navigation,Autoplay])
@@ -199,11 +199,11 @@ interface Product {
     //     }
     // }
     // }}
-    
-    .swiper-wrapper {
-        height: 60rem;
-        margin-bottom: 20px;
-    }
+    .products {
+        .swiper-wrapper {
+            height: 60rem;
+            margin-bottom: 20px;
+        }
     .swiper-pagination-bullet {
         width: 12px;
         height: 12px;
@@ -225,6 +225,8 @@ interface Product {
             color:#505050;
             font-size: 20px;
             }
+    }
+    
     }
     
 }

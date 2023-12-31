@@ -12,6 +12,8 @@ interface Product {
   price:number;
   images:Array<string>;
   category:string;
+  brand:string;
+  stock:number
 } 
 
 let cache:{[key:string]:Product[]} = {};
@@ -24,8 +26,8 @@ export const productModule = defineStore('productModule',{
     skinCare:[] as Product[],
     groceriesProducts:[] as Product[],
     fragrancesProducts:[] as Product[],
-    categoryProducts:[]as Product[],
-    productDetails:[]as Product[],
+    categoryProducts:[] as Product[],
+    productDetails:[] as { [key: string]: any },
     allCategories:[
       {
         title:'smart phones',

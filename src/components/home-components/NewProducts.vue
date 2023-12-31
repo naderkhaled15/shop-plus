@@ -2,6 +2,7 @@
     import { ref } from "vue";
     import { Swiper,SwiperSlide } from "vue-awesome-swiper";
     import { Pagination,Navigation, Autoplay } from "swiper/modules";
+    import router from "@/router";
 
     const modules=ref([Pagination,Navigation,Autoplay])
     let productImg=ref<{[key:string]:any}>({});
@@ -86,8 +87,8 @@
                                     <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
                                 <!-- button -->
-                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="console.log(product['title'])">choose options</button>
-                            </div>
+                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
+                            </div>                                                                           
                         </div>
               
                     </swiper-slide>
