@@ -36,7 +36,7 @@ watch(route,async()=>{
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-xl">
+      <div class="modal-dialog modal-dialog-scrollable modal-xl h-75">
           <div class="modal-content">
               <div class="modal-header ">
                   <h1 class="modal-title fs-5 fs-1 fw-bold ms-auto" id="exampleModalLabel">{{ productDetails['title'] }} details</h1>
@@ -74,7 +74,7 @@ watch(route,async()=>{
                             <div class="row g-0" v-if="!loading">
                                 <!-- first column -->
                                 <div class="col-md-7 p-5">
-                                    <div class="overflow-hidden w-100" style="height: 600px;">
+                                    <div class="overflow-hidden w-100" style="height: 500px;">
                                         <img :src="productImg[productDetails['title']]?productImg[productDetails['title']]:productDetails['thumbnail']" class="card-img-top m-0 mx-auto mw-100 h-100" alt="product image" loading="lazy">
                                     </div>
                                     <swiper
