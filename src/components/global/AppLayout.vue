@@ -4,7 +4,7 @@ import { defineAsyncComponent } from 'vue';
 
 const AppNavbar=defineAsyncComponent(()=>import("../global/AppNavbar.vue"))
 const FixedNav=defineAsyncComponent(()=>import("../global/FixedNav.vue"))
-const AppSidebar=defineAsyncComponent(()=>import("../global/AppSidebar.vue"))
+const AppSidecart=defineAsyncComponent(()=>import("../global/AppSidecart.vue"))
 const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
 
 </script>
@@ -12,16 +12,16 @@ const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
         <div class="layout-container">
 
             <!-- navbar -->
-                <app-navbar></app-navbar>
-                <fixed-nav></fixed-nav>
+                <app-navbar/>
+                <fixed-nav/>
             <!-- aside -->
-                <app-sidebar></app-sidebar>
+            <app-sidecart/>
             <!-- body -->
             <main>
                 <slot></slot>
             </main>
             <!-- footer -->
-                <app-footer></app-footer>
+                <app-footer/>
        </div>
 </template>
 <style lang="scss">

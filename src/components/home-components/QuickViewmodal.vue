@@ -1,34 +1,39 @@
 <script setup lang="ts">
-    import { productModule } from '@/stores/productStore';
-import { storeToRefs } from 'pinia';
-import { onBeforeMount, onMounted, ref, watch } from 'vue';
-import { useRoute,useRouter } from 'vue-router';
-import { Swiper,SwiperSlide } from "vue-awesome-swiper";
-import { Pagination,Navigation } from "swiper/modules";
+    import { inject, onBeforeMount, onMounted, ref, watch } from 'vue';
+    import { Swiper,SwiperSlide } from "vue-awesome-swiper";
+    import { Pagination,Navigation } from "swiper/modules";
+    import { cartModule } from '@/stores/cartStore';
+    import { storeToRefs } from 'pinia';
 
+    const cartStore=cartModule()
+    const addItem=cartStore.addItem
 
-const route =useRoute()
-const productStore=productModule()
-const getProductDetails=productStore.getProductDetails
-const {productDetails}=storeToRefs(productStore)
-const modules=ref([Pagination,Navigation])
-let loading =ref(false)
-let productImg=ref<{[key:string]:any}>({});
-let counter=ref(1)
+    const modules=ref([Pagination,Navigation])
+    let loading =ref(false)
+    let productImg=ref<{[key:string]:any}>({});
+    let counter=ref(1)
+    let productInfo:{[key:string]:any}=ref({})
 
-onBeforeMount(async()=>{
-    loading.value=true
-    await getProductDetails(1)
-    loading.value=false
+    // emit global
+    const emitter=inject("Emitter") as any
+
+    onBeforeMount(async()=>{
+        loading.value=true
+        await emitter.on('productInfo',(data:{[key:string]:any})=>{productInfo.value=data})
+        setTimeout(() => {
+            loading.value=false
+        }, 500);
+    })
     
-})
-
-watch(route,async()=>{
-    loading.value=true
-    document.documentElement.scrollTo(0,0)
-    await getProductDetails(1)
-    loading.value=false
-})
+    watch(()=>{
+        productInfo.value
+    },()=>{
+        loading.value=true
+        setTimeout(() => {
+            loading.value=false
+        }, 500);
+        counter.value=1
+    },{deep:true})
 </script>
 
 <template>
@@ -39,7 +44,7 @@ watch(route,async()=>{
       <div class="modal-dialog modal-dialog-scrollable modal-xl h-75">
           <div class="modal-content">
               <div class="modal-header ">
-                  <h1 class="modal-title fs-5 fs-1 fw-bold ms-auto" id="exampleModalLabel">{{ productDetails['title'] }} details</h1>
+                  <h1 class="modal-title fs-5 fs-1 fw-bold ms-auto" id="exampleModalLabel">{{ productInfo['title'] }} details</h1>
                   <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -66,7 +71,6 @@ watch(route,async()=>{
                                     <a class="btn btn-secondary disabled placeholder col-6" style="margin-top: 10rem;" aria-disabled="true"></a>
                                     <a class="btn btn-primary disabled placeholder col-6" style="margin-top: 2rem;" aria-disabled="true"></a>
                                 </div>
-
                             </div>
                             <!-- product place holders ........................................................................ -->
 
@@ -74,8 +78,8 @@ watch(route,async()=>{
                             <div class="row g-0" v-if="!loading">
                                 <!-- first column -->
                                 <div class="col-md-7 p-5">
-                                    <div class="overflow-hidden w-100" style="height: 500px;">
-                                        <img :src="productImg[productDetails['title']]?productImg[productDetails['title']]:productDetails['thumbnail']" class="card-img-top m-0 mx-auto mw-100 h-100" alt="product image" loading="lazy">
+                                    <div class="overflow-hidden w-100" style="height: 600px;">
+                                        <img :src="productImg[productInfo['title']]?productImg[productInfo['title']]:productInfo['thumbnail']" class="card-img-top m-0 mx-auto mw-100 h-100" alt="product image" loading="lazy">
                                     </div>
                                     <swiper
                                     :modules="modules"
@@ -86,9 +90,9 @@ watch(route,async()=>{
                                     :preload-images="false"
                                     :Lazy="true"
                                     >
-                                    <swiper-slide v-for="(img,index) in productDetails['images']" :key="index">
+                                    <swiper-slide v-for="(img,index) in productInfo['images']" :key="index">
                                             <!-- images -->
-                                                    <button  @click="productImg[productDetails['title']]=img" class="bg-transparent border-0">
+                                                    <button  @click="productImg[productInfo['title']]=img" class="bg-transparent border-0">
                                                         <img :src="String(img)" alt="product image" height="150px" width="150px"  style="border: 1px solid black;"  loading="lazy">
                                                     </button>
                                     </swiper-slide>
@@ -101,31 +105,34 @@ watch(route,async()=>{
                                 <div class="col-md-5 h-100 p-5">
                                     <div class="card-body pt-0">
 
-                                            <h5 class="product-card-title p-0 m-0 mb-4 fs-1 fw-bold text-black">({{ productDetails['title'] }}) - {{ productDetails['category'] }} for sale</h5>
+                                            <h5 class="product-card-title p-0 m-0 mb-4 fs-1 fw-bold text-black">({{ productInfo['title'] }}) - {{ productInfo['category'] }} for sale</h5>
 
                                             <div class="d-flex align-items-center gap-5 fs-4 mb-4 rating-box">
-                                                <i :data-star="productDetails['rating']" class="rating d-flex"></i>
-                                                <p class="in-stock m-0 p-0 "> stock : {{ productDetails['stock'] }}</p>
+                                                <i :data-star="productInfo['rating']" class="rating d-flex"></i>
+                                                <p class="in-stock m-0 p-0 "> stock : {{ productInfo['stock'] }}</p>
                                             </div>
 
-                                            <p class="product-card-text p-0 m-0 mb-3 fs-4 mb-4">{{ productDetails['description'] }}</p>
-                                            <p class="mb-4">brand : {{ productDetails['brand'] }}</p>
-                                            <p class="mb-4">availability : {{ productDetails['stock']>0?'in stock':'out of stock' }}</p>
+                                            <p class="product-card-text p-0 m-0 mb-3 fs-4 mb-4">{{ productInfo['description'] }}</p>
+                                            <p class="mb-4">brand : {{ productInfo['brand'] }}</p>
+                                            <p class="mb-4">availability : {{ productInfo['stock']>0?'in stock':'out of stock' }}</p>
 
-                                            <div class="mb-5"> <span class="discount" v-if="productDetails['discountPercentage'] > 0"><del>&#x24;{{ productDetails['price'] }}</del> from </span> <span class="text-black fw-bold">&#x24;{{Math.ceil((productDetails['price'] - ( productDetails['price'] * (productDetails['discountPercentage'] / 100) )))}}</span>  </div>
+                                            <div class="mb-5"> <span class="discount" v-if="productInfo['discountPercentage'] > 0"><del>&#x24;{{ productInfo['price'] }}</del> from </span> <span class="text-black fw-bold">&#x24;{{Math.ceil((productInfo['price'] - ( productInfo['price'] * (productInfo['discountPercentage'] / 100) )))}}</span>  </div>
                                             
                                             <!-- increase and decrease form -->
                                             <div>
                                                 <p class="mb-4 fs-3">quantity</p>
                                                 <div class="product-count mb-5 ">
                                                     <button type="button" class="btn fs-1" @click="counter>1?counter--:false"> - </button>
-                                                    <input type="number" class="border-0 fs-1 text-center" v-model="counter"  disabled min="1" :max="productDetails['stock']">
-                                                    <button type="button" class="btn fs-1" @click="counter<productDetails['stock']?counter++:false"> + </button>
+                                                    <input type="number" class="border-0 fs-1 text-center" v-model="counter"  disabled min="1" :max="productInfo['stock']">
+                                                    <button type="button" class="btn fs-1" @click="counter<productInfo['stock']?counter++:false"> + </button>
+                                                </div>
+                                                <div>
+                                                    <p>subtotal : <strong> &#x24;{{ counter * (Math.ceil((productInfo['price'] - ( productInfo['price'] * (productInfo['discountPercentage'] / 100) )))) }}</strong></p>
                                                 </div>
                                             </div>
                                                 
                                             <!-- button -->
-                                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn" >add to cart</button>
+                                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn" @click="addItem(productInfo,counter)">add to cart</button>
                                     </div>
                                 </div>
                             </div>
