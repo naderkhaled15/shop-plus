@@ -18,35 +18,35 @@ interface Product {
 
 export const cartModule = defineStore('cartModule',{
   state:()=>({
-    cartItems:[] as Product[]
+    cartItems:JSON.parse(localStorage.getItem('cart-items')!)?JSON.parse(localStorage.getItem('cart-items')!):[] as Product[],
+    cartLength:JSON.parse(localStorage.getItem('cart-items')!)?JSON.parse(localStorage.getItem('cart-items')!).length:0 as number,
+    totalPrice:800 as number
   }),
   actions:{
     addItem(item:any,productNumber:number){
       this.cartItems=JSON.parse(localStorage.getItem('cart-items')!)?JSON.parse(localStorage.getItem('cart-items')!):[]
 
-      if(this.cartItems.length<=0 || this.cartItems.find(el=>el.id===item.id)===undefined){
+      if(this.cartItems.length<=0 || this.cartItems.find((el: { id: Product; })=>el.id===item.id)===undefined){
+        // not exists
         item.quantity=productNumber
         this.cartItems.push(item)
       }else {
-        let curretnItem=this.cartItems.find(el=>el.id===item.id) as Product
+        // exists
+        let curretnItem=this.cartItems.find((el: { id: Product; })=>el.id===item.id) as Product
         curretnItem.quantity+=productNumber
       }
       localStorage.setItem('cart-items',JSON.stringify(this.cartItems))
+      this.cartLength=JSON.parse(localStorage.getItem('cart-items')!)?JSON.parse(localStorage.getItem('cart-items')!).length:0
     },
     deleteItem(itemId:number){
       this.cartItems=JSON.parse(localStorage.getItem('cart-items')!)
-      let indexOfElement:number|null=this.cartItems.findIndex(el=>el.id===itemId)!==-1?this.cartItems.findIndex(el=>el.id===itemId):null
-      if(indexOfElement){
+      let indexOfElement:number|null=this.cartItems.findIndex((el: { id: number; })=>el.id===itemId)!==-1?this.cartItems.findIndex((el: { id: number; })=>el.id===itemId):null
+      if(indexOfElement!==null){
         this.cartItems.splice(indexOfElement,1)
         indexOfElement=null
-      }else {
-        console.log('no items in the cart')
       }
-
       localStorage.setItem('cart-items',JSON.stringify(this.cartItems))
+      this.cartLength=JSON.parse(localStorage.getItem('cart-items')!)?JSON.parse(localStorage.getItem('cart-items')!).length:0
     }
   },
-  getters:{
-
-  }
 })
