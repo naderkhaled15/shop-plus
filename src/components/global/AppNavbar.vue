@@ -8,10 +8,10 @@ import { RouterLink } from 'vue-router';
 const productStore=productModule()
 const {allCategories}=storeToRefs(productStore)
 
-// cart count
+// cart store
 import { cartModule } from '@/stores/cartStore';
 const cartStore=cartModule()
-const {cartLength}=storeToRefs(cartStore)
+const {cartItems}=storeToRefs(cartStore)
 
 
 // allCategories
@@ -147,7 +147,7 @@ let language=ref([{
         <li class="nav-item me-4">
           <button class="btn px-0 py-0 position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
             <!-- cart number -->
-            <span class="position-absolute translate-middle badge rounded-pill bg-primary" style="top: 5px; left: 90%; font-size: 12px;">{{cartLength}}</span>
+            <span class="position-absolute translate-middle badge rounded-pill bg-primary" style="top: 5px; left: 90%; font-size: 12px;">{{cartItems.length}}</span>
             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px">
               <path class="path1" d="M409.6 1024c-56.464 0-102.4-45.936-102.4-102.4s45.936-102.4 102.4-102.4S512 865.136 512 921.6 466.064 1024 409.6 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z"></path>
               <path class="path2" d="M768 1024c-56.464 0-102.4-45.936-102.4-102.4S711.536 819.2 768 819.2s102.4 45.936 102.4 102.4S824.464 1024 768 1024zm0-153.6c-28.232 0-51.2 22.968-51.2 51.2s22.968 51.2 51.2 51.2 51.2-22.968 51.2-51.2-22.968-51.2-51.2-51.2z"></path>
