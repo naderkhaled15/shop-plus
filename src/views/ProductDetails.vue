@@ -5,7 +5,11 @@ import { onBeforeMount, onMounted, ref, watch } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
 import { Swiper,SwiperSlide } from "vue-awesome-swiper";
 import { Pagination,Navigation } from "swiper/modules";
+// cart store 
+import { cartModule } from '@/stores/cartStore';
 
+const cartStore=cartModule()
+const addItem=cartStore.addItem
 
 const route =useRoute()
 const router=useRouter()
@@ -108,14 +112,14 @@ watch(route,async()=>{
                             <div>
                                 <p class="mb-4 fs-3">quantity</p>
                                 <div class="product-count mb-5 ">
-                                    <button type="button" class="btn fs-1" @click="counter>1?counter--:false, console.log(counter)"> - </button>
+                                    <button type="button" class="btn fs-1" @click="counter>1?counter--:false"> - </button>
                                     <input type="number" class="border-0 fs-1 text-center" v-model="counter"  disabled min="1" :max="productDetails['stock']">
-                                    <button type="button" class="btn fs-1" @click="counter<productDetails['stock']?counter++:false , console.log(counter)"> + </button>
+                                    <button type="button" class="btn fs-1" @click="counter<productDetails['stock']?counter++:false "> + </button>
                                 </div>
                             </div>
                                 
                             <!-- button -->
-                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn" >add to cart</button>
+                            <button type="button" class="btn btn-outline-dark rounded-pill card-btn" @click="addItem(productDetails , counter)">add to cart</button>
                     </div>
                 </div>
             </div>

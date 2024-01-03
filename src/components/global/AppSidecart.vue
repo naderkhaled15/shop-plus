@@ -2,7 +2,7 @@
 import { cartModule } from '@/stores/cartStore';
 import { left } from '@popperjs/core';
 import { storeToRefs } from 'pinia';
-import { ref, watch } from 'vue';
+import { onUpdated, ref, watch } from 'vue';
 
 const cartStore=cartModule()
 
@@ -20,41 +20,30 @@ cartItems.value.forEach((product:any)=>{
 return  Number( total.value.toFixed(2))
 }
 
-/*
-***** to make 
-1-make total calculate all subtotals at every product
-2-number of total communicated with product localstorage
-3-depends on value make car progress slide and shipping car moves depends on total
-***** done
-1-subtotal calculated by number of product 
-*/
+onUpdated(() => {
+  console.log('updated from onupdated')
+  localStorage.setItem('cart-items',JSON.stringify(cartItems.value))
+})
 
-watch(()=>{cartItems.value},()=>{console.log('cart item changed',cartItems.value)},{deep:true})
+
 </script>
 <template>
 <div class="offcanvas offcanvas-end overflow-y-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 500px;">
   <div class="m-3 side-bar">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title fs-3 text-black" id="offcanvasRightLabel">shopping cart</h5>
-      <button type="button" class="btn-close fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="position-sticky top-0 z-1 bg-white m-3">
+
+  <div class="offcanvas-header p-0">
+    <h5 class="offcanvas-title fs-2 text-black" id="offcanvasRightLabel">shopping cart</h5>
+    <button type="button" class="btn-close fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body pt-0 d-flex flex-column">
-    <p class="fs-3">{{cartItems.length}} items</p>
 
-    <!-- to show if there no product -->
-    <div v-if="!cartItems.length" class="d-flex flex-column">
-      <p class="fs-3 my-4" style="font-weight: 500;">free shipping for all orders over {{totalPriceShipping.toFixed(2)}}!</p>
-      <p class="fs-3 my-5 text-center">your cart is empty</p>
-      <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn my-5 text-capitalize" data-bs-dismiss="offcanvas" aria-label="Close">continue shopping</button>
-    </div>
-<!-- to show if there product -->
-    <div v-if="cartItems.length" class="d-flex flex-column">
-
-      <!-- progress bar -->
-      <div class="progress-bar position-relative">
+  <p class="fs-3 fw-bold my-3">{{cartItems.length}} items</p>
+        <!-- progress bar -->
+        <div class="progress-bar position-relative" v-if="cartItems.length">
       <div class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" :aria-valuemax="totalPriceShipping" style="height: 13px; border-radius: 9px;">
-        <!-- 30px -->
-        <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24" fill="#dc3545" :style="{top:'-7px',left:`${totalPrice() / totalPriceShipping * 100 - 660/100 <=100 ?totalPrice() / totalPriceShipping * 100 - 650/100 :93 }%`}">
+          <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24" fill="#dc3545" 
+        :style="`top:-7px; left:calc(${ totalPrice() / totalPriceShipping * 100 <= 100 ? (totalPrice() / totalPriceShipping * 100) : 100 }% - 30px);transition:0.5s all ease-in-out`">
+
         <g id="Layer_2" data-name="Layer 2">
         <g id="Layer_1-2" data-name="Layer 1">
         <path stroke="#fff" class="truck-body" d="M40.43,11a3.86,3.86,0,0,0-3.68-2.65H28a1.25,1.25,0,0,1-1.43-1.43c0-2.18,0-4.35,0-6.53,0-.31-.08-.36-.37-.36H5.11a1.18,1.18,0,0,0-1.3,1.32c0,.74,0,1.48,0,2.22,0,.21-.06.27-.26.26-.36,0-.71,0-1.07,0a1.19,1.19,0,1,0,0,2.37H7.19c.43,0,.85,0,1.27,0a1,1,0,0,1,1.07,1A1.19,1.19,0,0,1,8.24,8.48H1.35a1.83,1.83,0,0,0-.47,0A1.19,1.19,0,0,0,0,9.85a1.18,1.18,0,0,0,1.19,1h9.66c.34,0,.68,0,1,0A1.19,1.19,0,0,1,13,12.47a1.26,1.26,0,0,1-1.26.76H1.24a1.19,1.19,0,1,0,0,2.38c.76,0,1.51,0,2.26,0,.26,0,.33.07.32.32,0,1,0,2.09,0,3.13A1.18,1.18,0,0,0,5.1,20.36c.63,0,1.26,0,1.9,0,.27,0,.39.06.47.36a4.55,4.55,0,0,0,8.78-.11.29.29,0,0,1,.32-.25H28.09a.3.3,0,0,1,.34.27,4.55,4.55,0,0,0,8.8,0,.31.31,0,0,1,.35-.26c.49,0,1,0,1.47,0a1.37,1.37,0,0,0,1.5-.87V11.41C40.41,11.29,40.47,11.12,40.43,11ZM32.84,21.62A2.18,2.18,0,1,1,35,19.45,2.21,2.21,0,0,1,32.84,21.62Zm-21,0A2.18,2.18,0,1,1,14,19.45,2.2,2.2,0,0,1,11.86,21.62Z"/>
@@ -64,10 +53,25 @@ watch(()=>{cartItems.value},()=>{console.log('cart item changed',cartItems.value
         </g>
         </g>
         </svg>
-        <div class="progress-bar progress-bar-striped bg-danger" :style="{ width:`${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%`}"></div>
+        <!-- :style="{ 'width':`${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%`}"></div> -->
+        <div class="progress-bar progress-bar-striped bg-danger" 
+        :style="`width : calc(${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%); transition:0.5s all ease-in-out`"></div>
       </div>
-      <p class="fs-3 my-3 align-self-start" style="font-weight: 500;">only {{totalPrice()-totalPriceShipping<=0?`&#x24;${totalPriceShipping-totalPrice()} away from free shipping`:`your order qualifies for free shipping`}}</p>
+      <p class="fs-3 my-3 align-self-start" 
+      style="font-weight: 500;">only {{totalPrice()-totalPriceShipping<=0?`&#x24;${totalPriceShipping-totalPrice()} away from free shipping`:`your order qualifies for free shipping`}}</p>
     </div>
+</div>
+  <div class="offcanvas-body pt-0 d-flex flex-column">
+
+    <!-- to show if there no product -->
+    <div v-if="!cartItems.length" class="d-flex flex-column">
+      <p class="fs-3 my-4" style="font-weight: 500;">free shipping for all orders over {{totalPriceShipping.toFixed(2)}}!</p>
+      <p class="fs-3 my-5 text-center">your cart is empty</p>
+      <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn my-5 text-capitalize" data-bs-dismiss="offcanvas" aria-label="Close">continue shopping</button>
+    </div>
+
+<!-- to show if there product -->
+    <div v-if="cartItems.length" class="d-flex flex-column">
 
     <!-- product cards -->
     <div class="card-group d-flex flex-column mb-3" v-for="product in cartItems" :key="product['id']">
