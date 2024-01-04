@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { cartModule } from '@/stores/cartStore';
 import { storeToRefs } from 'pinia';
-import { onUpdated, ref, watch } from 'vue';
+import { onUpdated, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router=useRouter()
 
 const cartStore=cartModule()
 const deleteItem=cartStore.deleteItem
@@ -53,6 +56,7 @@ onUpdated(() => {
     </div>
     <!-- cart body -->
     <div class="offcanvas-body pt-0 d-flex flex-column">
+      
         <!-- to show if there no product -->
         <div v-if="!cartItems.length" class="d-flex flex-column">
           <p class="fs-3 my-4" style="font-weight: 500;">free shipping for all orders over {{totalPriceShipping.toFixed(2)}}!</p>
@@ -71,9 +75,9 @@ onUpdated(() => {
 
               <div class="card-body col-6 position-relative d-flex justify-content-between py-5">
 
-                <h5 class="card-title fs-4">{{product['title']}} - {{ product['category'] }}</h5>
+                <h5 class="card-title fs-4">{{product['title']}} - {{ product['brand'] }}</h5>
 
-                <p class="card-text fs-5">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text fs-5">category : {{ product['category'] }}</p>
 
                 <div class="cart-product-count my-3 mx-auto">
                   <button type="button" class="btn fs-5" @click="product['quantity'] > 1 ? product['quantity']-- : false"> - </button>
@@ -105,7 +109,7 @@ onUpdated(() => {
             <span class="checkmark fs-4 my-3">i agree with terms & conditions</span>
           </label>
           <button type="button" class="btn btn-primary text-white rounded-pill shopping-btn my-4 text-capitalize" style="background-color: #6ca7ea;" :disabled="!agree">checkout</button>         
-          <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn mb-4 text-capitalize">view cart</button>
+          <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn mb-4 text-capitalize" @click="router.push({name:'cart_page'})">view cart</button>
         </div>
     </div>
   </div>

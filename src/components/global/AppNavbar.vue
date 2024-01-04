@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 // products store
 const productStore=productModule()
@@ -13,6 +14,7 @@ import { cartModule } from '@/stores/cartStore';
 const cartStore=cartModule()
 const {cartItems}=storeToRefs(cartStore)
 
+const route=useRoute()
 
 // allCategories
 let languagesSet=ref([
@@ -145,7 +147,7 @@ let language=ref([{
         </li>
         
         <li class="nav-item me-4">
-          <button class="btn px-0 py-0 position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <button class="btn px-0 py-0 position-relative border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" :style="`pointer-events:${route.name==='cart_page'? 'none': 'auto'}`">
             <!-- cart number -->
             <span class="position-absolute translate-middle badge rounded-pill bg-primary" style="top: 5px; left: 90%; font-size: 12px;">{{cartItems.length}}</span>
             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px">

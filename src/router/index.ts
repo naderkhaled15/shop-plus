@@ -28,6 +28,22 @@ const router = createRouter({
       }
     },
     {
+      path: '/cart_page',
+      name: 'cart_page',
+      component: ()=>import("../views/CartView.vue"),
+      meta:{
+        title:'cart'
+      }
+    },
+    {
+      path: '/check_out',
+      name: 'check_out',
+      component: ()=>import("../views/CheckOut.vue"),
+      meta:{
+        title:'checkout'
+      }
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "Not found",
       component:()=>import("../components/home-components/NotFoundpage.vue"),
