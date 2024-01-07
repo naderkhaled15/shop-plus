@@ -168,7 +168,7 @@ let language=ref([{
     <div class="collapse navbar-collapse row col-auto m-0" id="navbarSupportedContent"> 
     <ul class="navbar-nav pt-5 mb-2 mb-lg-0 d-flex gap-4 align-items-center second-nav">
       <li v-for="category in allCategories" :key="category.title">
-        <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'categ':category.route,'title':category.title}}">{{ category.title }}</RouterLink>      
+        <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'title':category.route}}">{{ category.title }}</RouterLink>      
       </li>
         <!-- help and lang -->
       <li class="nav-item ms-0 ms-lg-auto">

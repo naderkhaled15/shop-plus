@@ -27,9 +27,9 @@
 </script>
 
 <template>
-    <div class="p-5">
-        <div class="mb-3">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <div class="p-5 position-relative">
+        <div class="pb-3">
+            <nav style="--bs-breadcrumb-divider: '>';position: sticky; top:79px;z-index: 100;" aria-label="breadcrumb" class="bg-white pt-4">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><router-link to="/">home</router-link></li>
                     <li class="breadcrumb-item active" aria-current="page">your cart</li>
@@ -38,13 +38,13 @@
 
 
             <div v-if="cartItems.length">
-                <div class="mt-5" >
+                <div class="mt-5 bg-white pb-5 border-bottom border-2" style="position: sticky ;top: 118px;z-index: 100;" >
                     <h1 style="font-size: 4rem; font-weight: 600;"> your cart </h1>
                         <!-- progress bar -->
-                    <div class="progress-bar position-relative" v-if="cartItems.length">
+                    <div class="progress-bar position-relative " v-if="cartItems.length">
                         <div class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" :aria-valuemax="totalPriceShipping" style="height: 13px; border-radius: 9px;">
-                            <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24" fill="#dc3545" 
-                            :style="`top:-7px; left:calc(${ totalPrice() / totalPriceShipping * 100 <= 100 ? (totalPrice() / totalPriceShipping * 100) : 100 }% - 30px);transition:0.5s all ease-in-out`">
+                            <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24"  
+                            :style="`top:-7px; left:calc(${ totalPrice() / totalPriceShipping * 100 <= 100 ? (totalPrice() / totalPriceShipping * 100) : 100 }% - 30px);transition:0.5s all ease-in-out; fill:${totalPrice() / totalPriceShipping * 100 <= 100 ? '#dc3545' : '#3a8e3a'};`">
                             <g id="Layer_2" data-name="Layer 2">
                             <g id="Layer_1-2" data-name="Layer 1">
                             <path stroke="#fff" class="truck-body" d="M40.43,11a3.86,3.86,0,0,0-3.68-2.65H28a1.25,1.25,0,0,1-1.43-1.43c0-2.18,0-4.35,0-6.53,0-.31-.08-.36-.37-.36H5.11a1.18,1.18,0,0,0-1.3,1.32c0,.74,0,1.48,0,2.22,0,.21-.06.27-.26.26-.36,0-.71,0-1.07,0a1.19,1.19,0,1,0,0,2.37H7.19c.43,0,.85,0,1.27,0a1,1,0,0,1,1.07,1A1.19,1.19,0,0,1,8.24,8.48H1.35a1.83,1.83,0,0,0-.47,0A1.19,1.19,0,0,0,0,9.85a1.18,1.18,0,0,0,1.19,1h9.66c.34,0,.68,0,1,0A1.19,1.19,0,0,1,13,12.47a1.26,1.26,0,0,1-1.26.76H1.24a1.19,1.19,0,1,0,0,2.38c.76,0,1.51,0,2.26,0,.26,0,.33.07.32.32,0,1,0,2.09,0,3.13A1.18,1.18,0,0,0,5.1,20.36c.63,0,1.26,0,1.9,0,.27,0,.39.06.47.36a4.55,4.55,0,0,0,8.78-.11.29.29,0,0,1,.32-.25H28.09a.3.3,0,0,1,.34.27,4.55,4.55,0,0,0,8.8,0,.31.31,0,0,1,.35-.26c.49,0,1,0,1.47,0a1.37,1.37,0,0,0,1.5-.87V11.41C40.41,11.29,40.47,11.12,40.43,11ZM32.84,21.62A2.18,2.18,0,1,1,35,19.45,2.21,2.21,0,0,1,32.84,21.62Zm-21,0A2.18,2.18,0,1,1,14,19.45,2.2,2.2,0,0,1,11.86,21.62Z"/>
@@ -54,8 +54,8 @@
                             </g>
                             </g>
                             </svg>
-                            <div class="progress-bar progress-bar-striped bg-danger" 
-                            :style="`width : calc(${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%); transition:0.5s all ease-in-out`">
+                            <div class="progress-bar progress-bar-striped" 
+                            :style="`width : calc(${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%);background-color:${totalPrice() / totalPriceShipping * 100 <= 100 ? '#dc3545' : '#3a8e3a'}; transition:0.5s all ease-in-out`">
                             </div>
                         </div>
                         <p class="fs-3 my-3 align-self-start" style="font-weight: 500;">only {{totalPrice()-totalPriceShipping<=0?`&#x24;${totalPriceShipping-totalPrice()} away from free shipping`:`your order qualifies for free shipping`}}</p>
@@ -196,7 +196,7 @@
                                     <span class="checkmark fs-4">i agree with <a href="#" class="text-black">terms & conditions</a> </span>
                                 </label>
 
-                                <button type="button" class="btn btn-info btn-hover text-white shopping-btn my-4 text-capitalize w-100" style="background-color: #6ca7ea;" :disabled="!agree">proceed to checkout</button>         
+                                <button type="button" class="btn btn-info btn-hover text-white shopping-btn my-4 text-capitalize w-100" style="background-color: #6ca7ea;" :disabled="!agree" @click="router.push({name:'check_out'})">proceed to checkout</button>         
                                 <button type="button" class="btn btn-outline-secondary shopping-btn mb-4 text-capitalize w-100" @click="router.push({name:'home'})">continue shopping</button>
                             </div>
                         </div>

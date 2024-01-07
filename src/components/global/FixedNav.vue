@@ -38,7 +38,7 @@ const route=useRoute()
             <div class="col-10 d-flex align-items-center gap-5">
 
               <li v-for="category in allCategories" :key="category.title">
-                <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'categ':category.route,'title':category.title}}">{{ category.title }}</RouterLink>      
+                <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'title':category.route}}">{{ category.title }}</RouterLink>      
               </li>
 
             </div>

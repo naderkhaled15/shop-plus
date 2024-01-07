@@ -61,7 +61,6 @@ import { ref } from 'vue';
         <div class="top-categories">
             <div class="category">
                 <h3 class="cat-head ms-auto display-4">top categories</h3>
-                <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
     <div class="d-flex justify-content-between align-items-center flex-wrap" >
         <div class="card text-center border-0" style="width:15%;" v-for="categ in categories" :key="categ.title">

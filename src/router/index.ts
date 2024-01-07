@@ -12,7 +12,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/category/:categ/:title',
+      path: '/category/:title',
       name: 'category',
       component: ()=>import("../views/CategoryView.vue"),
       meta:{

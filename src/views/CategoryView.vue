@@ -11,7 +11,7 @@ const getCategoriesProducts=productStore.getCategoriesProducts
 const {categoryProducts}=storeToRefs(productStore)
 let productImg=ref<{[key:string]:any}>({});
 let loading=ref(false)
-
+let productsCategoryName=ref<string>()
 
 
 // fire global emit
@@ -23,21 +23,24 @@ const quickView=(data:{[key:string]:any})=>{
 onBeforeMount(async()=>{
     document.documentElement.scrollTo(0,0)
     loading.value=true
-    await getCategoriesProducts(route.params.categ as string)
+    // await getCategoriesProducts(route.params.categ as string)
+    await getCategoriesProducts(route.params.title as string)
     loading.value=false
+    productsCategoryName.value=categoryProducts.value[0].category
 })
 
 watch(route,async()=>{
     document.documentElement.scrollTo(0,0)
     loading.value=true
-    await getCategoriesProducts(route.params.categ as string)
+    // await getCategoriesProducts(route.params.categ as string)
+    await getCategoriesProducts(route.params.title as string)
     loading.value=false
-
+    productsCategoryName.value=categoryProducts.value[0].category    
 })
 </script>
 <template>
 <div class="container-fluid">
-    <h2 class="cart-head display-3 fw-bold text-center py-5">{{ route.params.title }}</h2>
+    <h2 class="cart-head display-3 fw-bold text-center py-5">{{ productsCategoryName }}</h2>
     <div class="row row-cols-4 g-5 mx-5 my-5" >
         <div class="col" v-for="product in categoryProducts" :key="product.id">
 

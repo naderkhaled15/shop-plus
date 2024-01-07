@@ -55,10 +55,10 @@ const quickView=(data:{[key:string]:any})=>{
 <template>
     <div class="container-fluid">
         <div class="flash-container">
-            <div class="d-flex justify-content-between align-items-center">
+            <div>
                 <h1 class="flash-head" :style="{color: props.color, marginLeft:props.margin}">{{ props.title }}</h1>
-                <p class=" mt-0 ms-auto"><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
+
             <div class="products">
                 <swiper
                     :modules="modules"
@@ -72,7 +72,8 @@ const quickView=(data:{[key:string]:any})=>{
                     :navigation="{nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev'}"                    
                     :preload-images="false"
                     :Lazy="true"
-                    :Autoplay ="{ delay: 1000 }"
+                    :Autoplay ="{ delay: 1000 , disableOnInteraction:true , waitForTransition: true }"
+                    :loop="true"
                     >
                     <swiper-slide v-for="product in props.products" :key="product['id']">
                             <!-- loading placeholder -->

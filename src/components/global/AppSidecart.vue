@@ -36,8 +36,8 @@ onUpdated(() => {
       <!-- progress bar -->
       <div class="progress-bar position-relative" v-if="cartItems.length">
         <div class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" :aria-valuemax="totalPriceShipping" style="height: 13px; border-radius: 9px;">
-            <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24" fill="#dc3545" 
-            :style="`top:-7px; left:calc(${ totalPrice() / totalPriceShipping * 100 <= 100 ? (totalPrice() / totalPriceShipping * 100) : 100 }% - 30px);transition:0.5s all ease-in-out`">
+            <svg class="icon-shipping-truck position-absolute" width="30px" height="30px" viewBox="0 0 40.55 24" 
+            :style="`top:-7px; left:calc(${ totalPrice() / totalPriceShipping * 100 <= 100 ? (totalPrice() / totalPriceShipping * 100) : 100 }% - 30px);transition:0.5s all ease-in-out; fill:${totalPrice() / totalPriceShipping * 100 <= 100 ? '#dc3545' : '#3a8e3a'};`">
             <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
             <path stroke="#fff" class="truck-body" d="M40.43,11a3.86,3.86,0,0,0-3.68-2.65H28a1.25,1.25,0,0,1-1.43-1.43c0-2.18,0-4.35,0-6.53,0-.31-.08-.36-.37-.36H5.11a1.18,1.18,0,0,0-1.3,1.32c0,.74,0,1.48,0,2.22,0,.21-.06.27-.26.26-.36,0-.71,0-1.07,0a1.19,1.19,0,1,0,0,2.37H7.19c.43,0,.85,0,1.27,0a1,1,0,0,1,1.07,1A1.19,1.19,0,0,1,8.24,8.48H1.35a1.83,1.83,0,0,0-.47,0A1.19,1.19,0,0,0,0,9.85a1.18,1.18,0,0,0,1.19,1h9.66c.34,0,.68,0,1,0A1.19,1.19,0,0,1,13,12.47a1.26,1.26,0,0,1-1.26.76H1.24a1.19,1.19,0,1,0,0,2.38c.76,0,1.51,0,2.26,0,.26,0,.33.07.32.32,0,1,0,2.09,0,3.13A1.18,1.18,0,0,0,5.1,20.36c.63,0,1.26,0,1.9,0,.27,0,.39.06.47.36a4.55,4.55,0,0,0,8.78-.11.29.29,0,0,1,.32-.25H28.09a.3.3,0,0,1,.34.27,4.55,4.55,0,0,0,8.8,0,.31.31,0,0,1,.35-.26c.49,0,1,0,1.47,0a1.37,1.37,0,0,0,1.5-.87V11.41C40.41,11.29,40.47,11.12,40.43,11ZM32.84,21.62A2.18,2.18,0,1,1,35,19.45,2.21,2.21,0,0,1,32.84,21.62Zm-21,0A2.18,2.18,0,1,1,14,19.45,2.2,2.2,0,0,1,11.86,21.62Z"/>
@@ -47,8 +47,8 @@ onUpdated(() => {
             </g>
             </g>
             </svg>
-            <div class="progress-bar progress-bar-striped bg-danger" 
-              :style="`width : calc(${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%); transition:0.5s all ease-in-out`">
+            <div class="progress-bar progress-bar-striped " 
+              :style="`width : calc(${totalPrice() / totalPriceShipping * 100 <= 100 ?totalPrice() / totalPriceShipping * 100 :100}%); transition:0.5s all ease-in-out ;  background-color:${totalPrice() / totalPriceShipping * 100 <= 100 ? '#dc3545' : '#3a8e3a'};`">
             </div>
         </div>
         <p class="fs-3 my-3 align-self-start" style="font-weight: 500;">only {{totalPrice()-totalPriceShipping<=0?`&#x24;${totalPriceShipping-totalPrice()} away from free shipping`:`your order qualifies for free shipping`}}</p>
@@ -69,11 +69,11 @@ onUpdated(() => {
           <div class="card-group d-flex flex-column mb-3" v-for="product in cartItems" :key="product['id']">
             <div class="card row-cols-2 d-flex flex-row border-0">
 
-              <div class="col-6 align-items-start overflow-hidden">
-                <img :src="product['thumbnail']" class="card-img-top m-0" alt="product image">
+              <div class="col-3 d-flex align-items-center justify-content-center overflow-hidden">
+                <img :src="product['thumbnail']" class="card-img-top rounded-5 m-0" alt="product image" style="background-color: blue; width: 120px; height: 120px;">
               </div>
 
-              <div class="card-body col-6 position-relative d-flex justify-content-between py-5">
+              <div class="card-body col-9 position-relative d-flex justify-content-between py-5">
 
                 <h5 class="card-title fs-4">{{product['title']}} - {{ product['brand'] }}</h5>
 
@@ -108,8 +108,8 @@ onUpdated(() => {
             <input type="checkbox" v-model="agree">
             <span class="checkmark fs-4 my-3">i agree with terms & conditions</span>
           </label>
-          <button type="button" class="btn btn-primary text-white rounded-pill shopping-btn my-4 text-capitalize" style="background-color: #6ca7ea;" :disabled="!agree">checkout</button>         
-          <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn mb-4 text-capitalize" @click="router.push({name:'cart_page'})">view cart</button>
+          <button type="button" class="btn btn-primary text-white rounded-pill shopping-btn my-4 text-capitalize" style="background-color: #6ca7ea;" :disabled="!agree" @click="router.push({name:'check_out'})" data-bs-dismiss="offcanvas" aria-label="Close">checkout</button>         
+          <button type="button" class="btn btn-outline-secondary rounded-pill shopping-btn mb-4 text-capitalize" @click="router.push({name:'cart_page'})" data-bs-dismiss="offcanvas" aria-label="Close">view cart</button>
         </div>
     </div>
   </div>

@@ -40,7 +40,6 @@ emitter.emit('productInfo',d)
         <div class="top-categories">
             <div class="category">
                 <h2 class="cart-head me-auto display-3 fw-bold">new products</h2>
-                <p><a href="#" class="link-secondary link-offset-2 link-underline-opacity-100">shop all</a></p>
             </div>
 
         </div>
@@ -57,7 +56,8 @@ emitter.emit('productInfo',d)
                     :space-between="30"
                     :preload-images="false"
                     :Lazy="true"
-                    :Autoplay ="{ delay: 1000 }"
+                    :Autoplay ="{ delay: 1000, disableOnInteraction:true , waitForTransition: true  }"
+                    :loop="true"
                     >
                     <swiper-slide v-for="product in props.products.slice(0,5)" :key="product['id']">
                             <!-- loading placeholder -->

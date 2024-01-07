@@ -102,7 +102,7 @@ const {allCategories}=storeToRefs(productStore)
         <h5 class="foot-col-header">shop</h5>
         <ul class="nav flex-column footer-list">     
           <li v-for="category in allCategories" :key="category.title" class="m-0">
-            <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'categ':category.route,'title':category.title}}">{{ category.title }}</RouterLink>      
+            <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'title':category.route}}">{{ category.title }}</RouterLink>      
           </li>
         </ul>
       </div>
