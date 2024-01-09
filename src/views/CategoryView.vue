@@ -23,7 +23,6 @@ const quickView=(data:{[key:string]:any})=>{
 onBeforeMount(async()=>{
     document.documentElement.scrollTo(0,0)
     loading.value=true
-    // await getCategoriesProducts(route.params.categ as string)
     await getCategoriesProducts(route.params.title as string)
     loading.value=false
     productsCategoryName.value=categoryProducts.value[0].category
@@ -32,7 +31,6 @@ onBeforeMount(async()=>{
 watch(route,async()=>{
     document.documentElement.scrollTo(0,0)
     loading.value=true
-    // await getCategoriesProducts(route.params.categ as string)
     await getCategoriesProducts(route.params.title as string)
     loading.value=false
     productsCategoryName.value=categoryProducts.value[0].category    

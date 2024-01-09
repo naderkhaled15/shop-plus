@@ -44,6 +44,22 @@ const router = createRouter({
       }
     },
     {
+      path: '/search/:key',
+      name: 'search',
+      component: ()=>import("../views/SearchPage.vue"),
+      meta:{
+        title:'search'
+      }
+    },
+    {
+      path: '/log_in/:type',
+      name: 'log_in',
+      component: ()=>import("../views/RegisterPage.vue"),
+      meta:{
+        title:'register'
+      }
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "Not found",
       component:()=>import("../components/home-components/NotFoundpage.vue"),

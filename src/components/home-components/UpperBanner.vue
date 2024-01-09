@@ -18,9 +18,11 @@
     .parent {
         background-image: url(../../media/images/banner-bg.jpg);
         background-repeat: no-repeat;
-        background-position: left top;
+        background-position: center;
         background-size: cover ;
-        height: 550px;
+        background-attachment:scroll;
+        // height: 550px;
+        height: 55rem;
         display: flex;
         justify-content: center;
         align-items: center;

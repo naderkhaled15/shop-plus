@@ -25,12 +25,12 @@ onUpdated(() => {
 </script>
 
 <template>
-<div class="offcanvas offcanvas-end overflow-y-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 500px;">
-  <div class="m-3" style="color:#888682;">
+<div class="offcanvas offcanvas-end overflow-y-auto p-4" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 500px;">
+  <div style="color:#888682;">
     <div class="position-sticky top-0 z-1 bg-white m-3">
       <div class="offcanvas-header p-0">
-        <h5 class="offcanvas-title fs-2 text-black" id="offcanvasRightLabel">shopping cart</h5>
-        <button type="button" class="btn-close fs-5" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="offcanvas-title fs-1 fw-bold text-black" id="offcanvasRightLabel">shopping cart</h5>
+        <button type="button" class="btn-close fs-2" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasRight" aria-label="Close"></button>
       </div>
       <p class="fs-3 fw-bold my-3">{{cartItems.length}} items</p>
       <!-- progress bar -->

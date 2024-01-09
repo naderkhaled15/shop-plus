@@ -41,7 +41,7 @@ loading.value=true
         <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
     </div>
 
-    <flash-swiper :products="fragrancesProducts" title="home fragrances" color="#202020" margin="0" :loading="loading"/> 
+    <flash-swiper :products="fragrancesProducts" title="fragrances" color="#202020" margin="0" :loading="loading"/> 
 
     <div class="row row-cols-1 mx-2 mt-5 overflow-hidden">
         <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy" class=" img-hover">

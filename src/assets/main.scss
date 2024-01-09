@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Roboto+Condensed:wght@300;400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
 
-html {
-  font-size: 62.5%;
+* { 
+  box-sizing: border-box !important;
 }
+
+// html {
+//   font-size: 62.5%;
+// }
 
 body {
   text-transform: capitalize;
@@ -204,3 +208,126 @@ body {
 [data-star^="4.8"]::after{width:96%}
 [data-star^="4.9"]::after{width:98%}
 [data-star^="5"]::after{width:100%}
+
+// media query
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 24%;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 576px) {
+  html {
+    font-size: 24%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 576px) {
+    html {
+    font-size:25%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    html {
+    font-size: 35%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    html {
+    font-size: 43%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    html {
+    font-size: 50%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1400px and up) */
+@media only screen and (min-width: 1400px) {
+    html {
+    font-size: 62.5%;
+  }
+}
+
+// login 
+.log-in,
+.register {
+  position: relative;
+  overflow: hidden;
+  max-width:50rem;  
+  flex-direction: column;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  .title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 80px 0 20px;
+  }
+  label {
+    font-size: 2rem;
+    align-self: flex-start;
+    padding-bottom: 8px;
+    font-weight: 700;
+  }
+  input {
+    width: 50rem;
+    padding: 1rem;
+    border-radius: 9px;
+    border: 1px solid lightblue;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .btn-login {
+    width: 50rem;
+    padding: 1.4rem;
+    border-radius: 9px;
+    background-color: #112e42;
+    border: none;
+    font-size: 20px;
+    color: #ededed;
+    font-weight: bold;
+    text-transform: capitalize;
+    &:hover {
+      background-color: #00abf0;
+    }
+  }
+  .btn-signup {
+    width: 10rem;
+    padding: 1rem;
+    border-radius: 9px;
+    text-decoration: underline;
+    border: none;
+    font-size: 1.5rem;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    &:hover {
+      background-color:#00abf0;
+    }
+  }
+  .home {
+    color: black;
+    font-weight: bold;
+    position: absolute;
+    text-decoration: none;
+    font-size: 2.5rem;
+    right: 0;
+    padding: 0.2rem;
+    &:hover{
+      color: #00abf0;
+    }
+  }
+}

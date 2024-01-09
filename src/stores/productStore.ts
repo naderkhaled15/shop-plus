@@ -28,6 +28,7 @@ export const productModule = defineStore('productModule',{
     fragrancesProducts:[] as Product[],
     categoryProducts:[] as Product[],
     productDetails:[] as { [key: string]: any },
+    searchedProducts:[] as Product[],
     allCategories:[
       {
         title:'smart phones',
@@ -95,6 +96,14 @@ export const productModule = defineStore('productModule',{
         console.error('message from product details',e.message)
       }
     }, 
+    async searchForProducts(product:string){
+      try{
+        const result=await axios.get(`/products/search?q=${product}`)
+        this.searchedProducts=result.data.products
+      }catch(e:any){
+        console.error('message from search product',e.message)
+      }
+    }
   },
   getters:{}
 })

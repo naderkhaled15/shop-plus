@@ -27,8 +27,6 @@
                 <span class="content">longest warranties offer</span>
             </div>
         </div>
-        <div class="row">
-        </div>
     </div>
 </template>
 <style lang="scss">
