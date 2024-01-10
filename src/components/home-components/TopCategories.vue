@@ -62,8 +62,8 @@ import { ref } from 'vue';
             <div class="category">
                 <h3 class="cat-head ms-auto display-4">top categories</h3>
             </div>
-            <div class="d-flex justify-content-between align-items-center flex-wrap" >
-                <div class="card text-center border-0" style="width:28rem; min-width: 100px;" v-for="categ in categories" :key="categ.title">
+            <div class="d-flex justify-content-center align-items-center flex-wrap" >
+                <div class="card text-center border-0" style="width:30rem; min-width: 200px;" v-for="categ in categories" :key="categ.title">
                     <div class="card-body" >
                         <div class="overflow-hidden rounded-circle">
                             <img :src="categ['image']" alt="category img" class="category-img" width="100%">
@@ -83,8 +83,9 @@ import { ref } from 'vue';
             display: flex;
             justify-content: center;
             .cat-head {
-                font-weight: 700;
-                font-size: 3.4rem;
+                font-weight: 800;
+                font-size: clamp(20px,3.4rem,4px);
+                margin-right: auto;
             }
             p{
                 margin-left: auto;

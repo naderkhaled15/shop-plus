@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row pt-5 ">
-                <div class="col-12 col-md-6 me-5">
+                <div class="col-12 col-md-6 ">
                     <div class="shrink">
                         <img src="../../media//images/iphones.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'smartphones'}})" >
                     </div>

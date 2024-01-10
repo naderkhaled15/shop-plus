@@ -25,19 +25,19 @@
 
 <template>
     <div class="p-5">
-        <div v-show="searchedProducts.length<=0" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+        <div v-if="searchedProducts.length<=0" class="d-flex justify-content-center align-items-center" style="height: 200px;">
             <p class="fw-bold text-center" style="font-size: 7rem;">not found </p>
         </div>
 
-        <div v-show="searchedProducts.length > 0">
+        <div v-if="searchedProducts.length > 0">
             <div class="card mb-3 p-5 border-bottom border-0 h-100" style="width: 100%;" v-for="product in searchedProducts" :key="product.id">
                 <div class="row g-0">
 
-                    <div class="col-sm-1 col-lg-2 d-flex align-items-center justify-content-center">
-                        <img :src="product['thumbnail']" class="rounded-5" width="100%" alt="product image" loading="lazy">
+                    <div class="col-2 d-flex align-items-center justify-content-center">
+                        <img :src="product['thumbnail']" class="rounded-5" style="width: 100%; min-width:50px; max-width: 250px;" alt="product image" loading="lazy">
                     </div>
 
-                    <div class="col-sm-9 col-lg-9">
+                    <div class="col-10">
                         <div class="card-body d-flex justify-content-between h-100">
                             <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                             <p class="card-text pb-2">{{ product['description'] }}</p>

@@ -39,7 +39,7 @@ watch(route,async()=>{
 <template>
 <div class="container-fluid">
     <h2 class="cart-head display-3 fw-bold text-center py-5">{{ productsCategoryName }}</h2>
-    <div class="row row-cols-4 g-5 mx-5 my-5" >
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 mx-5 my-5" >
         <div class="col" v-for="product in categoryProducts" :key="product.id">
 
             

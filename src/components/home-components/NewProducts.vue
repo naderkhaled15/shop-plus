@@ -129,6 +129,9 @@ emitter.emit('productInfo',d)
 </template>
 
 <style lang="scss">
+    .cart-head {
+        font-size: clamp(20px,3.4rem,4px);
+    }
     .swiper-wrapper {
         height: 60rem;
         min-height: 400px;        

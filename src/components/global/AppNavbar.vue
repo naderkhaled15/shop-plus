@@ -33,7 +33,7 @@ const {allCategories}=storeToRefs(productStore)
         <!-- brand icon -->
         <a class="navbar-brand col-lg-2 col-xxl-3 align-self-center" href="#">
           <router-link to="/">
-            <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;">
+            <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;max-width: 300px; ">
           </router-link>
         </a>
         
@@ -46,7 +46,7 @@ const {allCategories}=storeToRefs(productStore)
         <div class="collapse navbar-collapse row col-auto" id="navbarSupportedContent">
 
           <!-- search  -->
-          <form class="d-flex ms-auto col-lg-5 col-xxl-7" role="search">
+          <form class="d-flex ms-auto col-lg-7 col-xxl-7" role="search">
             <div class="input-group position-relative">
               <input class="form-control rounded-pill bg-white text-dark z-1 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search" v-model="search">
               <div class="input-group-append p-0">
@@ -60,7 +60,7 @@ const {allCategories}=storeToRefs(productStore)
           </form>
           
           <!-- icons -->
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-5 col-xxl-5 d-flex  gap-4 first-nav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-4 col-xxl-5 d-flex  gap-4 first-nav">
             <li class="nav-item availability ms-auto me-xxl-5 me-xl-3 text-white ">
               <span>available 24/7 at</span>
               <strong>(090) 123-4546</strong>
@@ -189,7 +189,9 @@ nav {
     z-index:999;
     .lang-name {
       font-size: 1.8rem;
+      font-size: clamp(12px , 1.5rem , 18px);
       color: #ffffffa8;
+      
     }
     li {
       font-size:clamp(14px , 2rem , 23px);

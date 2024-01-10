@@ -44,9 +44,9 @@ import { ref } from 'vue';
 
 <template>
     <div class="quality">
-        <div class="row g-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-5 g-5">
             <div class="col text-center" v-for="feature in features" :key="feature.title">
-                <div class="card col h-100" style="min-width: 400px;">
+                <div class="card col h-100" style="min-width:150px;">
                     <span class="icon" v-html="feature['icon']"></span>
                     <div class="card-body">
                         <h5 class="card-title">{{feature['title']}}</h5>

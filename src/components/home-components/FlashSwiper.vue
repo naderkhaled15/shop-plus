@@ -126,7 +126,7 @@ const quickView=(data:{[key:string]:any})=>{
                                 <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                                 <div class="d-flex align-items-center cursor-pointer">
                                     <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
-                                        <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img" loading="lazy">
+                                        <img :src="String(image)" alt="product image" style="border-radius: 50%; border: 1px solid black;width: 3.5rem; min-width: 25px;min-height: 25px; height: 3.5rem; " class="product-img" loading="lazy">
                                     </button>
                                     <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
@@ -150,11 +150,12 @@ const quickView=(data:{[key:string]:any})=>{
     .flash-head {
         font-weight: 800;
         font-size: 3.2rem;   
+        font-size: clamp(20px,3.2rem,3.2rem);
         padding-bottom: 3rem;   
         margin-bottom: 0;
     }
     .link-secondary {
-        font-size: 2rem;
+        font-size: clamp(20px,3.4rem,4px);
         font-weight: 500;
         &:hover {
             text-decoration: none;
@@ -168,8 +169,8 @@ const quickView=(data:{[key:string]:any})=>{
             margin-bottom: 20px;
         }
     .swiper-pagination-bullet {
-        width: 12px;
-        height: 12px;
+        width:1.2rem;
+        height: 1.2rem;
     }
     
     .swiper-button-prev,.swiper-button-next { 

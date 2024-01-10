@@ -21,7 +21,6 @@
         background-position: center;
         background-size: cover ;
         background-attachment:scroll;
-        // height: 550px;
         height: 55rem;
         display: flex;
         justify-content: center;

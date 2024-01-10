@@ -4,10 +4,6 @@
   box-sizing: border-box !important;
 }
 
-// html {
-//   font-size: 62.5%;
-// }
-
 body {
   text-transform: capitalize;
   font-family: 'Roboto Condensed', sans-serif;
@@ -51,11 +47,11 @@ body {
       flex: 0 0 auto;
  
   .card-title {
-      font-size: 1.8rem;
       font-weight: bold;
+      font-size: clamp( 12px , 1.8rem , 20px ) !important;
   }
   .card-text {
-      font-size: 2rem;
+      font-size: clamp( 10px , 2rem , 20px ) !important;
       font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -66,12 +62,14 @@ body {
       margin: 0;
   }
   .rating {
-      font-size: 2rem;
-      width: 8.4rem;
+      font-size: clamp(2.5rem,5rem,2rem) 5rem !important;
+      width: 22rem !important;
+      max-width: 8.4rem;
       margin-bottom: auto;
   }
   .price {
       font-size: 2rem;
+      font-size: clamp( 8px , 2rem , 20px ) !important;
       font-weight: 900;
       color: #e10600;
       .discount {
@@ -86,8 +84,8 @@ body {
   background-color: blue;
   }
   .card-btn {
-      padding: 1rem 0 ;
-      font-size: 2rem;
+      padding: 1.8rem 0 !important;
+      font-size: clamp(10px,2rem,2rem) !important;
       font-weight: bold;
       margin:2rem auto 0;
       width: 90%;

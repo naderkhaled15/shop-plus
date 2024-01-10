@@ -18,9 +18,9 @@
         <nav class="navbar sticky-top bg-body-tertiary p-3">
             <div class="container-fluid row row-cols-3 m-0 p-0">
                     
-                    <div class="col fs-1" id="navbarSupportedContent">
+                    <div class="col-5 fs-1" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex aling-items-center flex-row gap-5">
-                            <li class="nav-item">
+                            <li class="nav-item d-flex align-items-center justify-content-center">
                                 <button type="button" class="btn btn-secondary px-4 nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsiveMenu" aria-controls="offcanvasLeft"><span class="navbar-toggler-icon" style="width: 5rem;"></span></button>
                             </li>
 
@@ -29,8 +29,8 @@
                                     <div class="input-group position-relative">
                                     <input class="form-control rounded-pill bg-white text-dark z-1 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search" v-model="search">
                                     <div class="input-group-append p-0">
-                                        <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2 border-0" type="submit" :disabled="!search" @click.prevent="router.push({name:'search',params:{'key':search}}),search=''">
-                                        <svg data-icon="search" viewBox="0 0 512 512" width="100%" height="100%" style="width: 30px;">
+                                        <button class="btn rounded-pill p-0 position-absolute top-50 translate-middle z-2 border-0" style="left: -8px;" type="submit" :disabled="!search" @click.prevent="router.push({name:'search',params:{'key':search}}),search=''">
+                                        <svg data-icon="search" viewBox="0 0 512 512" style="width: 3rem;min-width: 10px;">
                                             <path d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z"></path>
                                         </svg>
                                         </button>
@@ -41,7 +41,7 @@
                         </ul>
                     </div>
             
-                    <div class="col text-center">
+                    <div class="col-2 text-center">
                         <a class="navbar-brand" href="#">
                             <router-link to="/">
                                 <img src="../../media/images/footer-logo.webp" alt="ellarmart-logo" style="width: 20rem">
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     
-                    <div class="col fs-1" id="navbarSupportedContent">
+                    <div class="col-5 fs-1" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex aling-items-center flex-row gap-5">
                             
                             <li class="nav-item ms-auto">
@@ -62,7 +62,7 @@
                         
                         <li class="nav-item">
                             <button type="button" class="btn btn-secondary px-4 nav-link position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" :style="`pointer-events:${route.name==='cart_page'? 'none': 'auto'}`">
-                                <span class="position-absolute translate-middle badge rounded-pill bg-secondary" style="top: 10px; left: 80%; font-size: 12px;">{{cartItems.length}}</span>
+                                <span class="position-absolute translate-middle badge rounded-pill bg-secondary" style="top: 1rem; left: 80%; font-size:clamp(6px,1.8rem,12px);">{{cartItems.length}}</span>
                                 <svg viewBox="0 0 30 30" class="icon icon-cart" enable-background="new 0 0 30 30" style="width: 5rem; ">
                                     <g><path d="M20,6V5c0-2.761-2.239-5-5-5s-5,2.239-5,5v1H4v24h22V6H20z M12,5c0-1.657,1.343-3,3-3s3,1.343,3,3v1h-6V5z M24,28H6V8h4v3    h2V8h6v3h2V8h4V28z"></path></g>
                                 </svg>
