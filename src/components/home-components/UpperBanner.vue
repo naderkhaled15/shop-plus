@@ -43,7 +43,7 @@
             button {
                 margin-top: 5rem;
                 font-size: 2.8rem;
-                padding: 1.5rem 5.8rem;
+                padding: 1.2rem 5rem;
             }
         }
     }

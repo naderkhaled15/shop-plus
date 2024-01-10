@@ -213,7 +213,7 @@ body {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 576px) {
   html {
-    font-size: 24%;
+    font-size: 20%;
   }
 }
 
@@ -264,29 +264,29 @@ body {
 .register {
   position: relative;
   overflow: hidden;
-  max-width:50rem;  
+  max-width:70rem;  
   flex-direction: column;
-  margin: 0 auto;
+  margin: 3rem auto;
   display: flex;
   align-items: center;
   .title {
-    font-size: 4rem;
+    font-size: 5.5rem;
     font-weight: bold;
-    margin: 80px 0 20px;
+    margin: 50px 0 20px;
   }
   label {
-    font-size: 2rem;
+    font-size: 2.5rem;
     align-self: flex-start;
     padding-bottom: 8px;
     font-weight: 700;
   }
   input {
-    width: 50rem;
+    width: 100%;
     padding: 1rem;
     border-radius: 9px;
     border: 1px solid lightblue;
     margin-bottom: 2rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: bold;
   }
   .btn-login {
@@ -299,17 +299,18 @@ body {
     color: #ededed;
     font-weight: bold;
     text-transform: capitalize;
+    margin: 2rem 0;
     &:hover {
       background-color: #00abf0;
     }
   }
   .btn-signup {
-    width: 10rem;
+    width: 20rem;
     padding: 1rem;
     border-radius: 9px;
     text-decoration: underline;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color:black;
     font-weight: bold;
     text-align: center;
@@ -323,7 +324,8 @@ body {
     font-weight: bold;
     position: absolute;
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 4rem;
+    margin: 1rem 2rem;
     right: 0;
     padding: 0.2rem;
     &:hover{

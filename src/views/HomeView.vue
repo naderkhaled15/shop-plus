@@ -37,8 +37,8 @@ loading.value=true
     <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020" margin="0" :loading="loading"/>
 
     <div class="row row-cols-2 mx-2 mb-4 mt-5 g-5 overflow-hidden">
-        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
-        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy">
+        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 col-12 col-md-6 img-hover" loading="lazy">
+        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 col-12 col-md-6 img-hover" loading="lazy">
     </div>
 
     <flash-swiper :products="fragrancesProducts" title="fragrances" color="#202020" margin="0" :loading="loading"/> 

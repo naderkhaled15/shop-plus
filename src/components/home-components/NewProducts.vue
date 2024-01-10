@@ -19,6 +19,21 @@
         category:string;
     } 
 
+    const breakpoints= {       
+      0: {       
+            slidesPerView: 1,
+            spaceBetween: 10     
+        },          
+        580: {       
+            slidesPerView: 2,
+            spaceBetween: 20     
+        },          
+        767: {       
+            slidesPerView: 3,       
+            spaceBetween: 30     
+        },     
+   }   
+
 
 const props=defineProps({ 
     products:{
@@ -44,7 +59,8 @@ emitter.emit('productInfo',d)
 
         </div>
         <div class="row row-cols-2" style="padding-bottom: 7rem;">
-                <div class="products col-8 pt-5 ">
+            
+                <div class="products col-12 col-lg-8 pt-5 ">
                 <swiper
                     :modules="modules"
                     :autoplay="{
@@ -58,6 +74,7 @@ emitter.emit('productInfo',d)
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000, disableOnInteraction:true , waitForTransition: true  }"
                     :loop="true"
+                    :breakpoints="breakpoints"
                     >
                     <swiper-slide v-for="product in props.products.slice(0,5)" :key="product['id']">
                             <!-- loading placeholder -->
@@ -101,7 +118,8 @@ emitter.emit('productInfo',d)
                     <div class="swiper-pagination"></div>
                 </swiper>
             </div>
-            <div class="col-4">
+
+            <div class="col-12 col-lg-4 p-5">
                 <div class="overflow-hidden">
                     <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%" class="vr-img">
                 </div>
@@ -113,6 +131,7 @@ emitter.emit('productInfo',d)
 <style lang="scss">
     .swiper-wrapper {
         height: 60rem;
+        min-height: 400px;        
         margin-left: 1rem;
     }
     .card{

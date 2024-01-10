@@ -2,6 +2,12 @@
 
     import { ref } from 'vue';
     import { useRoute,useRouter } from 'vue-router';
+    import { cartModule } from '@/stores/cartStore';
+    import { storeToRefs } from 'pinia';
+    // cart store
+    const cartStore=cartModule()
+    const {cartItems}=storeToRefs(cartStore)
+
     const route=useRoute()
     const router=useRouter()
     let search =ref('')
@@ -56,7 +62,7 @@
                         
                         <li class="nav-item">
                             <button type="button" class="btn btn-secondary px-4 nav-link position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" :style="`pointer-events:${route.name==='cart_page'? 'none': 'auto'}`">
-                                <span class="position-absolute translate-middle badge rounded-pill bg-secondary" style="top: 10px; left: 80%; font-size: 12px;">5</span>
+                                <span class="position-absolute translate-middle badge rounded-pill bg-secondary" style="top: 10px; left: 80%; font-size: 12px;">{{cartItems.length}}</span>
                                 <svg viewBox="0 0 30 30" class="icon icon-cart" enable-background="new 0 0 30 30" style="width: 5rem; ">
                                     <g><path d="M20,6V5c0-2.761-2.239-5-5-5s-5,2.239-5,5v1H4v24h22V6H20z M12,5c0-1.657,1.343-3,3-3s3,1.343,3,3v1h-6V5z M24,28H6V8h4v3    h2V8h6v3h2V8h4V28z"></path></g>
                                 </svg>

@@ -6,7 +6,7 @@ export const languageModule=defineStore('languageModule',{
             {
               lang:'EN',
               currency:'USD',
-              icon:`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="20px" height="20px">
+              icon:`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;width: 3rem ; min-width: 25px;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
                      <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"></circle>
                       <g>
                               <path style="fill:#0052B4;" d="M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z"></path>
@@ -30,7 +30,7 @@ export const languageModule=defineStore('languageModule',{
             {
               lang:'DE',
               currency:'EURO',
-              icon:` <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="20px" height="20px">
+              icon:` <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;width: 3rem ; min-width: 25px;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
                       <path style="fill:#FFDA44;" d="M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783  L15.923,345.043z"></path>
                       <path d="M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0z"></path>
                       <path style="fill:#D80027;" d="M15.923,166.957C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043h480.155  C506.368,317.31,512,287.314,512,256s-5.632-61.31-15.923-89.043H15.923z"></path>
@@ -40,7 +40,7 @@ export const languageModule=defineStore('languageModule',{
         language:[{
               lang:'EN',
               currency:'USD',
-              icon:`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="20px" height="20px">
+              icon:`<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;width: 3rem ; min-width: 25px;" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
                      <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"></circle>
                       <g>
                               <path style="fill:#0052B4;" d="M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z"></path>

@@ -25,11 +25,11 @@
 
 <template>
     <div class="p-5">
-        <div v-if="searchedProducts.length<=0">
-            <p class="fs-1 fw-bold text-center">404 not found </p>
+        <div v-show="searchedProducts.length<=0" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+            <p class="fw-bold text-center" style="font-size: 7rem;">not found </p>
         </div>
 
-        <div v-if="searchedProducts.length > 0">
+        <div v-show="searchedProducts.length > 0">
             <div class="card mb-3 p-5 border-bottom border-0 h-100" style="width: 100%;" v-for="product in searchedProducts" :key="product.id">
                 <div class="row g-0">
 

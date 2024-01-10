@@ -7,29 +7,29 @@
 <template>
         <div class="deal-container mt-5">
             <div class="row py-4">
-                <div class="col me-5" role="img" aria-label="offer" >
+                <div class="col-12 col-md-4" role="img" aria-label="offer" >
                     <div class="shrink">
                         <img src="../../media//images/playstations.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'home-decoration'}} )">
                     </div>
                 </div>
-                <div class="col me-5" role="img" aria-label="offer">
+                <div class="col-12 col-md-4" role="img" aria-label="offer">
                     <div class="shrink">
                         <img src="../../media//images/headset.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'lighting'}})" >
                     </div>
                 </div>
-                <div class="col" role="img" aria-label="offer">
+                <div class="col-12 col-md-4 " role="img" aria-label="offer">
                     <div class="shrink">
                         <img src="../../media//images/chairs.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'furniture'}})" >
                     </div>
                 </div>
             </div>
             <div class="row pt-5 ">
-                <div class="col me-5">
+                <div class="col-12 col-md-6 me-5">
                     <div class="shrink">
                         <img src="../../media//images/iphones.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'smartphones'}})" >
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-12 col-md-6">
                     <div class="shrink">
                         <img src="../../media//images/laptops.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'laptops'}})" >
                     </div>

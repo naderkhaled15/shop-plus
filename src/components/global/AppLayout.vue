@@ -14,11 +14,11 @@ const NavResponsive=defineAsyncComponent(()=>import("../global/NavResponsive.vue
 let navResponse=ref(false)
 
 onMounted(() => {
-    window.innerWidth<=992?  navResponse.value=true :navResponse.value=false
+    window.innerWidth <= 992?  navResponse.value=true :navResponse.value=false
 })
 
 window.onresize=()=>{
-    window.innerWidth<=992? navResponse.value=true :navResponse.value=false
+    window.innerWidth <= 992? navResponse.value=true :navResponse.value=false
 }
 
 
@@ -32,7 +32,7 @@ window.onresize=()=>{
             <nav-responsive v-show="route.name !='check_out' && navResponse" />
         <!-- aside -->
             <app-sidecart v-show="route.name !='check_out'"/>
-            <responsive-menu/>
+            <responsive-menu v-show="navResponse"/>
             <!-- body -->
             <main :style="`margin:${route.name ==='check_out'?'20px':'0px'}`">
                 <slot></slot>

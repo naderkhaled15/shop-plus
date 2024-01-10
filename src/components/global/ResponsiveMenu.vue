@@ -17,7 +17,7 @@
 </script>
 
 <template>
-<div class="offcanvas offcanvas-start p-4" tabindex="-1" id="offcanvasResponsiveMenu" aria-labelledby="offcanvasLeftLabel">
+<div class="offcanvas offcanvas-start p-4" tabindex="-1" id="offcanvasResponsiveMenu" aria-labelledby="offcanvasLeftLabel" style="width: 60rem;">
   
   <!-- header -->
   <div class="offcanvas-header">
@@ -62,7 +62,7 @@
       <li class="nav-item me-2 dropdown"> 
             <button class="btn dropdown-toggle d-flex justify-content-center align-items-center fs-3 p-0 pt-5 w-100 border-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span v-html="language[0].icon" class="me-3"></span>
-              <span class="fw-bold me-auto"> {{ language[0].lang }} / {{ language[0].currency }}</span>
+              <span class="fw-bold me-auto" style="font-size: 15px;"> {{ language[0].lang }} / {{ language[0].currency }}</span>
             </button>
             <ul class="dropdown-menu w-100 border-0" aria-labelledby="dropdownMenuButton1" >
               <li class="fs-3  m-3" v-for="lang in languagesSet" :key="lang.lang" @click="language=[lang]">               

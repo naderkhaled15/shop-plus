@@ -52,7 +52,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/log_in/:type',
+      path: '/register_page/:type',
       name: 'log_in',
       component: ()=>import("../views/RegisterPage.vue"),
       meta:{

@@ -8,6 +8,25 @@ let productImg=ref<{[key:string]:any}>({});
 const modules=ref([Pagination,Navigation,Autoplay])
 const router=useRouter()
 
+const breakpoints= {       
+      0: {       
+            slidesPerView: 1,
+            spaceBetween: 10     
+        },          
+        580: {       
+            slidesPerView: 2,
+            spaceBetween: 20     
+        },          
+        767: {       
+            slidesPerView: 3,       
+            spaceBetween: 30     
+        },     
+        900: {       
+            slidesPerView: 4,       
+            spaceBetween: 60     
+      } 
+   }   
+
 interface Product {
     id:number;
     title:string;
@@ -74,6 +93,7 @@ const quickView=(data:{[key:string]:any})=>{
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000 , disableOnInteraction:true , waitForTransition: true }"
                     :loop="true"
+                    :breakpoints="breakpoints"
                     >
                     <swiper-slide v-for="product in props.products" :key="product['id']">
                             <!-- loading placeholder -->
@@ -96,7 +116,7 @@ const quickView=(data:{[key:string]:any})=>{
                             <!-- card -->
                         <div class="card h-100 border-0" v-if="!loading">
                             <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px;">
-                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
+                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top" alt="product image" loading="lazy" style="min-width: 50px;">
                                 <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="quickView(product)">quick view</button> </div>
                             </div>
                             <div class="card-body">
@@ -116,8 +136,8 @@ const quickView=(data:{[key:string]:any})=>{
                         </div>
 
                     </swiper-slide>
-                    <div class="swiper-button-next" style="width: 30px; height: 30px;"></div>
-                    <div class="swiper-button-prev" style="width: 30px; height: 30px;"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                     <div class="swiper-pagination"></div>
                 </swiper>
             </div>
@@ -144,6 +164,7 @@ const quickView=(data:{[key:string]:any})=>{
     .products {
         .swiper-wrapper {
             height: 60rem;
+            min-height: 400px;
             margin-bottom: 20px;
         }
     .swiper-pagination-bullet {
@@ -153,8 +174,10 @@ const quickView=(data:{[key:string]:any})=>{
     
     .swiper-button-prev,.swiper-button-next { 
         font-weight: 600;
-        width: 35px;
-        height: 35px;
+        width:  3rem !important;
+        height: 3rem !important;
+        min-width: 25px !important;
+        min-height: 25px !important;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -162,10 +185,10 @@ const quickView=(data:{[key:string]:any})=>{
         border: 2px solid #505050;
         background-color: white;
         top: 45%;
-        padding: 20px;
+        padding: 2rem;
         &::after {
             color:#505050;
-            font-size: 20px;
+            font-size: 2rem;
             }
     }
     

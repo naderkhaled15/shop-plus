@@ -45,18 +45,17 @@ import { ref } from 'vue';
 <template>
     <div class="quality">
         <div class="row g-5">
-                <div class="col" v-for="feature in features" :key="feature.title">
-                    <div class="card h-100">
-                        <span class="icon" v-html="feature['icon']"></span>
-                        <div class="card-body">
+            <div class="col text-center" v-for="feature in features" :key="feature.title">
+                <div class="card col h-100" style="min-width: 400px;">
+                    <span class="icon" v-html="feature['icon']"></span>
+                    <div class="card-body">
                         <h5 class="card-title">{{feature['title']}}</h5>
                         <p class="card-text">{{feature['body']}}</p>
                     </div>
-                    </div>
+                </div>
             </div>
         </div>
-</div>
-
+    </div>
 </template>
 
 <style lang="scss">
@@ -80,14 +79,15 @@ import { ref } from 'vue';
                 margin-top: 3rem;
                 .card-title {
                 text-transform: uppercase;
-                font-size: 2.2rem;
+                font-size: 25px;
+                font-size: clamp(18px , 2.2rem , 25px);
                 word-spacing: 1px;
                 text-align: center;
                 font-weight: bold;
             }
             .card-text {
                 margin: 1.5rem auto;
-                font-size: 2.2rem;
+                font-size: clamp(13px , 2.5rem , 25px);
                 align-items: center;
                 text-align: center;
                 overflow: visible;    
