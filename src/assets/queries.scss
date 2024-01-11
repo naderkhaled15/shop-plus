@@ -1,0 +1,44 @@
+// media query
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 576px) {
+  html {
+    font-size: 20%;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 576px) {
+  html {
+    font-size: 24%;
+  }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    html {
+    font-size: 35%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    html {
+    font-size: 43%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    html {
+    font-size: 50%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1400px and up) */
+@media only screen and (min-width: 1400px) {
+    html {
+    font-size: 62.5%;
+  }
+}
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
