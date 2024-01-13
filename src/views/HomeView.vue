@@ -36,15 +36,15 @@ loading.value=true
     <quality-feature/>
     <flash-swiper :products="mobilePhones" title="top mobile phones" color="#202020" margin="0" :loading="loading"/>
 
-    <div class="row row-cols-2 mx-2 mb-4 mt-5 g-5 overflow-hidden">
-        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 col-12 col-md-6 img-hover" loading="lazy">
-        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 col-12 col-md-6 img-hover" loading="lazy">
+    <div class="row row-cols-2 mx-5 g-5 my-3 overflow-hidden">
+        <img src="../media/images/band-left-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy" width="100%" height="100%">
+        <img src="../media/images/band-right-cover.webp" alt="band-img" class="h-100 img-hover" loading="lazy" width="100%" height="100%">
     </div>
 
     <flash-swiper :products="fragrancesProducts" title="fragrances" color="#202020" margin="0" :loading="loading"/> 
 
-    <div class="row row-cols-1 mx-2 mt-5 overflow-hidden">
-        <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy" class=" img-hover">
+    <div class="row row-cols-1 mx-5 my-5 overflow-hidden">
+        <img src="../media/images/tv-banner.webp" alt="banner img" loading="lazy" class=" img-hover" width="100%" height="100%">
     </div>
 
     <flash-swiper :products="skinCare" title="skincare" color="#202020" margin="auto" :loading="loading"/>

@@ -56,23 +56,28 @@ import { ref } from 'vue';
 <template>
     <div>
         <div class="cyber-banner">
-            <img src="../../media/images/cyber-banner.webp" alt="cyber banner" width="100%" class="pt-5">
+            <img src="../../media/images/cyber-banner.webp" alt="cyber banner" width="100%" height="100%" class="pt-5">
         </div>
+
         <div class="top-categories">
+
             <div class="category">
-                <h3 class="cat-head ms-auto display-4">top categories</h3>
+                <h3 class="cat-head ms-auto">top categories</h3>
             </div>
-            <div class="d-flex justify-content-center align-items-center flex-wrap" >
-                <div class="card text-center border-0" style="width:30rem; min-width: 200px;" v-for="categ in categories" :key="categ.title">
+
+            <div class="row row-cols-4 row-cols-sm-6 px-0 m-0">
+                <div class="card border-0 text-center p-3" v-for="categ in categories" :key="categ.title">
                     <div class="card-body" >
                         <div class="overflow-hidden rounded-circle">
-                            <img :src="categ['image']" alt="category img" class="category-img" width="100%">
+                            <img :src="categ['image']" alt="category img" class="category-img" width="100%" height="100%">
                         </div>
-                        <h5 class="card-title fs-2">{{categ['title']}}</h5>
+                        <h5 class="card-title">{{categ['title']}}</h5>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 </template>
 
@@ -84,7 +89,7 @@ import { ref } from 'vue';
             justify-content: center;
             .cat-head {
                 font-weight: 800;
-                font-size: clamp(20px,3.4rem,4px);
+                font-size: clamp(15px , 4rem , 35px);
                 margin-right: auto;
             }
             p{
@@ -110,7 +115,7 @@ import { ref } from 'vue';
         }
             }
             .card-title {
-                font-size: 2.4rem;
+                font-size: clamp(7px , 2.5rem , 24px) !important;
                 margin: 2.5rem 0 3.5rem;
                 font-weight: 600;
             }

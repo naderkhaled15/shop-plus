@@ -23,12 +23,12 @@
       0: {       
             slidesPerView: 1,
             spaceBetween: 10     
-        },          
-        580: {       
+        },    
+        375: {       
             slidesPerView: 2,
             spaceBetween: 20     
-        },          
-        767: {       
+        },                   
+        1300: {       
             slidesPerView: 3,       
             spaceBetween: 30     
         },     
@@ -51,16 +51,15 @@ emitter.emit('productInfo',d)
 </script>
 
 <template>
-        <div>
-        <div class="top-categories">
-            <div class="category">
-                <h2 class="cart-head me-auto display-3 fw-bold">new products</h2>
+        <div class="container-fluid">
+        <div class="flash-container">
+            <div>
+                <h1 class="flash-head">new products</h1>
             </div>
-
         </div>
         <div class="row row-cols-2" style="padding-bottom: 7rem;">
             
-                <div class="products col-12 col-lg-8 pt-5 ">
+            <div class="products col-12 col-md-8 my-auto">
                 <swiper
                     :modules="modules"
                     :autoplay="{
@@ -94,34 +93,38 @@ emitter.emit('productInfo',d)
                                     <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
                                 </div>
                             </div>
-                            <!-- card -->
-                        <div class="card h-100 border-0" v-else>
-                             <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px;">
-                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
-                                <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="quickView(product)">quick view</button> </div>                                
+
+                         <!-- card -->
+                         <div class="card border-0" v-if="props.products.length>0">
+
+                            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:25rem;min-height: 150px;">
+                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top m-0 p-0" alt="product image" loading="lazy" style="width: 100%; height: 100%;">
+                                <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="quickView(product)">quick view</button> </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title pt-3 pb-2">{{ product['title'] }}</h5>
+
+                            <div class="card-body h-100">
+                                <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                                <div class="price mt-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
-                                <div class="d-flex align-items-center cursor-pointer mt-4">
+                                <div class="price py-2"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
+                                <div class="d-flex align-items-center cursor-pointer">
                                     <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
-                                        <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img">
+                                        <img :src="String(image)" alt="product image" style="border-radius: 50%; border: .1px solid black;width: 3.5rem; min-width:20px;min-height: 20px; height: 3.5rem; " class="product-img" loading="lazy">
                                     </button>
-                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
+                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: clamp(10px , 1.5rem , 15px)"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
                                 <!-- button -->
-                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
-                            </div>                                                                           
+                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
+                            </div>
                         </div>
+
                     </swiper-slide>
                     <div class="swiper-pagination"></div>
                 </swiper>
             </div>
 
-            <div class="col-12 col-lg-4 p-5">
-                <div class="overflow-hidden">
-                    <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%" class="vr-img">
+            <div class="col-12 col-md-4 my-auto mx-auto">
+                <div class="overflow-hidden my-auto mx-auto">
+                    <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%" height="100%" class="vr-img">
                 </div>
             </div>
         </div>
@@ -129,91 +132,6 @@ emitter.emit('productInfo',d)
 </template>
 
 <style lang="scss">
-    .cart-head {
-        font-size: clamp(20px,3.4rem,4px);
-    }
-    .swiper-wrapper {
-        height: 60rem;
-        min-height: 400px;        
-        margin-left: 1rem;
-    }
-    .card{
-    .card-img-top {
-        height: 250px; 
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        margin-top: 25px;
-        &:hover{
-            -webkit-transform: scale(1.05);
-            -ms-transform: scale(1.05);
-            transform: scale(1.05);
-            transition: 1.5s ease;
-        }
-    }
-
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        padding:1rem 2rem;
-        flex: 0 0 auto;
-   
-    .card-title {
-        font-size: 1.8rem;
-        font-weight: bold;
-    }
-    .card-text {
-        font-size: 2rem;
-        font-weight: 400;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        margin: 0;
-    }
-    .rating {
-        font-size: 2rem;
-        width: 8.4rem;
-        margin-bottom: auto;
-    }
-    .price {
-        font-size: 2rem;
-        font-weight: 900;
-        color: #e10600;
-        .discount {
-            font-weight: 400;
-            color: black;
-        }
-    }
-    .product {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    background-color: blue;
-    }
-    .card-btn {
-        padding: 1rem 0 ;
-        font-size: 2rem;
-        font-weight: bold;
-        margin:2rem auto 0;
-        width: 90%;
-    }
-    .img-toggle {
-        border: 0;
-        padding-right: 0.3rem;
-        background-color: transparent;
-        &:first-child{
-            padding-left: 0 !important;
-            margin-left: 0 !important;
-        }
-    }
-    }
-}
-    .swiper-pagination-bullet {
-        width: 10px;
-        height: 10px;
-    }
 .vr-img {
     &:hover{
             -webkit-transform: scale(1.02);

@@ -6,30 +6,32 @@
 </script>
 <template>
         <div class="deal-container mt-5">
-            <div class="row py-4">
-                <div class="col-12 col-md-4" role="img" aria-label="offer" >
-                    <div class="shrink">
+
+            <div class="row cols-3 py-4">
+                <div class="col" role="img" aria-label="offer" >
+                    <div class="shrink ">
                         <img src="../../media//images/playstations.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'home-decoration'}} )">
                     </div>
                 </div>
-                <div class="col-12 col-md-4" role="img" aria-label="offer">
-                    <div class="shrink">
+                <div class="col" role="img" aria-label="offer">
+                    <div class="shrink ">
                         <img src="../../media//images/headset.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'lighting'}})" >
                     </div>
                 </div>
-                <div class="col-12 col-md-4 " role="img" aria-label="offer">
+                <div class="col" role="img" aria-label="offer">
                     <div class="shrink">
                         <img src="../../media//images/chairs.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'furniture'}})" >
                     </div>
                 </div>
             </div>
-            <div class="row pt-5 ">
-                <div class="col-12 col-md-6 ">
+
+            <div class="row row-cols-2 pt-5 ">
+                <div class="col">
                     <div class="shrink">
                         <img src="../../media//images/iphones.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'smartphones'}})" >
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col">
                     <div class="shrink">
                         <img src="../../media//images/laptops.webp" alt="offer" style="width: 100%; height: 100%;" loading="lazy" @click="router.push({name:'category',params:{'title':'laptops'}})" >
                     </div>
@@ -47,11 +49,12 @@
     
     .shrink {
         overflow: hidden;
-        padding: 3px;
-        border-radius: 30px;
+        padding:0;
+        margin: 0;
+        border-radius: 3rem;
     img {
         transition: 1.5s ease;
-        border-radius: 20px;
+        border-radius: 2rem;
     &:hover{
     -webkit-transform: scale(1.08);
     -ms-transform: scale(1.08);
@@ -59,10 +62,6 @@
     transition: 1.5s ease;
     }
     }
-    
 }
-     
-
-    
 }
 </style>

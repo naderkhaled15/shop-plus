@@ -26,12 +26,48 @@ body {
 .active {
   color: #fff !important;
 }
+
+// card
+.products {
+  .swiper {
+      height: 60rem !important;
+  }
+
+  .swiper-pagination-bullets {
+      bottom: 0;
+  }
+
+.swiper-pagination-bullet {
+  width:1.2rem;
+  height: 1.2rem;
+}
+
+.swiper-button-prev,.swiper-button-next { 
+  font-weight: 600;
+  width:  3rem !important;
+  height: 3rem !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid #505050;
+  background-color: white;
+  top: 45%;
+  padding: 2rem;
+  &::after {
+      color:#505050;
+      font-size: 2rem;
+      }
+}
+
+
 // product card
 .card{
   .card-img-top {
-      height: 250px; 
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
+      border-top-left-radius: 1.5rem;
+      border-top-right-radius: 1.5rem;
       &:hover{
           -webkit-transform: scale(1.05);
           -ms-transform: scale(1.05);
@@ -41,35 +77,40 @@ body {
   }
 
   .card-body {
+      height: 30rem !important;
       display: flex;
       flex-direction: column;
       padding:1rem 2rem;
+      justify-content: center;
       flex: 0 0 auto;
- 
+      margin-top: 1rem;
+
   .card-title {
       font-weight: bold;
-      font-size: clamp( 12px , 1.8rem , 20px ) !important;
+      font-size: clamp( 11px , 2.5rem , 23px ) !important;
   }
+  
   .card-text {
       font-size: clamp( 10px , 2rem , 20px ) !important;
       font-weight: 400;
+      margin: 3px 0 !important;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
-      line-clamp: 2;
+              line-clamp: 2; 
       -webkit-box-orient: vertical;
-      margin: 0;
   }
+
   .rating {
-      font-size: clamp(2.5rem,5rem,2rem) 5rem !important;
-      width: 22rem !important;
-      max-width: 8.4rem;
+      font-size: clamp(10px , 2rem , 20px) !important;
+      width: 8.4rem !important;
+      min-width: 42px !important;
       margin-bottom: auto;
   }
+
   .price {
-      font-size: 2rem;
-      font-size: clamp( 8px , 2rem , 20px ) !important;
+      font-size: clamp(8px , 2rem , 20px) !important;
       font-weight: 900;
       color: #e10600;
       .discount {
@@ -77,29 +118,34 @@ body {
           color: black;
       }
   }
+
   .product {
   width: 100%;
   display: flex;
   flex-direction: row;
   background-color: blue;
   }
+
   .card-btn {
       padding: 1.8rem 0 !important;
-      font-size: clamp(10px,2rem,2rem) !important;
+      font-size: clamp( 9px , 2rem , 20px );
       font-weight: bold;
-      margin:2rem auto 0;
       width: 90%;
   }
+
   .img-toggle {
       border: 0;
       padding-right: 0.3rem;
       background-color: transparent;
+      margin: 1rem 0;
       &:first-child{
           padding-left: 0 !important;
           margin-left: 0 !important;
       }
   }
-  }}
+
+  }}}
+
 
   // quick view 
   .quick-view-container .quick-view{

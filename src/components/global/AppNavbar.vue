@@ -126,9 +126,9 @@ const {allCategories}=storeToRefs(productStore)
       </li>
 
       <li class="nav-item me-2 dropdown"> 
-            <button class="btn dropdown-toggle d-flex justify-content-center align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle d-flex justify-content-center align-items-center fs-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <span v-html="language[0].icon" class="me-3"></span>
-              <span class="fw-bold lang-name me-2" style="font-size: 15px;"> {{ language[0].lang }} / {{ language[0].currency }}</span>
+              <span class="fw-bold lang-name me-1" style="font-size:clamp(10px , 1.8rem , 23px)"> {{ language[0].lang }} / {{ language[0].currency }}</span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
               <li v-for="lang in languagesSet" :key="lang.lang" @click="language=[lang]" class="mb-3">               
@@ -194,7 +194,7 @@ nav {
       
     }
     li {
-      font-size:clamp(14px , 2rem , 23px);
+      font-size:clamp(14px , 1.8rem , 23px);
       font-weight: bold;
       cursor: pointer;
       font-weight: 500;

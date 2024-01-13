@@ -12,19 +12,19 @@ const breakpoints= {
       0: {       
             slidesPerView: 1,
             spaceBetween: 10     
-        },          
-        580: {       
+        },    
+        375: {       
             slidesPerView: 2,
             spaceBetween: 20     
         },          
-        767: {       
-            slidesPerView: 3,       
+        575: {       
+            slidesPerView: 3,
+            spaceBetween: 20     
+        },          
+        800: {       
+            slidesPerView: 4,       
             spaceBetween: 30     
         },     
-        900: {       
-            slidesPerView: 4,       
-            spaceBetween: 60     
-      } 
    }   
 
 interface Product {
@@ -99,7 +99,7 @@ const quickView=(data:{[key:string]:any})=>{
                             <!-- loading placeholder -->
                             <div class="card border-0" aria-hidden="true" v-if="loading">
                                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-                                <div class="card-body">
+                                <div class="card-body bg-info">
                                     <h5 class="card-title placeholder-glow">
                                     <span class="placeholder col-6"></span>
                                     </h5>
@@ -114,24 +114,26 @@ const quickView=(data:{[key:string]:any})=>{
                                 </div>
                             </div>
                             <!-- card -->
-                        <div class="card h-100 border-0" v-if="!loading">
-                            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px;">
-                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top" alt="product image" loading="lazy" style="min-width: 50px;">
+                        <div class="card border-0" v-if="!loading">
+
+                            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:25rem;min-height: 150px;">
+                                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top m-0 p-0" alt="product image" loading="lazy" style="width: 100%; height: 100%;">
                                 <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="quickView(product)">quick view</button> </div>
                             </div>
-                            <div class="card-body">
+
+                            <div class="card-body h-100">
                                 <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                                <i v-if="props.appear" :data-star="product['rating']" class="rating"></i>
-                                <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
+                                <i v-if="props.appear" :data-star="product['rating']" class="rating mt-auto"></i>
+                                <div class="price py-2"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                                 <div class="d-flex align-items-center cursor-pointer">
                                     <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
-                                        <img :src="String(image)" alt="product image" style="border-radius: 50%; border: 1px solid black;width: 3.5rem; min-width: 25px;min-height: 25px; height: 3.5rem; " class="product-img" loading="lazy">
+                                        <img :src="String(image)" alt="product image" style="border-radius: 50%; border: .1px solid black;width: 3.5rem; min-width:20px;min-height: 20px; height: 3.5rem; " class="product-img" loading="lazy">
                                     </button>
-                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
+                                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: clamp(10px , 1.5rem , 15px)"> + {{ product['images'].slice(3).length }}</span>
                                 </div>
                                 <!-- button -->
-                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
+                                <button type="button" class="btn btn-outline-dark rounded-pill card-btn" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>
                             </div>
                         </div>
 
@@ -146,53 +148,12 @@ const quickView=(data:{[key:string]:any})=>{
 </template>
 <style lang="scss">
 .flash-container {
-    padding: 6rem 2rem 0;
+    padding: 5rem 2rem 0;
     .flash-head {
         font-weight: 800;
-        font-size: 3.2rem;   
-        font-size: clamp(20px,3.2rem,3.2rem);
-        padding-bottom: 3rem;   
+        font-size: clamp(15px , 4rem , 35px);
+        padding-bottom: 4rem;  
         margin-bottom: 0;
-    }
-    .link-secondary {
-        font-size: clamp(20px,3.4rem,4px);
-        font-weight: 500;
-        &:hover {
-            text-decoration: none;
-        }
-    } 
-
-    .products {
-        .swiper-wrapper {
-            height: 60rem;
-            min-height: 400px;
-            margin-bottom: 20px;
-        }
-    .swiper-pagination-bullet {
-        width:1.2rem;
-        height: 1.2rem;
-    }
-    
-    .swiper-button-prev,.swiper-button-next { 
-        font-weight: 600;
-        width:  3rem !important;
-        height: 3rem !important;
-        min-width: 25px !important;
-        min-height: 25px !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        border: 2px solid #505050;
-        background-color: white;
-        top: 45%;
-        padding: 2rem;
-        &::after {
-            color:#505050;
-            font-size: 2rem;
-            }
-    }
-    
     }
     
 }

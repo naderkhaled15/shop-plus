@@ -4,25 +4,26 @@
         <div class="shop-with-us">
             <h2 class="shop-header">why shop <span>with us?</span></h2>
             <div class="row row-cols-4 w-100 shop-body">
-                <div class="col-12 col-md-6 col-lg-3">
-                    <img src="../../media/images/free-shipping.png" alt="why shop with us" style="width: 12rem;">
+
+                <div class="col text-center">
+                    <img src="../../media/images/free-shipping.png" alt="why shop with us" style="width: 12rem;height: 12rem;">
                     <p class="shop-feature">free shipping on first order</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
                     <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col text-center">
                     <img src="../../media/images/weekly-flash-sales.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">weekly flash sale</p>
-                    <p class="shop">praesent suscipit mattis facilisis</p>
-                    <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
+                    <p class="shop mt-auto">praesent suscipit mattis facilisis</p>
+                    <p ><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col text-center">
                     <img src="../../media/images/discount.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">anual payment discount</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
                     <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col text-center">
                     <img src="../../media/images/cash-back.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">cashback reward program</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
@@ -40,7 +41,7 @@
         background-size: cover ;
         height: fit-content;
         color: #ffffff;
-        padding: 40px 0;
+        padding: 4rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -49,16 +50,15 @@
         .shop-header {
             color: #10ffda;
             font-weight: 900;
-            font-size: 5rem;
             letter-spacing: 1px;
-            margin-top:40px;
+            font-size: clamp(10px ,5rem, 45px);
+            margin: clamp(10px,3.5rem ,40px);
             span {
                 color: #ffffff;
             }
         }
         .shop-body {
-            padding:3rem 5rem;
-            font-size: 2rem;
+            padding:3rem 3rem;
             div {
                 display: flex;
                 justify-content: center;
@@ -66,18 +66,18 @@
                 flex-direction: column;
                 padding: 0 2.5rem;
                 .shop-feature {
-                    text-align: center;
-                    font-size: 3rem;
+                    font-size: clamp(6px ,2.5rem ,28px);
                     font-weight: 700;
                 }
                 .shop {
                     font-weight: 500;
-                    font-size: 2.2rem;
-                    margin:3px 0 0;
+                    font-size: clamp(5px,2.2rem,20px);
+                    margin:3px 0 ;
                 }                
                 .link-shop {
                     color: #ffffff;
                     font-size: 2rem;
+                    font-size: clamp(5px,2rem,19px);
                     font-weight: 500;
                     &:hover {
                         text-decoration: none;

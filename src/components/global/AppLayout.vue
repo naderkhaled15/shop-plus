@@ -9,7 +9,7 @@ const FixedNav=defineAsyncComponent(()=>import("../global/FixedNav.vue"))
 const AppSidecart=defineAsyncComponent(()=>import("../global/AppSidecart.vue"))
 const ResponsiveMenu=defineAsyncComponent(()=>import("../global/ResponsiveMenu.vue"))
 const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
-const NavResponsive=defineAsyncComponent(()=>import("../global/NavResponsive.vue"))
+const ResponsiveNav=defineAsyncComponent(()=>import("../global/ResponsiveNav.vue"))
 
 let navResponse=ref(false)
 
@@ -29,7 +29,7 @@ window.onresize=()=>{
         <!-- navbar -->
             <app-navbar v-show="route.name !='check_out' && !navResponse"/>
             <fixed-nav v-show="route.name !='check_out' && !navResponse"/>
-            <nav-responsive v-show="route.name !='check_out' && navResponse" />
+            <responsive-nav v-show="route.name !='check_out' && navResponse" />
         <!-- aside -->
             <app-sidecart v-show="route.name !='check_out'"/>
             <responsive-menu v-show="navResponse"/>
