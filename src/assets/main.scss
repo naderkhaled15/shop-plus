@@ -131,6 +131,7 @@ body {
       font-size: clamp( 9px , 2rem , 20px );
       font-weight: bold;
       width: 90%;
+      margin: 0 auto;
   }
 
   .img-toggle {
@@ -147,7 +148,7 @@ body {
   }}}
 
 
-  // quick view 
+  // quick view btn
   .quick-view-container .quick-view{
     &:hover{
         opacity: 1;
@@ -164,15 +165,118 @@ body {
   transform: translate(-50% );
   
   button {
-      background-color: #fff;
+    background-color: #fff;
       text-decoration: none;
-      font-size: 2rem;
-      width: 150px;
-      padding: 5px 10px;
+      font-size: clamp(9px , 2rem ,20px);
+      width: 15rem;
+      min-width: 70px;
+      padding: 0.8rem 1rem;
       text-align: center;
       color: black;
       font-weight:500;
-      border: solid 1px black;
+      border: solid 0.1rem black;
+  }
+}
+
+// product details & product quick view
+.product-details {
+  .swiper {
+    height: 24rem;
+    min-height: 75px;
+
+    .swiper-slide {
+      height: 21rem !important;
+      min-height: 60px;
+      text-align: center;
+    }
+
+    .swiper-wrapper {
+      height: 21rem;
+      min-height: 70px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .swiper-pagination-bullets {
+      bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      width: 3.5rem;
+      height: 3.5rem;
+      top: clamp(50px, 11rem, 120px);
+      &::after {
+        color: #030303;
+        font-size: 2.5rem;
+        font-weight: 800;
+      }
+    }
+  }
+
+  // SECOND COLOUMN
+  .card-body {
+    color: #797979;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    .product-count {
+      display: flex;
+      align-items: center;
+      border: 0.1rem solid black;
+      width: 16rem;
+      min-width: 50px;
+
+      border-radius: 10rem;
+      input[type="number"] {
+        background-color: transparent;
+        width: 8rem;
+        min-width: 25px;
+        margin: 0 auto;
+        font-weight: 400;
+      }
+    }
+
+    .card-btn {
+      padding: 1rem 0;
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 2rem auto 0 0 !important;
+      width: 100%;
+      background-color: black;
+      color: #fff;
+      &:hover {
+        color: black;
+        background-color: #fff;
+      }
+    }
+
+    .product-card-title {
+      color: black;
+      font-weight: 700;
+      font-size: clamp(11px, 2.5rem, 25px) !important;
+      margin: 0 0 3rem 0 !important;
+    }
+
+    .rating-box {
+      i {
+        font-size: clamp(7px, 2rem, 20px) !important;
+        width: 8.3rem !important;
+        min-width: 29px !important;
+      }
+      .in-stock {
+        font-size: clamp(7px, 2rem, 20px) !important;
+      }
+    }
+
+    .product-card-text {
+      font-size: clamp(5px, 1.8rem, 20px) !important;
+    }
   }
 }
 // 5 star 

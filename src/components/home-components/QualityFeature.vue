@@ -45,7 +45,7 @@ import { ref } from 'vue';
 <template>
     <div class="quality">
         <div class="row row-cols-2 row-cols-lg-5">
-            <div class="col text-center mx-auto my-3" v-for="feature in features" :key="feature.title">
+            <div class="col text-center my-3 mx-auto child" v-for="feature in features" :key="feature.title">
                 <div class="card col h-100">
                     <span class="icon" v-html="feature['icon']"></span>
                     <div class="card-body">
@@ -99,4 +99,15 @@ import { ref } from 'vue';
             }
         }
     }
+    @media only screen and (max-width: 991px) {
+    // quality feature
+        .quality {
+            .child {
+                &:last-child{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
 </style>

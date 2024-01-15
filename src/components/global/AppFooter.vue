@@ -82,7 +82,7 @@ let search =ref('')
     <div class="footer-bg px-3 py-5">
 
         <!-- first row -->
-        <div class="row row-cols-1 first-row my-3">
+        <div class="row row-cols-1 first-row my-3 px-5">
           <div class="col offset-md-1 mb- mx-auto">
             <form>
               <h5 class="text-center footer-form-header">Subscribe to our newsletter</h5>

@@ -39,8 +39,8 @@ watch(route,async()=>{
 <template>
 <div class="container-fluid">
     <h2 class="cart-head display-3 fw-bold text-center py-5">{{ productsCategoryName }}</h2>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 mx-5 my-5" >
-        <div class="col" v-for="product in categoryProducts" :key="product.id">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 mx-5 my-5 products" >
+        <div class="col product-item p-5" v-for="product in categoryProducts" :key="product.id">
 
             
             <!-- loading placeholder -->
@@ -62,20 +62,22 @@ watch(route,async()=>{
                 </div>
             <!-- card -->             
             <div class="card h-100 border-0" v-if="!loading">
-            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:250px ;">
-                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top w-100" alt="product image" loading="lazy">
+
+            <div class="quick-view-container overflow-hidden w-100 position-relative" style="height:25rem;min-height: 110px;">
+                <img :src="productImg[product['title']]?productImg[product['title']]:product['thumbnail']" class="card-img-top m-0 p-0" alt="product image" style="width: 100%; height: 100%;" loading="lazy">
                 <div class="quick-view"><button type="button" class="rounded-pill" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="quickView(product)">quick view</button> </div>
             </div>
-            <div class="card-body">
+
+            <div class="card-body h-100">
                 <h5 class="card-title pt-3">{{ product['title'] }}</h5>
                 <p class="card-text pb-2">{{ product['description'] }}</p>
-                <i :data-star="product['rating']" class="rating"></i>
+                <i :data-star="product['rating']" class="rating mt-auto"></i>
                 <div class="price py-3"> <span class="discount" v-if="product['discountPercentage'] > 0"><del>&#x24;{{ product['price'] }}</del> from </span>&#x24;{{Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) )))}} </div>
                 <div class="d-flex align-items-center cursor-pointer">
-                    <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle">
-                        <img :src="String(image)" alt="product image" height="35px" width="35px"  style="border-radius: 50%; border: 1px solid black;" class="product-img" loading="lazy">
+                    <button v-for="(image, index) in product['images'].slice(0,3)" :key="index" :value="image"  @click="productImg[product['title']]=image" class="img-toggle border-0 bg-transparent">
+                        <img :src="String(image)" alt="product image" height="35px" width="35px" style="border-radius: 50%; border: .1px solid black;width: 3.5rem; min-width:20px;min-height: 20px; height: 3.5rem; " class="product-img" loading="lazy">
                     </button>
-                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size: 15px;"> + {{ product['images'].slice(3).length }}</span>
+                    <span v-if="product['images'].slice(3).length>0" class="fw-bold" style="font-size:  clamp(10px , 1.5rem , 15px)"> + {{ product['images'].slice(3).length }}</span>
                 </div>
                 <!-- button -->
                 <button type="button" class="btn btn-outline-dark rounded-pill card-btn mt-5" @click="router.push({name:'product_details',params:{'categ':product['category'],'id':product['id']}})">choose options</button>

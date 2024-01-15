@@ -6,8 +6,8 @@ const route=useRoute()
 
 const AppNavbar=defineAsyncComponent(()=>import("../global/AppNavbar.vue"))
 const FixedNav=defineAsyncComponent(()=>import("../global/FixedNav.vue"))
-const AppSidecart=defineAsyncComponent(()=>import("../global/AppSidecart.vue"))
-const ResponsiveMenu=defineAsyncComponent(()=>import("../global/ResponsiveMenu.vue"))
+const SideCart=defineAsyncComponent(()=>import("../global/SideCart.vue"))
+const SideMenu=defineAsyncComponent(()=>import("../global/SideMenu.vue"))
 const AppFooter=defineAsyncComponent(()=>import("../global/AppFooter.vue"))
 const ResponsiveNav=defineAsyncComponent(()=>import("../global/ResponsiveNav.vue"))
 
@@ -31,8 +31,8 @@ window.onresize=()=>{
             <fixed-nav v-show="route.name !='check_out' && !navResponse"/>
             <responsive-nav v-show="route.name !='check_out' && navResponse" />
         <!-- aside -->
-            <app-sidecart v-show="route.name !='check_out'"/>
-            <responsive-menu v-show="navResponse"/>
+            <side-cart v-show="route.name !='check_out'"/>
+            <side-menu v-show="navResponse"/>
             <!-- body -->
             <main :style="`margin:${route.name ==='check_out'?'20px':'0px'}`">
                 <slot></slot>
