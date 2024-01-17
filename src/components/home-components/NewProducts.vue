@@ -72,7 +72,6 @@ emitter.emit('productInfo',d)
                     :preload-images="false"
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000, disableOnInteraction:true , waitForTransition: true  }"
-                    :loop="true"
                     :breakpoints="breakpoints"
                     >
                     <swiper-slide v-for="product in props.products.slice(0,5)" :key="product['id']">

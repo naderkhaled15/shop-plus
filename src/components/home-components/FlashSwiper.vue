@@ -92,8 +92,7 @@ const quickView=(data:{[key:string]:any})=>{
                     :preload-images="false"
                     :Lazy="true"
                     :Autoplay ="{ delay: 1000 , disableOnInteraction:true , waitForTransition: true }"
-                    :loop="true"
-                    :breakpoints="breakpoints"
+s                    :breakpoints="breakpoints"
                     >
                     <swiper-slide v-for="product in props.products" :key="product['id']">
                             <!-- loading placeholder -->

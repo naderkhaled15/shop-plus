@@ -2,6 +2,11 @@
 import { productModule } from "@/stores/productStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import { userModule } from '@/stores/userStore';
+
+const uesrStore=userModule()
+const {userInfo}=storeToRefs(uesrStore) 
+const deleteUser=uesrStore.deleteUser
 
 // languages test
 import { languageModule } from "@/stores/languageStore";
@@ -27,7 +32,7 @@ const { allCategories } = storeToRefs(productStore);
       <h5
         class="offcanvas-title fw-bold"
         id="offcanvasLeftLabel"
-        style="font-size: clamp(12px, 2.5rem, 23px)"
+        style="font-size: clamp(18px, 2.8rem, 23px)"
       >
         menu
       </h5>
@@ -47,15 +52,18 @@ const { allCategories } = storeToRefs(productStore);
       <ul class="list-group list-group-flush mb-5">
         <li
           class="list-group-item py-4 list-group-item-action list-group-item-white w-100 border-0 p-0"
-        >
+          >
+          <span>
           <button
-            type="button"
-            class="btn btn-white nav-link w-100 d-block text-start d-flex align-items-center"
-            @click="router.push({ name: 'log_in', params: { type: 'log-in' } })"
+          v-if="!userInfo"
+          type="button"
+          class="btn btn-white nav-link w-100 d-block text-start d-flex align-items-center"
+            @click="router.push({ name: 'log_in'})"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-          >
-            <svg
+            >
+
+              <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
               aria-hidden="true"
@@ -63,26 +71,60 @@ const { allCategories } = storeToRefs(productStore);
               role="presentation"
               class="icon icon-account"
               style="width: 6rem"
-            >
+              >
               <path
-                d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z"
-              ></path>
-            </svg>
-            <span class="me-auto ms-3" style="font-weight: 600;font-size: clamp(11px, 3.5rem, 35px)"
+            d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z"
+            ></path>
+          </svg>
+          <span class="me-auto ms-3" style="font-weight: 600;font-size: clamp(11px, 3.5rem, 35px)"
+          
+          >sign in</span
+          >
+        </button>
 
-              >sign in</span
+        <span v-if="userInfo" class="me-auto ms-3 d-block mb-5" style="font-weight: 600;font-size: clamp(11px, 3.5rem, 35px)"
+            >welcome  {{ userInfo.username }}</span
+          >
+
+          <button
+          v-if="userInfo"
+          type="button"
+          class="btn btn-white nav-link w-100 d-block text-start d-flex align-items-center"
+            @click="deleteUser()"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
             >
-          </button>
+
+              <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="icon icon-account"
+              style="width: 6rem;fill: #dc3545;"
+              >
+              <path
+            d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z"
+            ></path>
+          </svg>
+          <span class="me-auto ms-3 text-danger" style="font-weight: 600;font-size: clamp(11px, 3.5rem, 35px)"
+          
+          >log out</span
+          >
+        </button>
+      </span>
         </li>
 
-        <li
+        <li 
           class="list-group-item py-4 list-group-item list-group-item-action list-group-item-white w-100 p-0"
         >
           <button
+          v-if="!userInfo"
             type="button"
             class="btn btn-white nav-link w-100 d-block text-start d-flex align-items-center"
             @click="
-              router.push({ name: 'log_in', params: { type: 'sign-up' } })
+              router.push({ name: 'sign_up' })
             "
             data-bs-dismiss="offcanvas"
             aria-label="Close"

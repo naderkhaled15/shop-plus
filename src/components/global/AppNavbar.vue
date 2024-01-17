@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
 import { useRoute,useRouter } from 'vue-router';
 import { cartModule } from '@/stores/cartStore';
 import { languageModule } from '@/stores/languageStore';
+import { userModule } from '@/stores/userStore';
+
+const uesrStore=userModule()
+const {userInfo}=storeToRefs(uesrStore) 
+const deleteUser=uesrStore.deleteUser
 
 
 let search =ref('')
 const route=useRoute()
 const router=useRouter()
+
 
 // products store
 const productStore=productModule()
@@ -23,6 +29,7 @@ const {allCategories}=storeToRefs(productStore)
   // languages store 
   const langStore=languageModule()
   const {languagesSet , language}=storeToRefs(langStore)
+
 
 </script>
 <template>
@@ -60,7 +67,7 @@ const {allCategories}=storeToRefs(productStore)
           </form>
           
           <!-- icons -->
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-4 col-xxl-5 d-flex  gap-4 first-nav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 col-lg-4 col-xxl-5 d-flex  gap-3 first-nav">
             <li class="nav-item availability ms-auto me-xxl-5 me-xl-3 text-white ">
               <span>available 24/7 at</span>
               <strong>(090) 123-4546</strong>
@@ -88,10 +95,17 @@ const {allCategories}=storeToRefs(productStore)
               <span style="font-size: 1.5rem;">wish lists</span>
             </li>
             
-            <li class="nav-item">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon-account" viewBox="0 0 1024 1024" width="4rem" height="4rem"><title>user</title><path class="path1" d="M486.4 563.2c-155.275 0-281.6-126.325-281.6-281.6s126.325-281.6 281.6-281.6 281.6 126.325 281.6 281.6-126.325 281.6-281.6 281.6zM486.4 51.2c-127.043 0-230.4 103.357-230.4 230.4s103.357 230.4 230.4 230.4c127.042 0 230.4-103.357 230.4-230.4s-103.358-230.4-230.4-230.4z"></path><path class="path2" d="M896 1024h-819.2c-42.347 0-76.8-34.451-76.8-76.8 0-3.485 0.712-86.285 62.72-168.96 36.094-48.126 85.514-86.36 146.883-113.634 74.957-33.314 168.085-50.206 276.797-50.206 108.71 0 201.838 16.893 276.797 50.206 61.37 27.275 110.789 65.507 146.883 113.634 62.008 82.675 62.72 165.475 62.72 168.96 0 42.349-34.451 76.8-76.8 76.8zM486.4 665.6c-178.52 0-310.267 48.789-381 141.093-53.011 69.174-54.195 139.904-54.2 140.61 0 14.013 11.485 25.498 25.6 25.498h819.2c14.115 0 25.6-11.485 25.6-25.6-0.006-0.603-1.189-71.333-54.198-140.507-70.734-92.304-202.483-141.093-381.002-141.093z"></path></svg>
-            <span style="font-size: 1.5rem;">sign in</span>
-        </li>
+            <div>
+              <li class="nav-item" v-if="userInfo" @click="deleteUser()">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="fill: #dc3545;" class="icon icon-account" viewBox="0 0 1024 1024" width="4rem" height="4rem"><title>user</title><path class="path1" d="M486.4 563.2c-155.275 0-281.6-126.325-281.6-281.6s126.325-281.6 281.6-281.6 281.6 126.325 281.6 281.6-126.325 281.6-281.6 281.6zM486.4 51.2c-127.043 0-230.4 103.357-230.4 230.4s103.357 230.4 230.4 230.4c127.042 0 230.4-103.357 230.4-230.4s-103.358-230.4-230.4-230.4z"></path><path class="path2" d="M896 1024h-819.2c-42.347 0-76.8-34.451-76.8-76.8 0-3.485 0.712-86.285 62.72-168.96 36.094-48.126 85.514-86.36 146.883-113.634 74.957-33.314 168.085-50.206 276.797-50.206 108.71 0 201.838 16.893 276.797 50.206 61.37 27.275 110.789 65.507 146.883 113.634 62.008 82.675 62.72 165.475 62.72 168.96 0 42.349-34.451 76.8-76.8 76.8zM486.4 665.6c-178.52 0-310.267 48.789-381 141.093-53.011 69.174-54.195 139.904-54.2 140.61 0 14.013 11.485 25.498 25.6 25.498h819.2c14.115 0 25.6-11.485 25.6-25.6-0.006-0.603-1.189-71.333-54.198-140.507-70.734-92.304-202.483-141.093-381.002-141.093z"></path></svg>
+                <span style="font-size: 1.5rem;color: #dc3545;">sign out</span>
+              </li>
+
+              <li class="nav-item" @click="router.push('/log_in')" v-if="!userInfo">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon-account" viewBox="0 0 1024 1024" width="4rem" height="4rem"><title>user</title><path class="path1" d="M486.4 563.2c-155.275 0-281.6-126.325-281.6-281.6s126.325-281.6 281.6-281.6 281.6 126.325 281.6 281.6-126.325 281.6-281.6 281.6zM486.4 51.2c-127.043 0-230.4 103.357-230.4 230.4s103.357 230.4 230.4 230.4c127.042 0 230.4-103.357 230.4-230.4s-103.358-230.4-230.4-230.4z"></path><path class="path2" d="M896 1024h-819.2c-42.347 0-76.8-34.451-76.8-76.8 0-3.485 0.712-86.285 62.72-168.96 36.094-48.126 85.514-86.36 146.883-113.634 74.957-33.314 168.085-50.206 276.797-50.206 108.71 0 201.838 16.893 276.797 50.206 61.37 27.275 110.789 65.507 146.883 113.634 62.008 82.675 62.72 165.475 62.72 168.96 0 42.349-34.451 76.8-76.8 76.8zM486.4 665.6c-178.52 0-310.267 48.789-381 141.093-53.011 69.174-54.195 139.904-54.2 140.61 0 14.013 11.485 25.498 25.6 25.498h819.2c14.115 0 25.6-11.485 25.6-25.6-0.006-0.603-1.189-71.333-54.198-140.507-70.734-92.304-202.483-141.093-381.002-141.093z"></path></svg>
+                <span  style="font-size: 1.5rem">sign in</span>
+              </li>
+            </div>
         
         <li class="nav-item me-4">
           <button class="btn px-0 py-0 position-relative border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" :style="`pointer-events:${route.name==='cart_page'? 'none': 'auto'}`">

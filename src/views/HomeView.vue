@@ -2,7 +2,8 @@
 import router from "@/router";
 import {productModule} from "@/stores/productStore"
 import { storeToRefs } from "pinia";
-import { defineAsyncComponent, onBeforeMount, ref } from 'vue';
+import { defineAsyncComponent, onBeforeMount, onMounted, ref, useModel } from 'vue';
+// import {errorToast} from "@/components/toast/Error"
 
 const UpperBanner=defineAsyncComponent(()=>import("../components/home-components/UpperBanner.vue"))
 const FeatureSection=defineAsyncComponent(()=>import("../components/home-components/FeatureSection.vue"))
@@ -24,6 +25,8 @@ loading.value=true
  document.documentElement.scrollTo(0,0)
  loading.value=false
 })
+
+
 </script>
 <template>
     <div>

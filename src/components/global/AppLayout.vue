@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, ref, watch } from 'vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { userModule } from '@/stores/userStore';
+
+const uesrStore=userModule()
+const getUser=uesrStore.getUser
 
 const route=useRoute()
 
@@ -13,13 +17,17 @@ const ResponsiveNav=defineAsyncComponent(()=>import("../global/ResponsiveNav.vue
 
 let navResponse=ref(false)
 
+
 onMounted(() => {
     window.innerWidth <= 992?  navResponse.value=true :navResponse.value=false
+    getUser()
 })
 
 window.onresize=()=>{
     window.innerWidth <= 992? navResponse.value=true :navResponse.value=false
 }
+
+    
 
 
 </script>
@@ -29,7 +37,7 @@ window.onresize=()=>{
         <!-- navbar -->
             <app-navbar v-show="route.name !='check_out' && !navResponse"/>
             <fixed-nav v-show="route.name !='check_out' && !navResponse"/>
-            <responsive-nav v-show="route.name !='check_out' && navResponse" />
+            <responsive-nav v-show="route.name !='check_out' && navResponse"/>
         <!-- aside -->
             <side-cart v-show="route.name !='check_out'"/>
             <side-menu v-show="navResponse"/>
