@@ -391,10 +391,10 @@ body {
   .btn-login {
     width: 50rem;
     padding: 1.4rem;
-    border-radius: 9px;
+    border-radius: 0.9rem;
     background-color: #112e42;
     border: none;
-    font-size: 20px;
+    font-size: clamp(13px,2rem,20px);
     color: #ededed;
     font-weight: bold;
     text-transform: capitalize;
@@ -406,7 +406,7 @@ body {
   .btn-signup {
     width: 20rem;
     padding: 1rem;
-    border-radius: 9px;
+    border-radius: 0.9rem;
     text-decoration: underline;
     border: none;
     font-size: 2.5rem;

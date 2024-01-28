@@ -50,7 +50,7 @@
                     <div class="col-2 text-center">
                         <a class="navbar-brand" href="#">
                             <router-link to="/">
-                                <img src="../../media/images/footer-logo.webp" alt="ellarmart-logo" style="width:clamp(70px , 25rem ,170px)">
+                                <img src="../../assets/images/footer-logo.webp" alt="ellarmart-logo" style="width:clamp(70px , 25rem ,170px)">
                             </router-link>
                         </a>
                     </div>

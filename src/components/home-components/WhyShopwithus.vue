@@ -6,25 +6,25 @@
             <div class="row row-cols-4 w-100 shop-body">
 
                 <div class="col text-center">
-                    <img src="../../media/images/free-shipping.png" alt="why shop with us" style="width: 12rem;height: 12rem;">
+                    <img src="../../assets/images/free-shipping.png" alt="why shop with us" style="width: 12rem;height: 12rem;">
                     <p class="shop-feature">free shipping on first order</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
                     <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
                 <div class="col text-center">
-                    <img src="../../media/images/weekly-flash-sales.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
+                    <img src="../../assets/images/weekly-flash-sales.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">weekly flash sale</p>
                     <p class="shop mt-auto">praesent suscipit mattis facilisis</p>
                     <p ><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
                 <div class="col text-center">
-                    <img src="../../media/images/discount.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
+                    <img src="../../assets/images/discount.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">anual payment discount</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
                     <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
                 </div>
                 <div class="col text-center">
-                    <img src="../../media/images/cash-back.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
+                    <img src="../../assets/images/cash-back.png" alt="why shop with us" style="width: 12rem; height: 12rem;">
                     <p class="shop-feature">cashback reward program</p>
                     <p class="shop">praesent suscipit mattis facilisis</p>
                     <p><a href="#" class="link-shop link-offset-2 link-underline-opacity-100">learn more</a></p>
@@ -35,7 +35,7 @@
 
 <style lang="scss">
     .shop-with-us {
-        background-image: url(../../media/images/why-shop-with-us-banner.webp);
+        background-image: url(../../assets/images/why-shop-with-us-banner.webp);
         background-repeat: no-repeat ;
         background-position: left top;
         background-size: cover ;

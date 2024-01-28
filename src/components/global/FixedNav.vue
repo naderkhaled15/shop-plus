@@ -22,16 +22,10 @@ const route=useRoute()
       <div class=" col-md-2">
         <a class="navbar-brand text-center" href="#">
           <router-link to="/">
-            <img src="../../media/images/logo.png" alt="ellarmart-logo" style="min-width: 110px; width: 60%">
+            <img src="../../assets/images/logo.png" alt="ellarmart-logo" style="min-width: 110px; width: 60%">
           </router-link>
         </a> 
       </div>
-      
-      
-      <!-- collapsed button -->
-      <!-- <button class="navbar-toggler col-sm-1 ms-auto me-4" type="button" data-toggle="collapse" data-target="#fixedNavBar" aria-controls="fixedNavBar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
       
       
       <!-- list items ----------------------------------------------------------------------------------------------------------------------------------->

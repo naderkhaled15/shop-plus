@@ -2,7 +2,6 @@ import axios from "axios";
 import type { AxiosInstance } from "axios";
 
 
-// export default axios.create({baseURL:"https://dummyjson.com"})
 
 const commerceUrl:AxiosInstance=axios.create ({
     baseURL:"https://dummyjson.com",

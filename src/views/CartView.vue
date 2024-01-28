@@ -11,18 +11,6 @@ const { cartItems, totalPriceShipping } = storeToRefs(cartStore);
 const deleteItem = cartStore.deleteItem;
 let agree = ref(false);
 
-const totalPrice = (): number => {
-  let total = ref(0);
-  cartItems.value.forEach((product: any) => {
-    total.value +=
-      product["quantity"] *
-      Math.ceil(
-        product["price"] -
-          product["price"] * (product["discountPercentage"] / 100)
-      );
-  });
-  return Number(total.value.toFixed(2));
-};
 
 onUpdated(() => {
   localStorage.setItem("cart-items", JSON.stringify(cartItems.value));
@@ -124,11 +112,11 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                 style="width: clamp(12px,3rem ,30px); height: clamp(20px ,3rem ,30px);"
                 viewBox="0 0 40.55 24"
                 :style="`top:-6px; left:calc(${
-                  (totalPrice() / totalPriceShipping) * 100 <= 100
-                    ? (totalPrice() / totalPriceShipping) * 100
+                  (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
+                    ? (cartStore.totalPrice / totalPriceShipping) * 100
                     : 100
                 }% - clamp(12px,3rem,30px));transition:0.3s all ease-in-out; fill:${
-                  (totalPrice() / totalPriceShipping) * 100 <= 100
+                  (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
                     ? '#dc3545'
                     : '#3a8e3a'
                 };`"
@@ -161,11 +149,11 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
               <div
                 class="progress-bar progress-bar-striped progress-bar-animated"
                 :style="`width : calc(${
-                  (totalPrice() / totalPriceShipping) * 100 <= 100
-                    ? (totalPrice() / totalPriceShipping) * 100
+                  (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
+                    ? (cartStore.totalPrice / totalPriceShipping) * 100
                     : 100
                 }%);background-color:${
-                  (totalPrice() / totalPriceShipping) * 100 <= 100
+                  (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
                     ? '#dc3545'
                     : '#3a8e3a'
                 }; transition:0.3s all ease-in-out`"
@@ -174,9 +162,9 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
             <p class="my-3 align-self-start" style="font-weight: 500;font-size: clamp(6px, 1.8rem, 18px)">
               only
               {{
-                totalPrice() - totalPriceShipping <= 0
+                cartStore.totalPrice - totalPriceShipping <= 0
                   ? `&#x24;${
-                      totalPriceShipping - totalPrice()
+                      totalPriceShipping - cartStore.totalPrice
                     } away from free shipping`
                   : `your order qualifies for free shipping`
               }}
@@ -235,11 +223,11 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                 </div>
 
                 <div class="col-1 my-auto text-center">
-                  &#x24;{{ product["price"].toFixed(2) }}
+                  &#x24; {{ product["price"].toFixed(2) }}
                 </div>
                 <div class="col-2 my-auto text-center">
 
-                  <div class="cart-count my-3 mx-auto">
+                  <div class="cart-count cart-product-count my-3 mx-auto">
                     <button
                       type="button"
                       class="btn"
@@ -250,6 +238,8 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                       -
                     </button>
                     <input
+                      id="reduce-count"
+                      name="reduce"
                       type="number"
                       class="border-0"
                       :value="product['quantity']"
@@ -352,7 +342,7 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                 </p>
               </div>
               <img
-                src="../media/images/cart-page-cards.webp"
+                src="../assets/images/cart-page-cards.webp"
                 alt="cards"
                 style="width: 25rem"
               />
@@ -377,7 +367,7 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                 class="sub-total d-flex justify-content-between align-items-start mt-5 border-bottom"
               >
                 <p class="m-0" style="font-weight: 500;font-size:clamp(6px,1.5rem,19px);">subtotal :</p>
-                <strong style="font-size:clamp(6px,1.5rem,19px);">&#x24;{{ totalPrice().toFixed(2) }}</strong>
+                <strong style="font-size:clamp(6px,1.5rem,19px);">&#x24;{{cartStore.totalPrice }}</strong>
               </div>
 
               <div class="mt-4 border-bottom">
@@ -395,7 +385,6 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                         <option
                           v-for="(cont,index) in contries"
                           :key="index"
-                          :value="cont"
                           style="font-size:clamp(7px,1.5rem,15px)"
                         >
                           {{ cont }}
@@ -413,7 +402,6 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
                           <option
                             v-for="(region, index) in 5"
                             :key="index"
-                            :value="region"
                             style="font-size:clamp(7px,1.5rem,15px)"
                           >
                             region {{ region }}
@@ -461,7 +449,7 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
 
               <div class="d-flex justify-content-between border-bottom">
                 <p class="my-5" style="font-weight: 500;font-size:clamp(6px,1.5rem,19px)">total :</p>
-                <strong class="my-5" style="font-size:clamp(6px,1.5rem,19px);" >&#x24;{{ totalPrice().toFixed(2) }}</strong>
+                <strong class="my-5" style="font-size:clamp(6px,1.5rem,19px);" >&#x24;{{cartStore.totalPrice }}</strong>
               </div>
 
               <div>
@@ -521,21 +509,20 @@ const contries = ref(["Egypt", "Lebanon", "America", "Seria", "Jordon"]);
   }
 }
  
-.cart-count {
+.cart-product-count {
   display: flex;
   flex-direction: row;
   align-items: center !important;
   justify-content: space-between;
   border: 1px solid black !important;
-  width: 8rem;
-  min-width:28px;
+  width: 10rem;
+  min-width: 50px;
   text-align: center;
   border-radius: 10rem;
-  font-size: clamp(6px, 1.4rem, 14px);
   input[type="number"] {
     background-color: transparent;
     width: 4rem;
-    min-width: 11px;
+    min-width: 30px;
     margin: 0 auto;
     font-weight: 400;
   }

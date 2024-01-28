@@ -123,7 +123,7 @@ emitter.emit('productInfo',d)
 
             <div class="col-12 col-md-4 my-auto mx-auto">
                 <div class="overflow-hidden my-auto mx-auto">
-                    <img src="../../media/images/vr-banner.webp" alt="vr img" width="100%" height="100%" class="vr-img">
+                    <img src="../../assets/images/vr-banner.webp" alt="vr img" width="100%" height="100%" class="vr-img">
                 </div>
             </div>
         </div>

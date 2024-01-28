@@ -44,5 +44,18 @@ export const cartModule = defineStore('cartModule',{
       localStorage.setItem('cart-items',JSON.stringify(this.cartItems))
     }
   },
-  getters:{}
+  getters:{
+     totalPrice (): number {
+      let total = 0;
+      this.cartItems.forEach((product: any) => {
+        total +=
+          product["quantity"] *
+          Math.ceil(
+            product["price"] -
+              product["price"] * (product["discountPercentage"] / 100)
+          );
+      });
+      return Number(total.toFixed(2));
+    }
+  }
 })

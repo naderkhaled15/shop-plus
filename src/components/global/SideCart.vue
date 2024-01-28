@@ -8,21 +8,9 @@ const router = useRouter();
 
 const cartStore = cartModule();
 const deleteItem = cartStore.deleteItem;
-const { cartItems, totalPriceShipping } = storeToRefs(cartStore);
+const { cartItems } = storeToRefs(cartStore);
+const {totalPriceShipping}=cartStore
 let agree = ref(false);
-
-const totalPrice = (): number => {
-  let total = ref(0);
-  cartItems.value.forEach((product: any) => {
-    total.value +=
-      product["quantity"] *
-      Math.ceil(
-        product["price"] -
-          product["price"] * (product["discountPercentage"] / 100)
-      );
-  });
-  return Number(total.value.toFixed(2));
-};
 
 onUpdated(() => {
   localStorage.setItem("cart-items", JSON.stringify(cartItems.value));
@@ -81,11 +69,11 @@ onUpdated(() => {
               "
               viewBox="0 0 40.55 24"
               :style="`top:-6px; left:calc(${
-                (totalPrice() / totalPriceShipping) * 100 <= 100
-                  ? (totalPrice() / totalPriceShipping) * 100
+                (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
+                  ? (cartStore.totalPrice / totalPriceShipping) * 100
                   : 100
               }% - clamp(12px,3rem,30px) );transition:0.3s all ease-in-out; fill:${
-                (totalPrice() / totalPriceShipping) * 100 <= 100
+                (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
                   ? '#dc3545'
                   : '#3a8e3a'
               };`"
@@ -118,11 +106,11 @@ onUpdated(() => {
             <div
               class="progress-bar progress-bar-striped progress-bar-animated"
               :style="`width : calc(${
-                (totalPrice() / totalPriceShipping) * 100 <= 100
-                  ? (totalPrice() / totalPriceShipping) * 100
+                (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
+                  ? (cartStore.totalPrice / totalPriceShipping) * 100
                   : 100
               }%); transition:0.3s all ease-in-out ;  background-color:${
-                (totalPrice() / totalPriceShipping) * 100 <= 100
+                (cartStore.totalPrice / totalPriceShipping) * 100 <= 100
                   ? '#dc3545'
                   : '#3a8e3a'
               };`"
@@ -134,9 +122,9 @@ onUpdated(() => {
           >
             only
             {{
-              totalPrice() - totalPriceShipping <= 0
+              cartStore.totalPrice - totalPriceShipping <= 0
                 ? `&#x24;${
-                    totalPriceShipping - totalPrice()
+                    totalPriceShipping - cartStore.totalPrice
                   } away from free shipping`
                 : `your order qualifies for free shipping`
             }}
@@ -296,7 +284,7 @@ onUpdated(() => {
           <div class="d-flex justify-content-between mt-4 text-black fw-bold">
             <p style="font-size: clamp(8px, 1.9rem, 19px)">total :</p>
             <p style="font-size: clamp(8px, 1.9rem, 19px)">
-              &#x24;{{ totalPrice() }}
+              &#x24;{{ cartStore.totalPrice }}
             </p>
           </div>
           <p class="my-2" style="font-size: clamp(6px, 1.4rem, 14px)">

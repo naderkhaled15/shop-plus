@@ -135,7 +135,7 @@ let search =ref('')
           </div>
 
           <div class="col mb-3">
-            <img src="../../media/images/footer-logo.webp" alt="logo" style="min-width:10px; width: 23rem;" class="mb-5" @click="router.push({name:'home'})">
+            <img src="../../assets/images/footer-logo.webp" alt="logo" style="min-width:10px; width: 23rem;" class="mb-5" @click="router.push({name:'home'})">
             <ul class="nav flex-column footer-list align-items-start">
 
               <li class="nav-item d-flex mb-4">
@@ -249,7 +249,7 @@ footer {
     font-size: clamp(10px , 2.5rem , 38px);
     font-weight: 700;
     padding-bottom: 2rem;
-    color: #262626;
+    color: #161616;
   }
   .footer-list {
     margin-bottom: 20px;
@@ -259,7 +259,7 @@ footer {
         margin-bottom: 1.5rem;
       }
       a {
-        color: #818181 !important;
+        color: #383838 !important;
         &:hover {
           color: #262626 !important;
         }

@@ -56,7 +56,7 @@ import { ref } from 'vue';
 <template>
     <div>
         <div class="cyber-banner">
-            <img src="../../media/images/cyber-banner.webp" alt="cyber banner" width="100%" height="100%" class="pt-5">
+            <img src="../../assets/images/cyber-banner.webp" alt="cyber banner" width="100%" height="100%" class="pt-5">
         </div>
 
         <div class="top-categories">

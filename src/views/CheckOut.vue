@@ -1,20 +1,20 @@
 <script setup lang="ts">
-    import { cartModule } from '@/stores/cartStore';
+    import router from '@/router';
+import { cartModule } from '@/stores/cartStore';
     import { storeToRefs } from 'pinia';
-    import { ref } from 'vue';
+    import { onBeforeMount, ref } from 'vue';
 
     const cartStore=cartModule()
     const {cartItems}=storeToRefs(cartStore)
     const shipping=ref(20)
     let agree=ref(false)
 
-    const totalPrice=():number=>{
-    let total=ref(0)
-    cartItems.value.forEach((product:any)=>{
-        total.value+=product['quantity'] * (Math.ceil((product['price'] - ( product['price'] * (product['discountPercentage'] / 100) ))))
+    onBeforeMount(() => {
+        if(!localStorage.getItem('user-info')){
+            router.push('sign_up')
+        }
     })
-    return  Number( total.value.toFixed(2))
-    }
+
 </script>   
 
 <template>
@@ -112,7 +112,7 @@
     <div class="col-5 m-0 b-0" style="background-color: #f5f5f5; height: 100vh;">
 
             <div class="py-4 overflow-y-auto  overflow-x-hidden" style="height: 50rem; min-height: 200px;">
-                <div class="row row-cols-3 my-1 p-4 user-select-none justify-content-between" v-for="product in cartItems" :key="product['id']">
+                <div class="row row-cols-3 my-1 p-4 user-select-none justify-content-between" id="disount-code" name="disount-code" v-for="product in cartItems" :key="product['id']">
 
                     <div class="col-2 p-0">
                         <div class="position-relative" style="height: 9rem;min-height: 30px; width: 10rem; min-width: 33px;">
@@ -144,7 +144,7 @@
                 <div class="col-11 mb-3">
                     <div class="sub-total d-flex justify-content-between">
                         <span style="font-size: clamp(6px,1.8rem ,15px);font-weight: 600;">subtotal </span>
-                        <span style="font-size: clamp(6px,1.8rem ,15px)"> &#x24;{{(totalPrice()).toFixed(2)}} </span>
+                        <span style="font-size: clamp(6px,1.8rem ,15px)"> &#x24;{{(cartStore.totalPrice).toFixed(2)}} </span>
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
                 <div class="col-11">
                     <div class="sub-total d-flex justify-content-between">
                         <span class="fw-bold" style="font-size: clamp(7px,1.8rem ,18px);">Total </span>
-                        <span class="fw-bold" style="font-size: clamp(7px,1.8rem ,18px);"> &#x24;{{(totalPrice() + shipping).toFixed(2)}} </span>
+                        <span class="fw-bold" style="font-size: clamp(7px,1.8rem ,18px);"> &#x24;{{(cartStore.totalPrice + shipping).toFixed(2)}} </span>
                     </div>
                 </div>
             </div>

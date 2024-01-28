@@ -2,7 +2,7 @@
 <template>
     <div class="upper-banner">
         <div class="parent p-0">
-            <img src="../../media/images/banner-bg.jpg" alt="banner img">
+            <img src="../../assets/images/banner-bg.jpg" alt="banner img">
             <div class="b-content col-6">
                 <h1 class="b-title mb-0"><span>huge saving</span> on UHD televisions</h1>
                 <p class="b-body">sale up to 70% off on selected items*</p>

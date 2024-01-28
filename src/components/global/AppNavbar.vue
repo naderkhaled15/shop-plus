@@ -40,7 +40,7 @@ const {allCategories}=storeToRefs(productStore)
         <!-- brand icon -->
         <a class="navbar-brand col-lg-2 col-xxl-3 align-self-center" href="#">
           <router-link to="/">
-            <img src="../../media/images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;max-width: 300px; ">
+            <img src="../../assets//images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;max-width: 300px; ">
           </router-link>
         </a>
         
@@ -57,7 +57,7 @@ const {allCategories}=storeToRefs(productStore)
             <div class="input-group position-relative">
               <input class="form-control rounded-pill bg-white text-dark z-1 px-4 my-2 search" type="search" placeholder="Search the store" aria-label="Search" v-model="search">
               <div class="input-group-append p-0">
-                <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2 border-0" type="submit" :disabled="!search" @click.prevent="router.push({name:'search',params:{'key':search}}),search=''">
+                <button class="btn rounded-pill p-0 position-absolute top-50 end-0 translate-middle z-2 border-0" type="submit" :disabled="!search" @click.prevent="router.push({name:'search',params:{'key':search}}),search=''" aria-label="search">
                   <svg data-icon="search" viewBox="0 0 512 512" width="100%" height="100%" style="fill: #161880; width: 30px;">
                     <path d="M495,466.2L377.2,348.4c29.2-35.6,46.8-81.2,46.8-130.9C424,103.5,331.5,11,217.5,11C103.4,11,11,103.5,11,217.5   S103.4,424,217.5,424c49.7,0,95.2-17.5,130.8-46.7L466.1,495c8,8,20.9,8,28.9,0C503,487.1,503,474.1,495,466.2z M217.5,382.9   C126.2,382.9,52,308.7,52,217.5S126.2,52,217.5,52C308.7,52,383,126.3,383,217.5S308.7,382.9,217.5,382.9z"></path>
                   </svg>
