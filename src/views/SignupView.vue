@@ -48,7 +48,6 @@
 
         }catch(e:any){
             if(axios.isCancel(e)){
-                console.log("request cancelled",e.message)
                 error.value=e.message
             }else{
                 console.error("error",e.response.data.message.split('.')[0])

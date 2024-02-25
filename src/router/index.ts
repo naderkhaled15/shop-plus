@@ -12,6 +12,40 @@ const router = createRouter({
       }
     },
     {
+      path: '/faild',
+      name: 'faild',
+      component: ()=>import("../views/FaildCheckOut.vue"),
+      meta:{
+        title:"checkout-faild"
+      },
+      beforeEnter: (to, from, next) => {
+        let currentUser=JSON.parse(localStorage.getItem('user-info')!)
+        let userToken=JSON.parse(localStorage.getItem('token')!)
+        if(currentUser && userToken){
+          next()
+        } else  {
+          next('/')
+        }
+      }
+    },
+    {
+      path: '/success',
+      name: 'success',
+      component: ()=>import("../views/SuccessCheckOut.vue"),
+      meta:{
+        title:"checkout-faild"
+      },
+      beforeEnter: (to, from, next) => {
+        let currentUser=JSON.parse(localStorage.getItem('user-info')!)
+        let userToken=JSON.parse(localStorage.getItem('token')!)
+        if(currentUser && userToken){
+          next()
+        } else  {
+          next('/')
+        }
+      }
+    },
+    {
       path: '/category/:title',
       name: 'category',
       component: ()=>import("../views/CategoryView.vue"),

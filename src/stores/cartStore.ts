@@ -42,6 +42,10 @@ export const cartModule = defineStore('cartModule',{
         indexOfElement=null
       }
       localStorage.setItem('cart-items',JSON.stringify(this.cartItems))
+    },
+    clearCart(){
+      this.cartItems=[]
+      localStorage.setItem('cart-items',JSON.stringify(this.cartItems))
     }
   },
   getters:{

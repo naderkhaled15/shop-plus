@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
+import { ref } from 'vue';
 import { productModule } from '@/stores/productStore';
 import { storeToRefs } from 'pinia';
 import { RouterLink } from 'vue-router';
@@ -11,7 +11,13 @@ import { userModule } from '@/stores/userStore';
 const uesrStore=userModule()
 const {userInfo}=storeToRefs(uesrStore) 
 const deleteUser=uesrStore.deleteUser
+let currentUser=ref(JSON.parse(localStorage.getItem('user-info')!))
+let userToken=ref(JSON.parse(localStorage.getItem('token')!))
 
+
+let adminUser=()=>{
+  return currentUser.value && userToken.value && currentUser.value.admin ? true : false
+}
 
 let search =ref('')
 const route=useRoute()
@@ -38,11 +44,11 @@ const {allCategories}=storeToRefs(productStore)
       <!-- first nav row -->
       <div class="row col-12">
         <!-- brand icon -->
-        <a class="navbar-brand col-lg-2 col-xxl-3 align-self-center" href="#">
-          <router-link to="/">
-            <img src="../../assets//images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;max-width: 300px; ">
-          </router-link>
-        </a>
+        <router-link to="/" class="navbar-brand col-lg-2 col-xxl-3 align-self-center">
+          <img src="../../assets//images/logo.png" alt="ellarmart-logo" style="width:60%; min-width: 150px;max-width: 300px; ">
+        </router-link>
+        <!-- <a class="navbar-brand col-lg-2 col-xxl-3 align-self-center" href="#">
+        </a> -->
         
         <!-- button of collapsed navbar -->
         <button class="navbar-toggler col-sm-1 ms-auto me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,6 +137,11 @@ const {allCategories}=storeToRefs(productStore)
       <li v-for="category in allCategories" :key="category.title">
         <RouterLink class="nav-link" active-class="active" :to="{name:'category',params:{'title':category.route}}">{{ category.title }}</RouterLink>      
       </li>
+
+      <li v-if="currentUser && userToken && currentUser.admin">
+        <a href="http://localhost:8080/" class="nav-link" active-class="active">Admin</a>  
+      </li>
+   
       <!-- help and lang -->
       <li class="nav-item ms-0 ms-lg-auto">
         <a class="nav-link" href="#">

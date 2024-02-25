@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import router from '@/router';
-import { cartModule } from '@/stores/cartStore';
+    import { cartModule } from '@/stores/cartStore';
     import { storeToRefs } from 'pinia';
     import { onBeforeMount, ref } from 'vue';
 
@@ -15,6 +15,23 @@ import { cartModule } from '@/stores/cartStore';
         }
     })
 
+    let stripe= Stripe("pk_test_51OmgA8Jq6sEsIXHLg5uX5qjd8XsGQmKkIEs1s75gjdjSX7LMa77Jdcy4SITmAYVEMq6ChmlQPMNebTdqeDjzNXmS00jPzTl9UJ")
+
+    const payCheckout=():void=>{
+        stripe.redirectToCheckout({
+            lineItems:[
+                {
+                    price:"price_1OmgGvJq6sEsIXHLqiJ5QQU6",
+                    quantity:1,
+                },
+            ],
+            mode: 'payment',
+            successUrl: 'http://localhost:5173/success',
+            cancelUrl: 'http://localhost:5173/faild',
+        }).then((result: any)=>{
+            console.log(result)
+        })
+    }
 </script>   
 
 <template>
@@ -56,7 +73,7 @@ import { cartModule } from '@/stores/cartStore';
             </div>
 
             <div class="row py-4">
-                <form class="row g-3">
+                <form class="row g-3" @submit.prevent="payCheckout">
                     <p class="fw-bold m-0" style="font-size: clamp(5px, 1.8rem, 18px)">shipping addresses</p>
 
                     <div class="col-12">
@@ -99,7 +116,7 @@ import { cartModule } from '@/stores/cartStore';
                     </div>
 
                     <div class="col-5 d-flex justify-content-end mt-4">
-                        <button type="submit" style="font-size: clamp(5px, 1.6rem, 13px);" class="btn btn-primary rounded-3" :disabled="!agree" @click="$router.push({name:'payment_checkout'})">payment methods</button>
+                        <button type="submit" style="font-size: clamp(5px, 1.6rem, 13px);" class="btn btn-primary rounded-3" :disabled="!agree" id="checkout">checkout</button>
                     </div>
                     
         </form>
@@ -166,7 +183,7 @@ import { cartModule } from '@/stores/cartStore';
         </div>
 
 
-
+        <button @click.prevent="notifyNotifications">push notification</button>
 
     </div>
 </template>
